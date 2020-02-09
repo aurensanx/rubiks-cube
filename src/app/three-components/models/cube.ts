@@ -57,20 +57,22 @@ const topCenter = createPiece(TOP_CENTER);
 const bottomCenter = createPiece(BOTTOM_CENTER);
 
 export const moveCenterLayerHorizontally = () => {
-    // centerPivot.remove(topCenter, bottomCenter);
+    centerPivot.add(topCenter, bottomCenter);
+    movablePivot.remove(centerPiece, rightCenter, leftCenter, topCenter, bottomCenter, frontCenter, rearCenter);
     movablePivot.add(centerPiece, rightCenter, leftCenter, frontCenter, rearCenter);
-    centerPivot.add(movablePivot);
     movablePivot.rotation.y += 0.01;
 };
 
 export const moveCenterLayerVertically = () => {
+    centerPivot.add(rightCenter, leftCenter);
+    movablePivot.remove(centerPiece, rightCenter, leftCenter, topCenter, bottomCenter, frontCenter, rearCenter);
     movablePivot.add(centerPiece, topCenter, bottomCenter, frontCenter, rearCenter);
-    centerPivot.add(movablePivot);
     movablePivot.rotation.x += 0.01;
 };
 
 export const createCube = () => {
     centerPivot.add(centerPiece, rightCenter, leftCenter, frontCenter, rearCenter, topCenter, bottomCenter);
+    centerPivot.add(movablePivot);
     return centerPivot;
 };
 
