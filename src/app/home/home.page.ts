@@ -1,42 +1,63 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
+import {camera, createCube, moveCenterLayerVertically, scene} from '../three-components';
+import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class HomePage implements OnInit {
 
-  constructor() {
-  }
+    renderer = null;
+    controls = null;
 
-  ngOnInit() {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    constructor() {
+    }
 
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+    ngOnInit() {
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({color: 0x00ff00});
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+        const canvas: HTMLCanvasElement = document.querySelector('#c');
+        this.renderer = new THREE.WebGLRenderer({canvas, antialias: true});
 
-    camera.position.z = 5;
+        scene.add(createCube());
 
-    const animate = () => {
-      requestAnimationFrame(animate);
+        this.controls = new TrackballControls(camera, this.renderer.domElement);
+        // this.controls.noZoom = true;
+        this.controls.rotateSpeed = 2;
+        this.controls.update();
 
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
 
-      renderer.render(scene, camera);
-    };
+        const animate = () => {
+            requestAnimationFrame(animate);
 
-    animate();
-  }
+            if (this.resizeRendererToDisplaySize(this.renderer)) {
+                const c = this.renderer.domElement;
+                camera.aspect = c.clientWidth / c.clientHeight;
+                camera.updateProjectionMatrix();
+            }
 
+            moveCenterLayerVertically();
+
+            this.controls.update();
+            this.renderer.render(scene, camera);
+        };
+
+        animate();
+
+    }
+
+    resizeRendererToDisplaySize(renderer) {
+        const canvas = renderer.domElement;
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        const needResize = canvas.width !== width || canvas.height !== height;
+        if (needResize) {
+            renderer.setSize(width, height, false);
+        }
+        return needResize;
+    }
 
 }
