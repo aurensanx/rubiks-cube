@@ -7,20 +7,8 @@ const SIZE = {
     DEPTH: 1,
 };
 
-export const COLORS = {
-    BLUE: 0x0000FF,
-    GREEN: 0x008000,
-    WHITE: 0xFFFFFF,
-    YELLOW: 0xFFFF00,
-    RED: 0xFF0000,
-    ORANGE: 0xFFA500,
-    BLACK: 0X00000,
-};
 
-
-
-
-// Right - Left - Top - Bottom - Front - Rear
+// Right - Left - Up - Down - Front - Back
 type FACE_COLORS = [number, number, number, number, number, number, number, number, number, number, number, number];
 
 
@@ -46,5 +34,10 @@ export const createPiece: (pieceDefinition: PIECE) => Mesh = (pieceDefinition: P
     piece.position.x = pieceDefinition.position[0];
     piece.position.y = pieceDefinition.position[1];
     piece.position.z = pieceDefinition.position[2];
+    const geo = new THREE.EdgesGeometry(piece.geometry);
+    const mat = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 4});
+    const wireFrame = new THREE.LineSegments(geo, mat);
+    wireFrame.renderOrder = 1; // make sure wireFrame are rendered 2nd
+    piece.add(wireFrame);
     return piece;
 };

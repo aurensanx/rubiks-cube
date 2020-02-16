@@ -1,7 +1,9 @@
 import {ActionReducerMap, createSelector} from '@ngrx/store';
 import {moveReducer} from './reducer';
 
-export type CubeState = [number, number, number, number, number, number];
+
+export type CubeState = number[];
+
 
 export interface MoveState {
     move: number;
