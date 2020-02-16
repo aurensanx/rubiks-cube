@@ -4,9 +4,9 @@ import {BOTTOM_CENTER, CUBE_CENTER, FRONT_CENTER, LEFT_CENTER, REAR_CENTER, RIGH
 import {Mesh, Object3D} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
-import {CubeState} from '../store/state';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {scene} from '../three-components';
+import {moveSpeed, scene} from '../three-components';
+import {CubeState, MoveState, selectMoveCube} from '@cube-store';
 
 @Injectable({
     providedIn: 'root'
@@ -19,17 +19,19 @@ export class CubeService {
     centers: Mesh[];
 
     subscription: Subscription;
-    cube: [number, number, number, number, number, number];
+    cube: CubeState;
 
     moveMap = {
-        0: () => this.moveCenterLayerHorizontally(),
-        1: () => this.moveCenterLayerVertically(),
+        1: () => this.moveE(),
+        2: () => this.moveE0(),
+        3: () => this.moveM(),
+        4: () => this.moveM0(),
     };
 
-    constructor(private store: Store<{ state: CubeState }>) {
+    constructor(private store: Store<{ state: MoveState }>) {
 
-        this.subscription = store.pipe(select('state')).subscribe((next: CubeState) => {
-            this.cube = next.cube;
+        this.subscription = store.pipe(select(selectMoveCube)).subscribe((next: CubeState) => {
+            this.cube = next;
         });
 
         this.centerPivot.position.set(0, 0, 0);
@@ -45,21 +47,29 @@ export class CubeService {
         this.moveMap[move]();
     }
 
-    moveCenterLayerHorizontally = () => {
-        this.move([0, 1, 4, 5], 'y');
+    moveE = () => {
+        this.move([0, 1, 4, 5], 'y', 1);
     };
 
-    moveCenterLayerVertically = () => {
-        this.move([2, 3, 4, 5], 'x');
+    moveE0 = () => {
+        this.move([0, 1, 4, 5], 'y', -1);
     };
 
-    move = (faces, axis) => {
+    moveM = () => {
+        this.move([2, 3, 4, 5], 'x', 1);
+    };
+
+    moveM0 = () => {
+        this.move([2, 3, 4, 5], 'x', -1);
+    };
+
+    move = (faces, axis, direction) => {
         this.centerPivot.rotation.set(0, 0, 0);
         this.centerPivot.updateMatrixWorld();
         faces.forEach(i => {
             SceneUtils.attach(this.centers[this.cube[i]], scene, this.centerPivot);
         });
-        this.centerPivot.rotation[axis] += Math.PI / 2;
+        this.centerPivot.rotation[axis] += Math.PI / 2 / moveSpeed * direction;
         this.centerPivot.updateMatrixWorld();
         faces.forEach(i => {
             SceneUtils.detach(this.centers[this.cube[i]], this.centerPivot, scene);

@@ -1,5 +1,7 @@
 <section>
 <!--  <ion-button size="large" color="light" (click)="onStopMove('')">Light</ion-button>-->
-  <ion-button size="large" color="medium" (click)="onStartMove(0)">Horizontally</ion-button>
-  <ion-button size="large" color="dark" (click)="onStartMove(1)">Vertically</ion-button>
+  <ion-button size="large" color="medium" [disabled]="move" (click)="onStartMove(1)">E</ion-button>
+  <ion-button size="large" color="medium" [disabled]="move" (click)="onStartMove(2)">E'</ion-button>
+  <ion-button size="large" color="dark" [disabled]="move" (click)="onStartMove(3)">M</ion-button>
+  <ion-button size="large" color="dark" [disabled]="move" (click)="onStartMove(4)">M'</ion-button>
 </section>

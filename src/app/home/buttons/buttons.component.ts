@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
+import {select, Store} from '@ngrx/store';
 import {StartMoveAction} from '../../store/action';
-import {CubeState} from '../../store/state';
+import {MoveState, selectMoveMove} from '../../store/state';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-buttons',
@@ -10,7 +11,13 @@ import {CubeState} from '../../store/state';
 })
 export class ButtonsComponent implements OnInit {
 
-    constructor(private store: Store<{ state: CubeState }>) {
+    subscription: Subscription;
+    move: number;
+
+    constructor(private store: Store<{ state: MoveState }>) {
+        this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
+            this.move = next;
+        });
     }
 
     ngOnInit() {

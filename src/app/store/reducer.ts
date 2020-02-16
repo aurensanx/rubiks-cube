@@ -1,12 +1,12 @@
 import {MoveAction, START_MOVE, STOP_MOVE} from './action';
-import {CubeState} from './state';
+import {MoveState} from './state';
+import {E, E0, M, M0} from '../three-components/models/moves';
 
 const _moveReducer =
-    (state: CubeState = {move: undefined, cube: [0, 1, 2, 3, 4, 5]}, action: MoveAction) => {
+    (state: MoveState = {move: 0, cube: [0, 1, 2, 3, 4, 5]}, action: MoveAction) => {
         switch (action.type) {
             case START_MOVE:
                 return {...state, move: action.payload};
-
             case STOP_MOVE:
                 return {cube: updateCube(state.cube, action.payload), move: undefined};
             default:
@@ -14,21 +14,16 @@ const _moveReducer =
         }
     };
 
+const moveMap = {
+    1: state => E(state),
+    2: state => E0(state),
+    3: state => M(state),
+    4: state => M0(state),
+};
+
 
 const updateCube = (state, move: number) => {
-    if (move === 0) {
-        const aux = state[5];
-        state[5] = state[0];
-        state[0] = state[4];
-        state[4] = state[1];
-        state[1] = aux;
-    } else if (move === 1) {
-        const aux = state[4];
-        state[4] = state[2];
-        state[2] = state[5];
-        state[5] = state[3];
-        state[3] = aux;
-    }
+    moveMap[move](state);
     return state;
 };
 

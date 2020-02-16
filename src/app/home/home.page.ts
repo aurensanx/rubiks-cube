@@ -1,12 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
-import {camera, resizeRendererToDisplaySize, scene} from '../three-components';
+import {camera, moveSpeed, resizeRendererToDisplaySize, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {createControls} from '../three-components/controls';
 import {StopMoveAction} from '../store/action';
-import {CubeState} from '../store/state';
+import {MoveState, selectMoveMove} from '../store/state';
 
 @Component({
     selector: 'app-home',
@@ -19,12 +19,13 @@ export class HomePage implements OnInit, OnDestroy {
     renderer = null;
     controls = null;
     move: number;
+    moveCount = 0;
 
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private store: Store<{ state: CubeState }>) {
-        this.subscription = store.pipe(select('state')).subscribe((next: CubeState) => {
-            this.move = next.move;
+    constructor(private cubeService: CubeService, private store: Store<{ state: MoveState }>) {
+        this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
+            this.move = next;
         });
     }
 
@@ -34,7 +35,6 @@ export class HomePage implements OnInit, OnDestroy {
         this.renderer = new THREE.WebGLRenderer({canvas, antialias: true});
 
         this.cubeService.createCube();
-        // scene.add(this.cubeService.createCube(scene));
 
         this.controls = createControls(camera, this.renderer.domElement);
         this.controls.update();
@@ -56,10 +56,13 @@ export class HomePage implements OnInit, OnDestroy {
             camera.updateProjectionMatrix();
         }
 
-        if (this.move !== undefined) {
+        if (this.move) {
             this.cubeService.moveLayer(this.move);
-            // TODO dispatch when finishes moving
-            this.store.dispatch(new StopMoveAction(this.move));
+            this.moveCount++;
+            if (this.moveCount === moveSpeed) {
+                this.store.dispatch(new StopMoveAction(this.move));
+                this.moveCount = 0;
+            }
         }
 
         this.controls.update();
