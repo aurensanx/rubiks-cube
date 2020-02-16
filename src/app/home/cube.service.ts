@@ -22,10 +22,10 @@ export class CubeService {
     cube: CubeState;
 
     moveMap = {
-        1: () => this.moveE(),
-        2: () => this.moveE0(),
-        3: () => this.moveM(),
-        4: () => this.moveM0(),
+        1: () => this.move([0, 1, 4, 5], 'y', 1),
+        2: () => this.move([0, 1, 4, 5], 'y', -1),
+        3: () => this.move([2, 3, 4, 5], 'x', 1),
+        4: () => this.move([2, 3, 4, 5], 'x', -1),
     };
 
     constructor(private store: Store<{ state: MoveState }>) {
@@ -46,22 +46,6 @@ export class CubeService {
     moveLayer(move: number) {
         this.moveMap[move]();
     }
-
-    moveE = () => {
-        this.move([0, 1, 4, 5], 'y', 1);
-    };
-
-    moveE0 = () => {
-        this.move([0, 1, 4, 5], 'y', -1);
-    };
-
-    moveM = () => {
-        this.move([2, 3, 4, 5], 'x', 1);
-    };
-
-    moveM0 = () => {
-        this.move([2, 3, 4, 5], 'x', -1);
-    };
 
     move = (faces, axis, direction) => {
         this.centerPivot.rotation.set(0, 0, 0);
