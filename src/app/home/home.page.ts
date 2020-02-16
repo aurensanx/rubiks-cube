@@ -1,16 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
-import {
-    camera,
-    createCube,
-    moveCenterLayerHorizontally,
-    moveCenterLayerVertically,
-    resizeRendererToDisplaySize,
-    scene
-} from '../three-components';
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
+import {camera, resizeRendererToDisplaySize, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
+import {CubeService} from './cube.service';
+import {createControls} from '../three-components/controls';
+import {StopMoveAction} from '../store/action';
+import {CubeState} from '../store/state';
 
 @Component({
     selector: 'app-home',
@@ -22,13 +18,13 @@ export class HomePage implements OnInit, OnDestroy {
 
     renderer = null;
     controls = null;
-    move: string;
+    move: number;
 
     subscription: Subscription;
 
-    constructor(private store: Store<{ move: string }>) {
-        this.subscription = store.pipe(select('move')).subscribe((next: string) => {
-            this.move = next;
+    constructor(private cubeService: CubeService, private store: Store<{ state: CubeState }>) {
+        this.subscription = store.pipe(select('state')).subscribe((next: CubeState) => {
+            this.move = next.move;
         });
     }
 
@@ -37,41 +33,38 @@ export class HomePage implements OnInit, OnDestroy {
         const canvas: HTMLCanvasElement = document.querySelector('#c');
         this.renderer = new THREE.WebGLRenderer({canvas, antialias: true});
 
-        scene.add(createCube());
+        this.cubeService.createCube();
+        // scene.add(this.cubeService.createCube(scene));
 
-        this.controls = new TrackballControls(camera, this.renderer.domElement);
-        // this.controls.noZoom = true;
-        this.controls.rotateSpeed = 2;
+        this.controls = createControls(camera, this.renderer.domElement);
         this.controls.update();
 
-
-        const animate = () => {
-            requestAnimationFrame(animate);
-
-            if (resizeRendererToDisplaySize(this.renderer)) {
-                const c = this.renderer.domElement;
-                camera.aspect = c.clientWidth / c.clientHeight;
-                camera.updateProjectionMatrix();
-            }
-
-            if (this.move === 'v') {
-                moveCenterLayerVertically();
-            } else if (this.move === 'h') {
-                moveCenterLayerHorizontally();
-            }
-
-            this.controls.update();
-            this.renderer.render(scene, camera);
-        };
-
-        animate();
+        this.animate();
 
     }
-
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
     }
 
+    animate = () => {
+        requestAnimationFrame(this.animate);
+
+        if (resizeRendererToDisplaySize(this.renderer)) {
+            const c = this.renderer.domElement;
+            camera.aspect = c.clientWidth / c.clientHeight;
+            camera.updateProjectionMatrix();
+        }
+
+        if (this.move !== undefined) {
+            this.cubeService.moveLayer(this.move);
+            // TODO dispatch when finishes moving
+            this.store.dispatch(new StopMoveAction(this.move));
+        }
+
+        this.controls.update();
+        this.renderer.render(scene, camera);
+
+    };
 
 }

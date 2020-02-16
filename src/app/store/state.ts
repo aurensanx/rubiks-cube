@@ -1,10 +1,15 @@
 import {ActionReducerMap} from '@ngrx/store';
-import {buttonReducer} from './reducer';
+import {moveReducer} from './reducer';
+
+export interface CubeState {
+    move: number;
+    cube: [number, number, number, number, number, number];
+}
 
 interface AppState {
-    move: string;
+    state: CubeState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-    move: buttonReducer,
+    state: moveReducer,
 };

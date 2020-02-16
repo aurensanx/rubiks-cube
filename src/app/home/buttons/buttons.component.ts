@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {NewButtonAction} from '../../store/action';
+import {StartMoveAction} from '../../store/action';
+import {CubeState} from '../../store/state';
 
 @Component({
     selector: 'app-buttons',
@@ -9,14 +10,18 @@ import {NewButtonAction} from '../../store/action';
 })
 export class ButtonsComponent implements OnInit {
 
-    constructor(private buttonStore: Store<{ move: string }>) {
+    constructor(private store: Store<{ state: CubeState }>) {
     }
 
     ngOnInit() {
     }
 
-    onButtonClick(d) {
-        this.buttonStore.dispatch(new NewButtonAction(d));
+    onStartMove(d) {
+        this.store.dispatch(new StartMoveAction(d));
     }
+
+    // onStopMove() {
+    //     this.moveStore.dispatch(new StopMoveAction());
+    // }
 
 }

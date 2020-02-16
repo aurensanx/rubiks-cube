@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import {Mesh} from 'three';
 
 const SIZE = {
     WIDTH: 1,
@@ -8,13 +9,15 @@ const SIZE = {
 
 export const COLORS = {
     BLUE: 0x0000FF,
-    GREEN: 0x00FF00,
+    GREEN: 0x008000,
     WHITE: 0xFFFFFF,
     YELLOW: 0xFFFF00,
     RED: 0xFF0000,
     ORANGE: 0xFFA500,
     BLACK: 0X00000,
 };
+
+
 
 
 // Right - Left - Top - Bottom - Front - Rear
@@ -37,7 +40,7 @@ const createPieceGeometry = (piece: PIECE) => {
 };
 
 
-export const createPiece = (pieceDefinition: PIECE) => {
+export const createPiece: (pieceDefinition: PIECE) => Mesh = (pieceDefinition: PIECE) => {
     const pieceMaterial = new THREE.MeshBasicMaterial({color: 0xFFFFFF, vertexColors: THREE.FaceColors});
     const piece = new THREE.Mesh(createPieceGeometry(pieceDefinition), pieceMaterial);
     piece.position.x = pieceDefinition.position[0];
