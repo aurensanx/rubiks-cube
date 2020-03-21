@@ -35,7 +35,7 @@ export const createPiece: (pieceDefinition: PIECE) => Mesh = (pieceDefinition: P
     piece.position.y = pieceDefinition.position[1];
     piece.position.z = pieceDefinition.position[2];
     const geo = new THREE.EdgesGeometry(piece.geometry);
-    const mat = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 4});
+    const mat = new THREE.LineBasicMaterial({color: 0x000000, linewidth: 2});
     const wireFrame = new THREE.LineSegments(geo, mat);
     wireFrame.renderOrder = 1; // make sure wireFrame are rendered 2nd
     piece.add(wireFrame);

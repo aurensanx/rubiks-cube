@@ -22,15 +22,29 @@ export class ButtonsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.scramble();
+        setTimeout(() => {
+            this.scramble();
+        }, 1000);
     }
 
     scramble() {
         const moveSpeed = cubeSettings.moveSpeed;
         cubeSettings.moveSpeed = 1;
-        [...Array(cubeSettings.initialScrambleMoves)].forEach((_, i) =>
-            this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove())));
-        cubeSettings.moveSpeed = moveSpeed;
+        // [...Array(cubeSettings.initialScrambleMoves)].forEach((_, i) => {
+        const intervalId = setInterval(() => {
+            this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+            // cubeSettings.moveSpeed = moveSpeed;
+        }, 100);
+        // });
+
+        setTimeout(() => {
+            window.clearInterval(intervalId);
+
+            // FIXME
+            setTimeout(() => {
+                cubeSettings.moveSpeed = moveSpeed;
+            }, 100);
+        }, 5000);
     }
 
     onStartMove(d) {

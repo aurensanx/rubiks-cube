@@ -2,7 +2,7 @@ import {PIECE} from './pieces';
 
 const COLORS = {
     BLUE: 0x0000FF,
-    GREEN: 0x008000,
+    GREEN: 0x0FF000,
     WHITE: 0xFFFFFF,
     YELLOW: 0xFFFF00,
     RED: 0xFF0000,

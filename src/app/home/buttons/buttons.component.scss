@@ -4,31 +4,24 @@ section {
   height: 100%;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  ion-button {
+    flex: 1 0 21%;
+  }
+  @media screen and (orientation: landscape) {
+    ion-button {
+      flex: 1 0 15%;
+    }
+  }
 }
 
-.button {
-  &-white {
-    --background: white;
-    --color: --ion-color-dark-shade;
-  }
-  &-yellow {
-    --background: yellow;
-    --color: --ion-color-dark-shade;
-  }
-  &-blue {
-    --background: blue;
-    --color: --ion-color-dark-shade;
-  }
-  &-green {
-    --background: green;
-    --color: --ion-color-dark-shade;
-  }
-  &-red {
-    --background: red;
-    --color: --ion-color-dark-shade;
-  }
-  &-orange {
-    --background: orange;
-    --color: --ion-color-dark-shade;
+@mixin flip-horizontally {
+  transform: scaleX(-1);
+}
+
+
+ion-button {
+  &.counter {
+    @include flip-horizontally;
   }
 }

@@ -9,7 +9,7 @@ export const createControls = (camera, domElement) => {
 };
 
 export const cubeSettings = {
-    moveSpeed: 50,
+    moveSpeed: 20,
     initialScrambleMoves: 10000,
 };
 

@@ -1,6 +1,8 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@import "buttons";
+
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
@@ -74,4 +76,53 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** white **/
+  --ion-color-white: #ffffff;
+  --ion-color-white-rgb: 255,255,255;
+  --ion-color-white-contrast: #000000;
+  --ion-color-white-contrast-rgb: 0,0,0;
+  --ion-color-white-shade: #e0e0e0;
+  --ion-color-white-tint: #ffffff;
+
+  /** yellow **/
+  --ion-color-yellow: #ffff00;
+  --ion-color-yellow-rgb: 255,255,0;
+  --ion-color-yellow-contrast: #000000;
+  --ion-color-yellow-contrast-rgb: 0,0,0;
+  --ion-color-yellow-shade: #e0e000;
+  --ion-color-yellow-tint: #ffff1a;
+
+  /** blue **/
+  --ion-color-blue: #0000ff;
+  --ion-color-blue-rgb: 0,0,255;
+  --ion-color-blue-contrast: #ffffff;
+  --ion-color-blue-contrast-rgb: 255,255,255;
+  --ion-color-blue-shade: #0000e0;
+  --ion-color-blue-tint: #1a1aff;
+
+  /** green **/
+  --ion-color-green: #00ff00;
+  --ion-color-green-rgb: 0,255,0;
+  --ion-color-green-contrast: #000000;
+  --ion-color-green-contrast-rgb: 0,0,0;
+  --ion-color-green-shade: #00e000;
+  --ion-color-green-tint: #1aff1a;
+
+  /** red **/
+  --ion-color-red: #ff0000;
+  --ion-color-red-rgb: 255,0,0;
+  --ion-color-red-contrast: #ffffff;
+  --ion-color-red-contrast-rgb: 255,255,255;
+  --ion-color-red-shade: #e00000;
+  --ion-color-red-tint: #ff1a1a;
+
+  /** orange **/
+  --ion-color-orange: #ffa500;
+  --ion-color-orange-rgb: 255,165,0;
+  --ion-color-orange-contrast: #000000;
+  --ion-color-orange-contrast-rgb: 0,0,0;
+  --ion-color-orange-shade: #e09100;
+  --ion-color-orange-tint: #ffae1a;
+
 }
