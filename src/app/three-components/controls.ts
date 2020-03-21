@@ -8,3 +8,11 @@ export const createControls = (camera, domElement) => {
     return controls;
 };
 
+export const cubeSettings = {
+    moveSpeed: 50,
+    initialScrambleMoves: 10000,
+};
+
+
+
+

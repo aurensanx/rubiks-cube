@@ -5,3 +5,30 @@ section {
   justify-content: space-around;
   align-items: center;
 }
+
+.button {
+  &-white {
+    --background: white;
+    --color: --ion-color-dark-shade;
+  }
+  &-yellow {
+    --background: yellow;
+    --color: --ion-color-dark-shade;
+  }
+  &-blue {
+    --background: blue;
+    --color: --ion-color-dark-shade;
+  }
+  &-green {
+    --background: green;
+    --color: --ion-color-dark-shade;
+  }
+  &-red {
+    --background: red;
+    --color: --ion-color-dark-shade;
+  }
+  &-orange {
+    --background: orange;
+    --color: --ion-color-dark-shade;
+  }
+}

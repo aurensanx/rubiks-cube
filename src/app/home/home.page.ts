@@ -1,12 +1,11 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
-import {camera, moveSpeed, resizeRendererToDisplaySize, scene} from '../three-components';
+import {camera, resizeRendererToDisplaySize, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
-import {createControls} from '../three-components/controls';
-import {StopMoveAction} from '../store/action';
-import {MoveState, selectMoveMove} from '../store/state';
+import {createControls, cubeSettings} from '../three-components/controls';
+import {MoveState, selectMoveMove, StopMoveAction} from '@cube-store';
 
 @Component({
     selector: 'app-home',
@@ -59,7 +58,7 @@ export class HomePage implements OnInit, OnDestroy {
         if (this.move) {
             this.cubeService.moveLayer(this.move);
             this.moveCount++;
-            if (this.moveCount === moveSpeed) {
+            if (this.moveCount === cubeSettings.moveSpeed) {
                 this.store.dispatch(new StopMoveAction(this.move));
                 this.moveCount = 0;
             }

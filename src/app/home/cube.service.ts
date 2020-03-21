@@ -4,8 +4,9 @@ import {Mesh, Object3D} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {FACES, moveSpeed, PIECES, scene} from '../three-components';
+import {FACES, PIECES, scene} from '../three-components';
 import {CubeState, MoveState, selectMoveCube} from '@cube-store';
+import {cubeSettings} from '../three-components/controls';
 
 @Injectable({
     providedIn: 'root'
@@ -57,7 +58,7 @@ export class CubeService {
         pieces.forEach(i => {
             SceneUtils.attach(this.pieces[this.cube[i]], scene, this.centerPivot);
         });
-        this.centerPivot.rotation[axis] += Math.PI / 2 / moveSpeed * direction;
+        this.centerPivot.rotation[axis] += Math.PI / 2 / cubeSettings.moveSpeed * direction;
         this.centerPivot.updateMatrixWorld();
         pieces.forEach(i => {
             SceneUtils.detach(this.pieces[this.cube[i]], this.centerPivot, scene);
