@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Mesh} from 'three';
 import {select, Store} from '@ngrx/store';
 import {MoveState, selectMoveMove, StartMoveAction} from '@cube-store';
-import {ButtonsService} from './buttons/buttons.service';
 import {MOVES, MOVES_BIT_DEFINITION} from '../three-components/models/moves';
 
 @Injectable({
@@ -27,7 +26,6 @@ export class MoveService {
 
     guessMoveFromEvent(event: any, piece: Mesh) {
         const direction = +(Math.abs(event.movementX) > Math.abs(event.movementY));
-        console.log(direction);
         const orientation = (direction && +(event.movementX > 0)) + (!direction && +(event.movementY > 0));
         const move = (piece.position.x + 1) * MOVES_BIT_DEFINITION.X +
             (piece.position.y + 1) * MOVES_BIT_DEFINITION.Y +
@@ -40,6 +38,5 @@ export class MoveService {
         // tslint:disable-next-line:no-bitwise
         const finalMove = MOVES.find(m => (move & m.value) === m.value);
         return finalMove ? finalMove.value : 2;
-        // return move;
     }
 }

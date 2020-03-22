@@ -44,7 +44,7 @@ export class CubeService {
         this.centerPivot.position.set(0, 0, 0);
         this.centerPivot.updateMatrixWorld();
 
-        this.pieces = PIECES.map((p, i) => createPiece(p, i));
+        this.pieces = PIECES.map(createPiece);
     }
 
 

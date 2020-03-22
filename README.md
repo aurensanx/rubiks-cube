@@ -16,11 +16,22 @@
 
 - rm rubiks-cube.apk && zipalign -v 4 platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk rubiks-cube.apk
 
-### Sugerencias
+
+### Próximos pasos
 
 - Movimientos táctiles
 
+    - magic numbers solo en un sitio
+    - añadir movimientos de capas centrales
+    - revisar x, y, z bits
+    - touch event mobile
+    - mostrar / ocultar botones
+    
 - Solución básica
+
+    - definir estado del cubo con los colores
+
+
 
 
 
