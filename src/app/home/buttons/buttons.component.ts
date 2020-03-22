@@ -23,7 +23,7 @@ export class ButtonsComponent implements OnInit {
 
     ngOnInit() {
         setTimeout(() => {
-            this.scramble();
+            // this.scramble();
         }, 1000);
     }
 
@@ -34,7 +34,7 @@ export class ButtonsComponent implements OnInit {
         const intervalId = setInterval(() => {
             this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
             // cubeSettings.moveSpeed = moveSpeed;
-        }, 100);
+        }, 10);
         // });
 
         setTimeout(() => {
@@ -44,7 +44,7 @@ export class ButtonsComponent implements OnInit {
             setTimeout(() => {
                 cubeSettings.moveSpeed = moveSpeed;
             }, 100);
-        }, 5000);
+        }, 3000);
     }
 
     onStartMove(d) {

@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
-import {camera, resizeRendererToDisplaySize, scene} from '../three-components';
+import {camera, raycaster, resizeRendererToDisplaySize, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {createControls, cubeSettings} from '../three-components/controls';
 import {MoveState, selectMoveMove, StopMoveAction} from '@cube-store';
+import {MoveService} from './move.service';
 
 @Component({
     selector: 'app-home',
@@ -17,12 +18,21 @@ export class HomePage implements OnInit, OnDestroy {
 
     renderer = null;
     controls = null;
+    intersection = {
+        objects: [],
+        selection: null,
+        plane: null,
+        offset: new THREE.Vector3(),
+    };
+
+    canvas: HTMLCanvasElement;
+
     move: number;
     moveCount = 0;
 
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private store: Store<{ state: MoveState }>) {
+    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: MoveState }>) {
         this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
             this.move = next;
         });
@@ -30,15 +40,27 @@ export class HomePage implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        const canvas: HTMLCanvasElement = document.querySelector('#c');
-        this.renderer = new THREE.WebGLRenderer({canvas, antialias: true});
+        this.canvas = document.querySelector('#c');
+        this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, antialias: true});
 
-        this.cubeService.createCube();
+        this.intersection.objects = this.cubeService.createCube();
+        // Plane, that helps to determinate an intersection position
+        this.intersection.plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 500, 8, 8),
+            new THREE.MeshBasicMaterial({color: 0xffffff}));
+        this.intersection.plane.visible = false;
+        scene.add(this.intersection.plane);
 
         this.controls = createControls(camera, this.renderer.domElement);
         this.controls.update();
 
         this.animate();
+
+        this.canvas.addEventListener('mousedown', ev => this.onDocumentMouseDown(ev), false);
+        // this.canvas.addEventListener('touchdown', ev => this.onDocumentMouseDown(ev), false);
+        this.canvas.addEventListener('mousemove', ev => this.onDocumentMouseMove(ev), false);
+        // this.canvas.addEventListener('touchmove', ev => this.onDocumentMouseMove(ev), false);
+        this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
+        // this.canvas.addEventListener('touchup', () => this.onDocumentMouseUp(), false);
 
     }
 
@@ -55,7 +77,7 @@ export class HomePage implements OnInit, OnDestroy {
             camera.updateProjectionMatrix();
         }
 
-        if (this.move) {
+        if (this.move !== undefined) {
             this.cubeService.moveLayer(this.move);
             this.moveCount++;
             if (this.moveCount === cubeSettings.moveSpeed) {
@@ -68,5 +90,86 @@ export class HomePage implements OnInit, OnDestroy {
         this.renderer.render(scene, camera);
 
     };
+
+    onDocumentMouseDown(event) {
+        // Get mouse position
+        const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
+        const mouseY = -(event.clientY / this.canvas.height) * 2 + 1;
+
+        // Get 3D vector from 3D mouse position using 'unproject' function
+        const vector = new THREE.Vector3(mouseX, mouseY, 1);
+        vector.unproject(camera);
+
+        // Set the raycaster position
+        raycaster.set(camera.position, vector.sub(camera.position).normalize());
+
+        // Find all intersected objects
+        const intersects = raycaster.intersectObjects(this.intersection.objects);
+
+        if (intersects.length > 0) {
+            // Disable the controls
+            this.controls.enabled = false;
+
+            // Set the selection - first intersected object
+            this.intersection.selection = intersects[0].object;
+
+
+            // Calculate the offset
+            // intersects = raycaster.intersectObject(this.intersection.plane);
+            // this.intersection.offset.copy(intersects[0].point).sub(this.intersection.plane.position);
+        }
+    }
+
+    onDocumentMouseMove(event: Event) {
+
+        event.preventDefault();
+
+        if (this.intersection.selection) {
+            this.moveService.moveLayerOnTouch(event, this.intersection.selection);
+        }
+
+        // Get mouse position
+        // const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
+        // const mouseY = -(event.clientY / this.canvas.height) * 2 + 1;
+
+        // Get 3D vector from 3D mouse position using 'unproject' function
+        // const vector = new THREE.Vector3(mouseX, mouseY, 1);
+        // vector.unproject(camera);
+
+        // Set the raycaster position
+        // raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
+        //
+        // if (this.intersection.selection) {
+        //     // Check the position where the plane is intersected
+        //     const intersects = raycaster.intersectObject(this.intersection.plane);
+        //     // Reposition the object based on the intersection point with the plane
+        //     this.intersection.selection.position.copy(intersects[0].point.sub(this.intersection.offset));
+        // } else {
+        //     // Update position of the plane if need
+        //     const intersects = raycaster.intersectObjects(this.intersection.objects);
+        //     if (intersects.length > 0) {
+        //         this.intersection.plane.position.copy(intersects[0].object.position);
+        //         this.intersection.plane.lookAt(camera.position);
+        //     }
+        // }
+    }
+
+    onDocumentMouseUp() {
+        // Enable the controls
+        this.controls.enabled = true;
+        this.intersection.selection = null;
+    }
+
+    // this.gesture = (await import('../../utils/gesture')).createGesture({
+    //     el: document,
+    //     gestureName: 'menu-swipe',
+    //     gesturePriority: 30,
+    //     threshold: 10,
+    //     canStart: ev => this.canStart(ev),
+    //     onWillStart: () => this.onWillStart(),
+    //     onStart: () => this.onStart(),
+    //     onMove: ev => this.onMove(ev),
+    //     onEnd: ev => this.onEnd(ev),
+    // });
 
 }

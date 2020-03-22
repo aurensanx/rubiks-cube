@@ -21,19 +21,19 @@ export class CubeService {
     cube: CubeState;
 
     moveMap = {
-        1: () => this.move(FACES.UP, 0, 1, 0, 'y', -1),
-        2: () => this.move(FACES.UP, 0, 1, 0, 'y', 1),
-        3: () => this.move(FACES.DOWN, 0, -1, 0, 'y', 1),
-        4: () => this.move(FACES.DOWN, 0, -1, 0, 'y', -1),
-        5: () => this.move(FACES.RIGHT, 1, 0, 0, 'x', -1),
-        6: () => this.move(FACES.RIGHT, 1, 0, 0, 'x', 1),
-        7: () => this.move(FACES.LEFT, -1, 0, 0, 'x', 1),
-        8: () => this.move(FACES.LEFT, -1, 0, 0, 'x', -1),
-        9: () => this.move(FACES.FRONT, 0, 0, 1, 'z', -1),
-        10: () => this.move(FACES.FRONT, 0, 0, 1, 'z', 1),
-        11: () => this.move(FACES.BACK, 0, 0, -1, 'z', 1),
-        12: () => this.move(FACES.BACK, 0, 0, -1, 'z', -1),
-    };
+        133: () => this.move(FACES.UP, 0, 1, 0, 'y', -1),
+        134: () => this.move(FACES.UP, 0, 1, 0, 'y', 1),
+        2: () => this.move(FACES.DOWN, 0, -1, 0, 'y', 1),
+        3: () => this.move(FACES.DOWN, 0, -1, 0, 'y', -1),
+        4: () => this.move(FACES.RIGHT, 1, 0, 0, 'x', -1),
+        5: () => this.move(FACES.RIGHT, 1, 0, 0, 'x', 1),
+        6: () => this.move(FACES.LEFT, -1, 0, 0, 'x', 1),
+        7: () => this.move(FACES.LEFT, -1, 0, 0, 'x', -1),
+        8: () => this.move(FACES.FRONT, 0, 0, 1, 'z', -1),
+        9: () => this.move(FACES.FRONT, 0, 0, 1, 'z', 1),
+        10: () => this.move(FACES.BACK, 0, 0, -1, 'z', 1),
+        11: () => this.move(FACES.BACK, 0, 0, -1, 'z', -1),
+    };  
 
     constructor(private store: Store<{ state: MoveState }>) {
 
@@ -44,7 +44,7 @@ export class CubeService {
         this.centerPivot.position.set(0, 0, 0);
         this.centerPivot.updateMatrixWorld();
 
-        this.pieces = PIECES.map(p => createPiece(p));
+        this.pieces = PIECES.map((p, i) => createPiece(p, i));
     }
 
 
@@ -67,6 +67,7 @@ export class CubeService {
 
     createCube = () => {
         scene.add(...this.pieces);
+        return this.pieces;
     };
 
 }

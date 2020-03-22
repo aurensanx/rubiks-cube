@@ -1,5 +1,6 @@
 import {CubeState} from '@cube-store';
 
+
 export const U = (state: CubeState) => {
     let aux = state[0];
     state[0] = state[2];
@@ -173,3 +174,25 @@ export const B0 = (state: CubeState) => {
 
 
 
+// 18 moves 3x3x2
+export const MOVES_BIT_DEFINITION = {
+    CLOCKWISE: 1,
+    COUNTER_CLOCKWISE: 2,
+    HORIZONTAL: 4,
+    VERTICAL: 8,
+    Z: 16,
+    Y: 64,
+    X: 256,
+};
+
+
+
+export const MOVES = [
+    {value: 133, move: U},
+    {value: 134, move: U0},
+];
+
+// op && MOVE === MOVE
+
+// xx10zz01
+// 33
