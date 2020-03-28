@@ -1,6 +1,6 @@
 import {MoveAction, START_MOVE, STOP_MOVE} from './action';
 import {MoveState} from './state';
-import {B, B0, D, D0, F, F0, L, L0, R, R0, U, U0} from '../three-components/models/moves';
+import {B, B0, D, D0, F, F0, L, L0, MOVES, R, R0, U, U0} from '../three-components/models/moves';
 
 const _moveReducer =
     (state: MoveState = {move: undefined, cube: [...Array(27).keys()]}, action: MoveAction) => {
@@ -14,24 +14,14 @@ const _moveReducer =
         }
     };
 
-const moveMap = {
-    133: state => U(state),
-    134: state => U0(state),
-    2: state => D(state),
-    3: state => D0(state),
-    4: state => R(state),
-    5: state => R0(state),
-    6: state => L(state),
-    7: state => L0(state),
-    8: state => F(state),
-    9: state => F0(state),
-    10: state => B(state),
-    11: state => B0(state),
-};
-
 
 const updateCube = (state, move: number) => {
-    moveMap[move](state);
+    // TODO enviar objeto
+    // tslint:disable-next-line:no-bitwise
+    // const finalMove = MOVES.find(m => (move & m.value) === m.value);
+    const finalMove = MOVES.find(m => move  ===  m.value);
+    finalMove.storeMove(state);
+    // moveMap[finalMove.value](state);
     return state;
 };
 

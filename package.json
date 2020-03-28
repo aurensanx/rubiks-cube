@@ -26,6 +26,7 @@
     "@ngrx/store": "^8.6.0",
     "cordova-android": "8.1.0",
     "core-js": "^2.5.4",
+    "lodash": "^4.17.15",
     "rxjs": "~6.5.1",
     "three": "^0.103.0",
     "three-window-resize": "^1.0.4",

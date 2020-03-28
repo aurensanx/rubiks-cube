@@ -1,4 +1,5 @@
 import {CubeState} from '@cube-store';
+import {CUBE_FACE} from '../index';
 
 
 export const U = (state: CubeState) => {
@@ -26,6 +27,34 @@ export const U0 = (state: CubeState) => {
     state[9] = state[19];
     state[19] = state[11];
     state[11] = aux;
+    return state;
+};
+
+export const E = (state: CubeState) => {
+    let aux = state[3];
+    state[3] = state[21];
+    state[21] = state[23];
+    state[23] = state[5];
+    state[5] = aux;
+    aux = state[4];
+    state[4] = state[12];
+    state[12] = state[22];
+    state[22] = state[14];
+    state[14] = aux;
+    return state;
+};
+
+export const E0 = (state: CubeState) => {
+    let aux = state[3];
+    state[3] = state[5];
+    state[5] = state[23];
+    state[23] = state[21];
+    state[21] = aux;
+    aux = state[4];
+    state[4] = state[14];
+    state[14] = state[22];
+    state[22] = state[12];
+    state[12] = aux;
     return state;
 };
 
@@ -173,26 +202,196 @@ export const B0 = (state: CubeState) => {
 };
 
 
+export interface MoveDefinition {
+    id: string;
+    value: number;
+    storeMove: (state: number[]) => number[];
+    cubeFace: any;
+    x: number;
+    y: number;
+    z: number;
+    axis: string;
+    direction: number;
+    color: string;
+    class?: string;
+}
+
 
 // 18 moves 3x3x2
 export const MOVES_BIT_DEFINITION = {
-    CLOCKWISE: 1,
-    COUNTER_CLOCKWISE: 2,
-    HORIZONTAL: 4,
-    VERTICAL: 8,
-    Z: 16,
-    Y: 64,
-    X: 256,
+    CLOCKWISE: Math.pow(2, 0),
+    COUNTER_CLOCKWISE: Math.pow(2, 1),
+    HORIZONTAL: Math.pow(2, 2),
+    VERTICAL: Math.pow(2, 3),
+    X0: Math.pow(2, 4),
+    X1: Math.pow(2, 5),
+    X2: Math.pow(2, 6),
+    Y0: Math.pow(2, 7),
+    Y1: Math.pow(2, 8),
+    Y2: Math.pow(2, 9),
+    Z0: Math.pow(2, 10),
+    Z1: Math.pow(2, 11),
+    Z2: Math.pow(2, 12),
 };
-
-
-
-export const MOVES = [
-    {value: 133, move: U},
-    {value: 134, move: U0},
-];
 
 // op && MOVE === MOVE
 
 // xx10zz01
 // 33
+
+export const MOVES: MoveDefinition[] = [
+    {
+        id: `U`,
+        value: 0,
+        storeMove: U,
+        cubeFace: CUBE_FACE.UP,
+        x: 0,
+        y: 1,
+        z: 0,
+        axis: 'y',
+        direction: -1,
+        color: 'white',
+    },
+    {
+        id: `U'`,
+        value: 1,
+        storeMove: U0,
+        cubeFace: CUBE_FACE.UP,
+        x: 0,
+        y: 1,
+        z: 0,
+        axis: 'y',
+        direction: 1,
+        color: 'white',
+        class: 'counter',
+    },
+    // {id: `E`, value: 70, storeMove: E0, cubeFace: CUBE_FACE.H, x: 0, y: 0, z: 0, axis: 'y', direction: 1},
+    // {id: `E´`, value: 69, storeMove: E, cubeFace: CUBE_FACE.H, x: 0, y: 0, z: 0, axis: 'y', direction: -1},
+    {
+        id: `D`,
+        value: 2,
+        storeMove: D,
+        cubeFace: CUBE_FACE.DOWN,
+        x: 0,
+        y: -1,
+        z: 0,
+        axis: 'y',
+        direction: 1,
+        color: 'yellow',
+    },
+    {
+        id: `D´`,
+        value: 3,
+        storeMove: D0,
+        cubeFace: CUBE_FACE.DOWN,
+        x: 0,
+        y: -1,
+        z: 0,
+        axis: 'y',
+        direction: -1,
+        color: 'yellow',
+        class: 'counter',
+    },
+    {
+        id: `R`,
+        value: 4,
+        storeMove: R,
+        cubeFace: CUBE_FACE.RIGHT,
+        x: 1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+        color: 'blue',
+    },
+    {
+        id: `R´`,
+        value: 5,
+        storeMove: R0,
+        cubeFace: CUBE_FACE.RIGHT,
+        x: 1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
+        color: 'blue',
+        class: 'counter',
+    },
+    {
+        id: `L`,
+        value: 6,
+        storeMove: L,
+        cubeFace: CUBE_FACE.LEFT,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
+        color: 'green',
+    },
+    {
+        id: `L´`,
+        value: 7,
+        storeMove: L0,
+        cubeFace: CUBE_FACE.LEFT,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+        color: 'green',
+        class: 'counter',
+    },
+    {
+        id: `F`,
+        value: 8,
+        storeMove: F,
+        cubeFace: CUBE_FACE.FRONT,
+        x: 0,
+        y: 0,
+        z: 1,
+        axis: 'z',
+        direction: -1,
+        color: 'red',
+    },
+    {
+        id: `F´`,
+        value: 9,
+        storeMove: F0,
+        cubeFace: CUBE_FACE.FRONT,
+        x: 0,
+        y: 0,
+        z: 1,
+        axis: 'z',
+        direction: 1,
+        color: 'red',
+        class: 'counter',
+    },
+    {
+        id: `B`,
+        value: 10,
+        storeMove: B,
+        cubeFace: CUBE_FACE.BACK,
+        x: 0,
+        y: 0,
+        z: -1,
+        axis: 'z',
+        direction: 1,
+        color: 'orange',
+    },
+    {
+        id: `B'`,
+        value: 11,
+        storeMove: B0,
+        cubeFace: CUBE_FACE.BACK,
+        x: 0,
+        y: 0,
+        z: -1,
+        axis: 'z',
+        direction: -1,
+        color: 'orange',
+        class: 'counter',
+    },
+];
+
+

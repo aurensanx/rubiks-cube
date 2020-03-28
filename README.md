@@ -23,7 +23,8 @@
 
     - magic numbers solo en un sitio
     - añadir movimientos de capas centrales
-    - revisar x, y, z bits
+    - revisar x, y, z bitS
+    - resto de movimientos
     - touch event mobile
     - mostrar / ocultar botones
     

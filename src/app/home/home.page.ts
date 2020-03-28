@@ -113,18 +113,20 @@ export class HomePage implements OnInit, OnDestroy {
             // Set the selection - first intersected object
             this.intersection.selection = intersects[0].object;
 
-
             // Calculate the offset
             // intersects = raycaster.intersectObject(this.intersection.plane);
             // this.intersection.offset.copy(intersects[0].point).sub(this.intersection.plane.position);
         }
+
     }
 
-    onDocumentMouseMove(event: Event) {
+    onDocumentMouseMove(event: MouseEvent) {
 
         event.preventDefault();
 
-        if (this.intersection.selection) {
+        // TODO
+        const sensibilidad = 3;
+        if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > sensibilidad) {
             this.moveService.moveLayerOnTouch(event, this.intersection.selection);
         }
 

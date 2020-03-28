@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {ButtonsService} from './buttons.service';
 import {cubeSettings} from '../../three-components/controls';
 import {MoveState, selectMoveMove, StartMoveAction} from '@cube-store';
+import {MOVES} from 'src/app/three-components/models/moves';
 
 @Component({
     selector: 'app-buttons',
@@ -13,17 +14,19 @@ import {MoveState, selectMoveMove, StartMoveAction} from '@cube-store';
 export class ButtonsComponent implements OnInit {
 
     subscription: Subscription;
-    move: number;
+    currentMove: number;
+    MOVES = MOVES;
 
     constructor(private store: Store<{ state: MoveState }>, private buttonsService: ButtonsService) {
         this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
-            this.move = next;
+            this.currentMove = next;
         });
     }
 
     ngOnInit() {
+        // TODO animación cámara al entrar
         setTimeout(() => {
-            // this.scramble();
+            this.scramble();
         }, 1000);
     }
 
