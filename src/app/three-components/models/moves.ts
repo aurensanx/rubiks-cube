@@ -204,7 +204,7 @@ export const B0 = (state: CubeState) => {
 
 export interface MoveDefinition {
     id: string;
-    value: number;
+    value: number[];
     storeMove: (state: number[]) => number[];
     cubeFace: any;
     x: number;
@@ -219,8 +219,8 @@ export interface MoveDefinition {
 
 // 18 moves 3x3x2
 export const MOVES_BIT_DEFINITION = {
-    CLOCKWISE: Math.pow(2, 0),
-    COUNTER_CLOCKWISE: Math.pow(2, 1),
+    POSITIVE: Math.pow(2, 0),
+    NEGATIVE: Math.pow(2, 1),
     HORIZONTAL: Math.pow(2, 2),
     VERTICAL: Math.pow(2, 3),
     X0: Math.pow(2, 4),
@@ -232,6 +232,12 @@ export const MOVES_BIT_DEFINITION = {
     Z0: Math.pow(2, 10),
     Z1: Math.pow(2, 11),
     Z2: Math.pow(2, 12),
+    NX: Math.pow(2, 13),
+    NX0: Math.pow(2, 14),
+    NY: Math.pow(2, 15),
+    NY0: Math.pow(2, 16),
+    NZ: Math.pow(2, 17),
+    NZ0: Math.pow(2, 18),
 };
 
 // op && MOVE === MOVE
@@ -242,7 +248,7 @@ export const MOVES_BIT_DEFINITION = {
 export const MOVES: MoveDefinition[] = [
     {
         id: `U`,
-        value: 0,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.HORIZONTAL + MOVES_BIT_DEFINITION.Y2],
         storeMove: U,
         cubeFace: CUBE_FACE.UP,
         x: 0,
@@ -254,7 +260,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `U'`,
-        value: 1,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.HORIZONTAL + MOVES_BIT_DEFINITION.Y2],
         storeMove: U0,
         cubeFace: CUBE_FACE.UP,
         x: 0,
@@ -269,7 +275,7 @@ export const MOVES: MoveDefinition[] = [
     // {id: `E´`, value: 69, storeMove: E, cubeFace: CUBE_FACE.H, x: 0, y: 0, z: 0, axis: 'y', direction: -1},
     {
         id: `D`,
-        value: 2,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.HORIZONTAL + MOVES_BIT_DEFINITION.Y0],
         storeMove: D,
         cubeFace: CUBE_FACE.DOWN,
         x: 0,
@@ -281,7 +287,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `D´`,
-        value: 3,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.HORIZONTAL + MOVES_BIT_DEFINITION.Y0],
         storeMove: D0,
         cubeFace: CUBE_FACE.DOWN,
         x: 0,
@@ -294,7 +300,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `R`,
-        value: 4,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.X2],
         storeMove: R,
         cubeFace: CUBE_FACE.RIGHT,
         x: 1,
@@ -306,7 +312,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `R´`,
-        value: 5,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.X2],
         storeMove: R0,
         cubeFace: CUBE_FACE.RIGHT,
         x: 1,
@@ -319,7 +325,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `L`,
-        value: 6,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.X0],
         storeMove: L,
         cubeFace: CUBE_FACE.LEFT,
         x: -1,
@@ -331,7 +337,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `L´`,
-        value: 7,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.X0],
         storeMove: L0,
         cubeFace: CUBE_FACE.LEFT,
         x: -1,
@@ -344,7 +350,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `F`,
-        value: 8,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.Z0],
         storeMove: F,
         cubeFace: CUBE_FACE.FRONT,
         x: 0,
@@ -356,7 +362,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `F´`,
-        value: 9,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.Z0],
         storeMove: F0,
         cubeFace: CUBE_FACE.FRONT,
         x: 0,
@@ -369,7 +375,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `B`,
-        value: 10,
+        value: [MOVES_BIT_DEFINITION.NEGATIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.Z2],
         storeMove: B,
         cubeFace: CUBE_FACE.BACK,
         x: 0,
@@ -381,7 +387,7 @@ export const MOVES: MoveDefinition[] = [
     },
     {
         id: `B'`,
-        value: 11,
+        value: [MOVES_BIT_DEFINITION.POSITIVE + MOVES_BIT_DEFINITION.VERTICAL + MOVES_BIT_DEFINITION.Z2],
         storeMove: B0,
         cubeFace: CUBE_FACE.BACK,
         x: 0,

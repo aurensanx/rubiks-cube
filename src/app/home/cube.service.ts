@@ -8,6 +8,7 @@ import {PIECES, scene} from '../three-components';
 import {CubeState, MoveState, selectMoveCube} from '@cube-store';
 import {cubeSettings} from '../three-components/controls';
 import {MoveDefinition, MOVES} from '../three-components/models/moves';
+import * as _ from 'lodash';
 
 @Injectable({
     providedIn: 'root'
@@ -41,8 +42,8 @@ export class CubeService {
     moveLayer(move: number) {
         // TODO enviar objeto?
         // tslint:disable-next-line:no-bitwise
-        // const finalMove = MOVES.find(m => (move & m.value) === m.value);
-        const finalMove = MOVES.find(m => move  ===  m.value);
+        const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
+        // const finalMove = MOVES.find(m => move  ===  m.value);
         this.movePhysically(finalMove);
     }
 
@@ -57,6 +58,7 @@ export class CubeService {
         cubeFace.forEach(i => {
             SceneUtils.detach(this.pieces[this.cube[i]], this.centerPivot, scene);
         });
+        // console.log(this.pieces[this.cube[cubeFace[0]]].rotation);
     };
 
 

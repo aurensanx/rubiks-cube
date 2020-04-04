@@ -7,6 +7,8 @@ import {CubeService} from './cube.service';
 import {createControls, cubeSettings} from '../three-components/controls';
 import {MoveState, selectMoveMove, StopMoveAction} from '@cube-store';
 import {MoveService} from './move.service';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
 
 @Component({
     selector: 'app-home',
@@ -17,7 +19,7 @@ import {MoveService} from './move.service';
 export class HomePage implements OnInit, OnDestroy {
 
     renderer = null;
-    controls = null;
+    controls: OrbitControls = null;
     intersection = {
         objects: [],
         selection: null,
@@ -111,7 +113,7 @@ export class HomePage implements OnInit, OnDestroy {
             this.controls.enabled = false;
 
             // Set the selection - first intersected object
-            this.intersection.selection = intersects[0].object;
+            this.intersection.selection = intersects[0];
 
             // Calculate the offset
             // intersects = raycaster.intersectObject(this.intersection.plane);
@@ -127,7 +129,7 @@ export class HomePage implements OnInit, OnDestroy {
         // TODO
         const sensibilidad = 3;
         if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > sensibilidad) {
-            this.moveService.moveLayerOnTouch(event, this.intersection.selection);
+            this.moveService.moveLayerOnTouch(event, this.intersection.selection, this.controls);
         }
 
         // Get mouse position
@@ -157,9 +159,9 @@ export class HomePage implements OnInit, OnDestroy {
     }
 
     onDocumentMouseUp() {
+        this.intersection.selection = null;
         // Enable the controls
         this.controls.enabled = true;
-        this.intersection.selection = null;
     }
 
     // this.gesture = (await import('../../utils/gesture')).createGesture({

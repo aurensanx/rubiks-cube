@@ -1,6 +1,7 @@
 import {MoveAction, START_MOVE, STOP_MOVE} from './action';
 import {MoveState} from './state';
-import {B, B0, D, D0, F, F0, L, L0, MOVES, R, R0, U, U0} from '../three-components/models/moves';
+import {MOVES} from '../three-components/models/moves';
+import * as _ from 'lodash';
 
 const _moveReducer =
     (state: MoveState = {move: undefined, cube: [...Array(27).keys()]}, action: MoveAction) => {
@@ -18,8 +19,8 @@ const _moveReducer =
 const updateCube = (state, move: number) => {
     // TODO enviar objeto
     // tslint:disable-next-line:no-bitwise
-    // const finalMove = MOVES.find(m => (move & m.value) === m.value);
-    const finalMove = MOVES.find(m => move  ===  m.value);
+    const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
+    // const finalMove = MOVES.find(m => move  ===  m.value);
     finalMove.storeMove(state);
     // moveMap[finalMove.value](state);
     return state;

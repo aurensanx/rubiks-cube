@@ -21,7 +21,6 @@
 
 - Movimientos táctiles
 
-    - magic numbers solo en un sitio
     - añadir movimientos de capas centrales
     - revisar x, y, z bitS
     - resto de movimientos
@@ -31,7 +30,14 @@
 - Solución básica
 
     - definir estado del cubo con los colores
+    
+- Próximos pasos
+    
+    Array de 54 colores
+    Con la intersección saco el color y la posición. Miro el color en el array para saber la cara y por tanto el movimiento.
 
+
+- Ruido del cubo de Rubik
 
 
 
