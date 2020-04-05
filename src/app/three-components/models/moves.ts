@@ -190,6 +190,84 @@ export const B0_COLORS = (state: ColorsState) => {
     return state;
 };
 
+export const E_PIECES = (state: PiecesState) => {
+    turnFace(state, [3, 5, 23, 21]);
+    turnFace(state, [4, 14, 22, 12]);
+    return state;
+};
+
+export const E_COLORS = (state: PiecesState) => {
+    turnFace(state, [12, 13, 14, 15]);
+    turnFace(state, [16, 17, 18, 19]);
+    turnFace(state, [20, 21, 22, 23]);
+    return state;
+};
+
+export const E0_PIECES = (state: PiecesState) => {
+    turnFace(state, [21, 23, 5, 3]);
+    turnFace(state, [12, 22, 14, 4]);
+    return state;
+};
+
+export const E0_COLORS = (state: PiecesState) => {
+    turnFace(state, [15, 14, 13, 12]);
+    turnFace(state, [19, 18, 17, 16]);
+    turnFace(state, [23, 22, 21, 20]);
+    return state;
+};
+
+export const M_PIECES = (state: PiecesState) => {
+    turnFace(state, [1, 19, 25, 7]);
+    turnFace(state, [4, 10, 22, 16]);
+    return state;
+};
+
+export const M_COLORS = (state: PiecesState) => {
+    turnFace(state, [4, 40, 30, 49]);
+    turnFace(state, [16, 44, 18, 53]);
+    turnFace(state, [28, 42, 6, 51]);
+    return state;
+};
+
+export const M0_PIECES = (state: PiecesState) => {
+    turnFace(state, [7, 25, 19, 1]);
+    turnFace(state, [16, 22, 10, 4]);
+    return state;
+};
+
+export const M0_COLORS = (state: PiecesState) => {
+    turnFace(state, [49, 30, 40, 4]);
+    turnFace(state, [53, 18, 44, 16]);
+    turnFace(state, [51, 6, 42, 28]);
+    return state;
+};
+
+export const V_PIECES = (state: PiecesState) => {
+    turnFace(state, [9, 11, 17, 15]);
+    turnFace(state, [10, 14, 16, 12]);
+    return state;
+};
+
+export const V_COLORS = (state: PiecesState) => {
+    turnFace(state, [43, 5, 50, 31]);
+    turnFace(state, [44, 17, 53, 19]);
+    turnFace(state, [41, 29, 52, 7]);
+    return state;
+};
+
+export const V0_PIECES = (state: PiecesState) => {
+    turnFace(state, [15, 17, 11, 9]);
+    turnFace(state, [12, 16, 14, 10]);
+    return state;
+};
+
+export const V0_COLORS = (state: PiecesState) => {
+    turnFace(state, [31, 50, 5, 43]);
+    turnFace(state, [19, 53, 17, 44]);
+    turnFace(state, [7, 52, 29, 41]);
+    return state;
+};
+
 export interface MoveDefinition {
     id: string;
     value: number;
@@ -262,8 +340,6 @@ export const MOVES: MoveDefinition[] = [
         color: 'white',
         class: 'counter',
     },
-    // // {id: `E`, value: 70, storeMove: E0, cubeFace: CUBE.FACES.H, x: 0, y: 0, z: 0, axis: 'y', direction: 1},
-    // // {id: `E´`, value: 69, storeMove: E, cubeFace: CUBE.FACES.H, x: 0, y: 0, z: 0, axis: 'y', direction: -1},
     {
         id: `D`,
         value: 2,
@@ -397,6 +473,87 @@ export const MOVES: MoveDefinition[] = [
         axis: 'z',
         direction: -1,
         color: 'orange',
+        class: 'counter',
+    },
+    {
+        id: `E`,
+        value: 12,
+        piecesMove: E_PIECES,
+        colorsMove: E_COLORS,
+        cubeFace: CUBE.FACES.E,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'y',
+        direction: 1,
+        color: '',
+    },
+    {
+        id: `E'`,
+        value: 13,
+        piecesMove: E0_PIECES,
+        colorsMove: E0_COLORS,
+        cubeFace: CUBE.FACES.E,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'y',
+        direction: -1,
+        color: '',
+        class: 'counter',
+    },
+    {
+        id: `M`,
+        value: 14,
+        piecesMove: M_PIECES,
+        colorsMove: M_COLORS,
+        cubeFace: CUBE.FACES.M,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+        color: '',
+    },
+    {
+        id: `M'`,
+        value: 15,
+        piecesMove: M0_PIECES,
+        colorsMove: M0_COLORS,
+        cubeFace: CUBE.FACES.M,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
+        color: '',
+        class: 'counter',
+    },
+    {
+        id: `V`,
+        value: 16,
+        piecesMove: V_PIECES,
+        colorsMove: V_COLORS,
+        cubeFace: CUBE.FACES.V,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'z',
+        direction: -1,
+        color: '',
+    },
+    {
+        id: `V'`,
+        value: 17,
+        piecesMove: V0_PIECES,
+        colorsMove: V0_COLORS,
+        cubeFace: CUBE.FACES.V,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'z',
+        direction: 1,
+        color: '',
         class: 'counter',
     },
 ];

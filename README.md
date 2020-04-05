@@ -37,6 +37,36 @@
     Con la intersección saco el color y la posición. Miro el color en el array para saber la cara y por tanto el movimiento.
 
 
+    - Pieces
+     
+            0  1  2 
+            3  4  5 
+            6  7  8 
+            
+            9  10 11 
+            12 13 14 
+            15 16 17 
+            
+            18 19 20 
+            21 22 23 
+            24 25 26
+
+
+    - Colors
+    
+                36 40 37
+                43 44 41
+                39 42 38
+    
+    3  7  11    0  4  8     1  5  9     10 6  2  
+    15 19 23    12 16 20    13 17 21    22 18 14   
+    27 31 35    24 28 32    25 29 33    34 30 26
+    
+                45 49 46
+                52 53 50
+                48 51 47
+
+    
 - Ruido del cubo de Rubik
 
 

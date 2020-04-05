@@ -8,6 +8,6 @@ export class ButtonsService {
 
   constructor() { }
 
-  getRandomMove = () => MOVES[Math.floor(Math.random() * 12)].value;
+  getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)].value;
 
 }
