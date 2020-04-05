@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Face3, Mesh} from 'three';
 import {select, Store} from '@ngrx/store';
-import {MoveState, selectMoveMove, StartMoveAction} from '@cube-store';
 import {MOVES, MOVES_BIT_DEFINITION} from '../three-components/models/moves';
 import * as _ from 'lodash';
+import {selectMove, StartMoveAction, State} from '@cube-store';
 
 @Injectable({
     providedIn: 'root'
@@ -12,8 +12,8 @@ export class MoveService {
 
     move: number;
 
-    constructor(private store: Store<{ state: MoveState }>) {
-        store.pipe(select(selectMoveMove)).subscribe((next: number) => {
+    constructor(private store: Store<{ state: State }>) {
+        store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
         });
     }

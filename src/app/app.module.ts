@@ -16,7 +16,7 @@ import {reducers} from '@cube-store';
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, StoreModule.forRoot(reducers),
+    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         StoreModule.forRoot(reducers),
         // Instrumentation must be imported after importing StoreModule (config is optional)
         StoreDevtoolsModule.instrument({

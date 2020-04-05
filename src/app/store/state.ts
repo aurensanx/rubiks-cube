@@ -2,31 +2,38 @@ import {ActionReducerMap, createSelector} from '@ngrx/store';
 import {moveReducer} from './reducer';
 
 
-export type CubeState = number[];
+export type ColorsState = number[];
+export type PiecesState = number[];
 
 
-export interface MoveState {
+export interface State {
     move: number;
-    cube: CubeState;
+    colors: ColorsState;
+    pieces: PiecesState;
 }
 
 interface AppState {
-    state: MoveState;
+    state: State;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     state: moveReducer,
 };
 
-const selectMove = (state: AppState) => state.state;
+const selectState = (state: AppState) => state.state;
 
-export const selectMoveMove = createSelector(
-    selectMove,
-    (state: MoveState) => state.move
+export const selectMove = createSelector(
+    selectState,
+    (state: State) => state.move
 );
 
-export const selectMoveCube = createSelector(
-    selectMove,
-    (state: MoveState) => state.cube
+export const selectColors = createSelector(
+    selectState,
+    (state: State) => state.colors
+);
+
+export const selectPieces = createSelector(
+    selectState,
+    (state: State) => state.pieces
 );
 

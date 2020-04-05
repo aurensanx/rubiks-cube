@@ -5,10 +5,9 @@ import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {createControls, cubeSettings} from '../three-components/controls';
-import {MoveState, selectMoveMove, StopMoveAction} from '@cube-store';
 import {MoveService} from './move.service';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
+import {selectMove, State, StopMoveAction} from '@cube-store';
 
 @Component({
     selector: 'app-home',
@@ -34,8 +33,8 @@ export class HomePage implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: MoveState }>) {
-        this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
+    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: State }>) {
+        this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
         });
     }
@@ -126,10 +125,8 @@ export class HomePage implements OnInit, OnDestroy {
 
         event.preventDefault();
 
-        // TODO
-        const sensibilidad = 3;
-        if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > sensibilidad) {
-            this.moveService.moveLayerOnTouch(event, this.intersection.selection, this.controls);
+        if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > cubeSettings.sensitivity) {
+            this.moveService.moveLayerOnTouch(event, this.intersection.selection);
         }
 
         // Get mouse position

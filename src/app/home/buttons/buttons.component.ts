@@ -3,8 +3,8 @@ import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {ButtonsService} from './buttons.service';
 import {cubeSettings} from '../../three-components/controls';
-import {MoveState, selectMoveMove, StartMoveAction} from '@cube-store';
 import {MOVES} from 'src/app/three-components/models/moves';
+import {selectMove, StartMoveAction, State} from '@cube-store';
 
 @Component({
     selector: 'app-buttons',
@@ -15,11 +15,15 @@ export class ButtonsComponent implements OnInit {
 
     subscription: Subscription;
     currentMove: number;
+    isScramble: boolean;
     MOVES = MOVES;
 
-    constructor(private store: Store<{ state: MoveState }>, private buttonsService: ButtonsService) {
-        this.subscription = store.pipe(select(selectMoveMove)).subscribe((next: number) => {
+    constructor(private store: Store<{ state: State }>, private buttonsService: ButtonsService) {
+        this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.currentMove = next;
+            if (this.isScramble && this.currentMove === undefined) {
+                this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+            }
         });
     }
 
@@ -33,17 +37,17 @@ export class ButtonsComponent implements OnInit {
     scramble() {
         const moveSpeed = cubeSettings.moveSpeed;
         cubeSettings.moveSpeed = 1;
+        this.isScramble = true;
+        this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
         // [...Array(cubeSettings.initialScrambleMoves)].forEach((_, i) => {
-        const intervalId = setInterval(() => {
-            this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
-            // cubeSettings.moveSpeed = moveSpeed;
-        }, 10);
+        // const intervalId = window.setInterval(() => {
+        //     this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+        //     // cubeSettings.moveSpeed = moveSpeed;
+        // }, 3000);
         // });
 
         setTimeout(() => {
-            window.clearInterval(intervalId);
-
-            // FIXME
+            this.isScramble = false;
             setTimeout(() => {
                 cubeSettings.moveSpeed = moveSpeed;
             }, 100);

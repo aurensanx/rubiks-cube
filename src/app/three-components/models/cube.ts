@@ -1,5 +1,9 @@
 import {PIECE} from './pieces';
 
+const DIMENSION = 3;
+
+const NUMBER_OF_PIECE_FACES = Math.pow(DIMENSION, 2) * 6;
+
 const COLORS = {
     BLUE: 0x0000FF,
     GREEN: 0x0FF000,
@@ -10,7 +14,7 @@ const COLORS = {
     BLACK: 0X00000,
 };
 
-export const PIECES: PIECE[] = [
+const PIECES: PIECE[] = [
     {
         colors: [COLORS.BLACK, COLORS.BLACK, COLORS.GREEN, COLORS.GREEN, COLORS.WHITE, COLORS.WHITE,
             COLORS.BLACK, COLORS.BLACK, COLORS.RED, COLORS.RED, COLORS.BLACK, COLORS.BLACK],
@@ -123,7 +127,7 @@ export const PIECES: PIECE[] = [
 ];
 
 
-export const CUBE_FACE = {
+const FACES = {
     UP: [0, 1, 2, 9, 10, 11, 18, 19, 20],
     DOWN: [6, 7, 8, 15, 16, 17, 24, 25, 26],
     RIGHT: [2, 5, 8, 11, 14, 17, 20, 23, 26],
@@ -133,6 +137,14 @@ export const CUBE_FACE = {
     H: [3, 4, 5, 12, 13, 14, 21, 22, 23],
 };
 
+
+export const CUBE = {
+    DIMENSION,
+    NUMBER_OF_PIECE_FACES,
+    COLORS,
+    PIECES,
+    FACES,
+};
 
 // el cubo son 27 piezas
 // la cara UP siempre está en las posiciones 0, 1, 2, 9,10, 11, 18, 19, 20
