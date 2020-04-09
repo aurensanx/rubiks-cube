@@ -126,7 +126,7 @@ export class HomePage implements OnInit, OnDestroy {
         event.preventDefault();
 
         if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > cubeSettings.sensitivity) {
-            this.moveService.moveLayerOnTouch(event, this.intersection.selection);
+            this.moveService.moveLayerOnTouch(event, this.intersection.selection, this.controls);
         }
 
         // Get mouse position

@@ -30,7 +30,7 @@ export class ButtonsComponent implements OnInit {
     ngOnInit() {
         // TODO animación cámara al entrar
         setTimeout(() => {
-            this.scramble();
+            // this.scramble();
         }, 1000);
     }
 
@@ -39,12 +39,6 @@ export class ButtonsComponent implements OnInit {
         cubeSettings.moveSpeed = 1;
         this.isScramble = true;
         this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
-        // [...Array(cubeSettings.initialScrambleMoves)].forEach((_, i) => {
-        // const intervalId = window.setInterval(() => {
-        //     this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
-        //     // cubeSettings.moveSpeed = moveSpeed;
-        // }, 3000);
-        // });
 
         setTimeout(() => {
             this.isScramble = false;

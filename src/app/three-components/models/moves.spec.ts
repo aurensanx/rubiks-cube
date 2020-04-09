@@ -4,15 +4,21 @@ import {
     B_COLORS,
     D0_COLORS,
     D_COLORS,
+    E0_COLORS,
+    E_COLORS,
     F0_COLORS,
     F_COLORS,
     L0_COLORS,
     L_COLORS,
+    M0_COLORS,
+    M_COLORS,
     R0_COLORS,
     R_COLORS,
     U0_COLORS,
     U_COLORS,
-    U_PIECES
+    U_PIECES,
+    V0_COLORS,
+    V_COLORS
 } from './moves';
 
 describe('Moves Tests', () => {
@@ -302,7 +308,7 @@ describe('Moves Tests', () => {
         ]);
     });
 
-    fit('scramble', () => {
+    it('scramble', () => {
         const array = initCubeColors();
         F0_COLORS(array);
         L_COLORS(array);
@@ -332,11 +338,37 @@ describe('Moves Tests', () => {
         D_COLORS(array);
         F0_COLORS(array);
         // pantalla
-        // expect(array).toEqual([3, 5, 4, 3, 1, 4, 4, 3, 2, 1, 0, 5, 4, 3, 0, 4, 4, 2, 5, 3, 5, 3, 1, 2, 5, 2, 4, 2, 0, 5, 2, 1, 4, 2, 1, 1, 4, 3, 0, 0, 3, 0, 5, 1, 0, 3, 1, 0, 5, 2, 0, 5, 2, 1]);
         expect(array).toEqual([4, 5, 1, 3, 1, 5, 4, 5, 2, 5, 4, 0, 0, 3, 4, 4, 4, 2, 5, 3, 5, 3, 2, 3, 0, 3, 1, 2, 0, 4, 2, 1, 0, 2, 1, 3, 1, 3, 0, 2, 1, 1, 3, 0, 0, 4, 5, 4, 5, 2, 0, 5, 2, 1]);
-        // console.log
-        // expect(array).toEqual([3, 5, 4, 3, 1, 4, 4, 3, 2, 3, 0, 1, 0, 3, 0, 4, 4, 2, 5, 3, 5, 3, 1, 2, 5, 2, 4, 2, 4, 5, 2, 1, 2, 4, 1, 4, 3, 5, 0, 0, 0, 0, 5, 1, 0, 1, 1, 0, 5, 2, 5, 2, 3, 1]);
     });
+
+    it('scramble with centers', () => {
+        const array = initCubeColors();
+        F0_COLORS(array);
+        R0_COLORS(array);
+        V_COLORS(array);
+        U_COLORS(array);
+        L0_COLORS(array);
+        D_COLORS(array);
+        R_COLORS(array);
+        B0_COLORS(array);
+        E0_COLORS(array);
+        F_COLORS(array);
+        U0_COLORS(array);
+        M_COLORS(array);
+        V0_COLORS(array);
+        E_COLORS(array);
+        D0_COLORS(array);
+        B_COLORS(array);
+        M0_COLORS(array);
+        L_COLORS(array);
+
+        // redux
+        expect(array).toEqual([3, 4, 3, 0, 5, 1, 2, 0, 0, 5, 5, 0, 4, 3, 4, 4, 4, 3, 5, 2, 5, 2, 0, 3, 3, 5, 1, 5, 2, 1, 0, 4, 2, 2, 1, 1, 2, 0, 2, 4, 0, 2, 1, 5, 1, 4, 1, 4, 3, 5, 3, 3, 1, 0]);
+        // expect(array).toEqual([1, 4, 1, 3, 0, 1, 0, 3, 3, 5, 5, 3, 4, 1, 4, 5, 5, 2, 4, 3, 5, 0, 3, 1, 1, 5, 2, 5, 3, 0, 5, 4, 0, 0, 2, 2, 0, 3, 0, 4, 5, 2, 3, 4, 1, 4, 2, 4, 1, 1, 2, 2, 2, 0]);
+        // pantalla
+        // expect(array).toEqual([1, 4, 1, 3, 0, 1, 0, 3, 3, 5, 5, 3, 5, 4, 1, 4, 3, 5, 2, 4, 1, 5, 0, 3, 5, 1, 5, 2, 4, 3, 0, 5, 2, 0, 0, 2, 3, 0, 4, 0, 2, 3, 4, 5, 1, 1, 4, 2, 4, 2, 1, 2, 2, 0]);
+    });
+
 
 });
 

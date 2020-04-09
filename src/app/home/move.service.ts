@@ -3,7 +3,9 @@ import {Face3, Mesh} from 'three';
 import {select, Store} from '@ngrx/store';
 import {MOVES, MOVES_BIT_DEFINITION} from '../three-components/models/moves';
 import * as _ from 'lodash';
-import {selectMove, StartMoveAction, State} from '@cube-store';
+import {selectColors, selectMove, StartMoveAction, State} from '@cube-store';
+import {getColorFromNormal, getFacesFromPiecePosition} from '../three-components/models/guessMoves';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
 @Injectable({
     providedIn: 'root'
@@ -11,23 +13,44 @@ import {selectMove, StartMoveAction, State} from '@cube-store';
 export class MoveService {
 
     move: number;
+    colors: number[];
 
     constructor(private store: Store<{ state: State }>) {
         store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
         });
+
+        store.pipe(select(selectColors)).subscribe((next: number[]) => {
+            this.colors = next;
+        });
     }
 
-    moveLayerOnTouch(event: any, {object, face}) {
+    moveLayerOnTouch(event: any, {object, face}, controls: OrbitControls) {
         if (this.move === undefined) {
-            const move = this.guessMoveFromEvent(event, object, face);
-            if (move) {
+            const move = this.guessMoveFromEvent(event, object, face, controls);
+            if (move !== undefined) {
                 this.store.dispatch(new StartMoveAction(move));
             }
         }
     }
 
-    guessMoveFromEvent(event: any, piece: Mesh, face: Face3) {
+    guessMoveFromEvent(event: any, piece: Mesh, face: Face3, controls: OrbitControls) {
+
+        const color = getColorFromNormal(face.normal);
+        const faces = getFacesFromPiecePosition(piece.position);
+        const touchedFacePosition = this.getTouchedFacePositionInState(color, faces);
+        // console.log(touchedFacePosition);
+
+        // console.log(event.movementX, event.movementY);
+        console.log(controls.getPolarAngle());
+        console.log(controls.getAzimuthalAngle());
+
+        return 0;
+    }
+
+    getTouchedFacePositionInState = (color: number, positions: number[]) => positions.find(p => this.colors[p] === color);
+
+    guessMoveFromEventOLD(event: any, piece: Mesh, face: Face3) {
         // TODO
         // const movementX = event.movementX * Math.cos(camera.rotation.x) + event.movementY * Math.sin(camera.rotation.y);
         // const movementY = event.movementX * Math.sin(camera.rotation.x) + event.movementY * Math.cos(camera.rotation.y);

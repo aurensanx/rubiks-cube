@@ -217,28 +217,28 @@ export const E0_COLORS = (state: PiecesState) => {
 };
 
 export const M_PIECES = (state: PiecesState) => {
-    turnFace(state, [1, 19, 25, 7]);
-    turnFace(state, [4, 10, 22, 16]);
-    return state;
-};
-
-export const M_COLORS = (state: PiecesState) => {
-    turnFace(state, [4, 40, 30, 49]);
-    turnFace(state, [16, 44, 18, 53]);
-    turnFace(state, [28, 42, 6, 51]);
-    return state;
-};
-
-export const M0_PIECES = (state: PiecesState) => {
     turnFace(state, [7, 25, 19, 1]);
     turnFace(state, [16, 22, 10, 4]);
     return state;
 };
 
-export const M0_COLORS = (state: PiecesState) => {
+export const M_COLORS = (state: PiecesState) => {
     turnFace(state, [49, 30, 40, 4]);
     turnFace(state, [53, 18, 44, 16]);
     turnFace(state, [51, 6, 42, 28]);
+    return state;
+};
+
+export const M0_PIECES = (state: PiecesState) => {
+    turnFace(state, [1, 19, 25, 7]);
+    turnFace(state, [4, 10, 22, 16]);
+    return state;
+};
+
+export const M0_COLORS = (state: PiecesState) => {
+    turnFace(state, [4, 40, 30, 49]);
+    turnFace(state, [16, 44, 18, 53]);
+    turnFace(state, [28, 42, 6, 51]);
     return state;
 };
 
@@ -512,7 +512,7 @@ export const MOVES: MoveDefinition[] = [
         y: 0,
         z: 0,
         axis: 'x',
-        direction: -1,
+        direction: 1,
         color: '',
     },
     {
@@ -525,7 +525,7 @@ export const MOVES: MoveDefinition[] = [
         y: 0,
         z: 0,
         axis: 'x',
-        direction: 1,
+        direction: -1,
         color: '',
         class: 'counter',
     },
