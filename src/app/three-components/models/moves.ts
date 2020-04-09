@@ -284,33 +284,33 @@ export interface MoveDefinition {
 }
 
 
-// 18 moves 3x3x2
-export const MOVES_BIT_DEFINITION = {
-    POSITIVE: Math.pow(2, 0),
-    NEGATIVE: Math.pow(2, 1),
-    HORIZONTAL: Math.pow(2, 2),
-    VERTICAL: Math.pow(2, 3),
-    X0: Math.pow(2, 4),
-    X1: Math.pow(2, 5),
-    X2: Math.pow(2, 6),
-    Y0: Math.pow(2, 7),
-    Y1: Math.pow(2, 8),
-    Y2: Math.pow(2, 9),
-    Z0: Math.pow(2, 10),
-    Z1: Math.pow(2, 11),
-    Z2: Math.pow(2, 12),
-    NX: Math.pow(2, 13),
-    NX0: Math.pow(2, 14),
-    NY: Math.pow(2, 15),
-    NY0: Math.pow(2, 16),
-    NZ: Math.pow(2, 17),
-    NZ0: Math.pow(2, 18),
-};
-
-// op && MOVE === MOVE
-
-// xx10zz01
-// 33
+// // 18 moves 3x3x2
+// export const MOVES_BIT_DEFINITION = {
+//     POSITIVE: Math.pow(2, 0),
+//     NEGATIVE: Math.pow(2, 1),
+//     HORIZONTAL: Math.pow(2, 2),
+//     VERTICAL: Math.pow(2, 3),
+//     X0: Math.pow(2, 4),
+//     X1: Math.pow(2, 5),
+//     X2: Math.pow(2, 6),
+//     Y0: Math.pow(2, 7),
+//     Y1: Math.pow(2, 8),
+//     Y2: Math.pow(2, 9),
+//     Z0: Math.pow(2, 10),
+//     Z1: Math.pow(2, 11),
+//     Z2: Math.pow(2, 12),
+//     NX: Math.pow(2, 13),
+//     NX0: Math.pow(2, 14),
+//     NY: Math.pow(2, 15),
+//     NY0: Math.pow(2, 16),
+//     NZ: Math.pow(2, 17),
+//     NZ0: Math.pow(2, 18),
+// };
+//
+// // op && MOVE === MOVE
+//
+// // xx10zz01
+// // 33
 
 export const MOVES: MoveDefinition[] = [
     {

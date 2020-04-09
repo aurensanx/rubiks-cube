@@ -7,7 +7,8 @@ import {CubeService} from './cube.service';
 import {createControls, cubeSettings} from '../three-components/controls';
 import {MoveService} from './move.service';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-import {selectMove, State, StopMoveAction} from '@cube-store';
+import {selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
+import {ButtonsService} from './buttons/buttons.service';
 
 @Component({
     selector: 'app-home',
@@ -31,12 +32,19 @@ export class HomePage implements OnInit, OnDestroy {
     move: number;
     moveCount = 0;
 
+    isScramble: boolean;
+
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: State }>) {
+    constructor(private cubeService: CubeService, private buttonsService: ButtonsService,
+                private moveService: MoveService, private store: Store<{ state: State }>) {
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
+            if (this.isScramble && this.move === undefined) {
+                this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+            }
         });
+
     }
 
     ngOnInit() {
@@ -62,6 +70,11 @@ export class HomePage implements OnInit, OnDestroy {
         // this.canvas.addEventListener('touchmove', ev => this.onDocumentMouseMove(ev), false);
         this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
         // this.canvas.addEventListener('touchup', () => this.onDocumentMouseUp(), false);
+
+        // TODO animación cámara al entrar
+        setTimeout(() => {
+            this.scramble();
+        }, 1000);
 
     }
 
@@ -172,5 +185,19 @@ export class HomePage implements OnInit, OnDestroy {
     //     onMove: ev => this.onMove(ev),
     //     onEnd: ev => this.onEnd(ev),
     // });
+
+    scramble() {
+        const moveSpeed = cubeSettings.moveSpeed;
+        cubeSettings.moveSpeed = 1;
+        this.isScramble = true;
+        this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+
+        setTimeout(() => {
+            this.isScramble = false;
+            setTimeout(() => {
+                cubeSettings.moveSpeed = moveSpeed;
+            }, 100);
+        }, 3000);
+    }
 
 }

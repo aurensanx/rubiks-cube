@@ -21,17 +21,17 @@ export class ButtonsComponent implements OnInit {
     constructor(private store: Store<{ state: State }>, private buttonsService: ButtonsService) {
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.currentMove = next;
-            if (this.isScramble && this.currentMove === undefined) {
-                this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
-            }
+            // if (this.isScramble && this.currentMove === undefined) {
+            //     this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+            // }
         });
     }
 
     ngOnInit() {
-        // TODO animación cámara al entrar
-        setTimeout(() => {
-            // this.scramble();
-        }, 1000);
+        // // TODO animación cámara al entrar
+        // setTimeout(() => {
+        //     this.scramble();
+        // }, 1000);
     }
 
     scramble() {
