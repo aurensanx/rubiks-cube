@@ -1,8 +1,8 @@
 <div class="setting-item">
   <h2><b>Move Speed: </b>{{cubeSettings.moveSpeed}}</h2>
-  <ion-range [value]="cubeSettings.moveSpeed" min="10" max="100" color="secondary"
+  <ion-range [value]="cubeSettings.moveSpeed" min="1" max="100" color="secondary"
              (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
-    <ion-label slot="start">10</ion-label>
+    <ion-label slot="start">1</ion-label>
     <ion-label slot="end">100</ion-label>
   </ion-range>
 </div>

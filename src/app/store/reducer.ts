@@ -1,6 +1,5 @@
-import {MoveAction, START_MOVE, STOP_MOVE} from './action';
+import {INIT_CUBE, MoveAction, START_MOVE, STOP_MOVE} from './action';
 import {MOVES} from '../three-components/moves';
-import * as _ from 'lodash';
 import {ColorsState, PiecesState, State} from './state';
 
 
@@ -16,14 +15,21 @@ const _moveReducer = (
             return {...state, move: action.payload};
         case STOP_MOVE:
             return {
+                move: undefined,
                 colors: updateColors(state.colors, action.payload),
-                pieces: updatePieces(state.pieces, action.payload),
-                move: undefined
+                pieces: updatePieces(state.pieces, action.payload)
+            };
+        case INIT_CUBE:
+            return {
+                move: undefined,
+                colors: initCubeColors(),
+                pieces: initCubePieces(),
             };
         default:
             return state;
     }
 };
+
 
 export const COLOR_ID = {
     WHITE: 0,
@@ -54,21 +60,12 @@ export const initCubeColors = () => [
 export const initCubePieces = () => [...Array(27).keys()];
 
 
-// const updateCube = (state, move: number) => {
-//     // TODO enviar objeto
-//     // tslint:disable-next-line:no-bitwise
-//     const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
-//     // const finalMove = MOVES.find(m => move  ===  m.value);
-//     finalMove.storeMove(state);
-//     // moveMap[finalMove.value](state);
-//     return state;
-// };
 
 const updateColors = (colors: ColorsState, move: number) => {
     // TODO enviar objeto
     // tslint:disable-next-line:no-bitwise
     // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
-    const finalMove = MOVES.find(m => move  ===  m.value);
+    const finalMove = MOVES.find(m => move === m.value);
     finalMove.colorsMove(colors);
     return colors;
 };
@@ -77,7 +74,7 @@ const updatePieces = (pieces: PiecesState, move: number) => {
     // TODO enviar objeto
     // tslint:disable-next-line:no-bitwise
     // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
-    const finalMove = MOVES.find(m => move  ===  m.value);
+    const finalMove = MOVES.find(m => move === m.value);
     finalMove.piecesMove(pieces);
     return pieces;
 };

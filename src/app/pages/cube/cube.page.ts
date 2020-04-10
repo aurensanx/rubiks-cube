@@ -1,14 +1,16 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as THREE from 'three';
-import {Vector3} from 'three';
+import {Object3D, PerspectiveCamera, Scene, Vector3} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {CameraService} from '../../commons/camera.service';
 import {MoveService} from '../../commons/move.service';
 import {select, Store} from '@ngrx/store';
-import {selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
+import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
 import {SettingsService} from '../settings/settings.service';
+import {CUBE} from '../../three-components';
+import {createPiece} from '../../three-components/pieces';
 
 @Component({
     selector: 'app-cube',
@@ -17,8 +19,10 @@ import {SettingsService} from '../settings/settings.service';
 })
 export class CubePage implements OnInit, OnDestroy {
 
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
+    scene: Scene;
+    camera: PerspectiveCamera;
+
+    centerPivot: Object3D;
 
     renderer = null;
     controls: OrbitControls = null;
@@ -26,13 +30,12 @@ export class CubePage implements OnInit, OnDestroy {
         objects: [],
         selection: null,
         plane: null,
-        offset: new THREE.Vector3(),
     };
 
     canvas: HTMLCanvasElement;
 
     move: number;
-    moveCount = 0;
+    moveCount: number;
 
     isScramble: boolean;
 
@@ -54,13 +57,25 @@ export class CubePage implements OnInit, OnDestroy {
 
     ngOnInit() {
 
+        this.scene = new THREE.Scene();
         this.scene.background = new THREE.Color(0x383A3E);
+        this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.z = 16;
+        this.centerPivot = new Object3D();
+        this.centerPivot.position.set(0, 0, 0);
+        this.centerPivot.updateMatrixWorld();
+
+        this.moveCount = 0;
+        this.isScramble = false;
 
         this.canvas = document.querySelector('#c');
         this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, antialias: true});
 
-        this.intersection.objects = this.cubeService.createCube(this.scene);
+        this.intersection.objects = CUBE.PIECES.map(createPiece);
+
+        this.store.dispatch(new InitCubeAction());
+        this.scene.add(...this.intersection.objects);
+
         // Plane, that helps to determinate an intersection position
         this.intersection.plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 500, 8, 8),
             new THREE.MeshBasicMaterial({color: 0xffffff}));
@@ -72,8 +87,6 @@ export class CubePage implements OnInit, OnDestroy {
 
         this.animate();
 
-        this.addTouchEvents();
-
         // TODO animación cámara al entrar
         setTimeout(() => {
             this.scramble();
@@ -82,6 +95,7 @@ export class CubePage implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this.move = undefined;
         this.subscription.unsubscribe();
     }
 
@@ -95,7 +109,7 @@ export class CubePage implements OnInit, OnDestroy {
         }
 
         if (this.move !== undefined) {
-            this.cubeService.moveLayer(this.move, this.scene);
+            this.cubeService.moveLayer(this.move, this.intersection.objects, this.centerPivot, this.scene);
             this.moveCount++;
             if (this.moveCount === this.settingsService.cubeSettings.moveSpeed) {
                 this.store.dispatch(new StopMoveAction(this.move));
@@ -174,6 +188,7 @@ export class CubePage implements OnInit, OnDestroy {
             this.isScramble = false;
             setTimeout(() => {
                 this.settingsService.cubeSettings.moveSpeed = moveSpeed;
+                this.addTouchEvents();
             }, 100);
         }, 3000);
     }

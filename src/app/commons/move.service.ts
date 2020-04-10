@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Face3, Intersection, Mesh, Object3D, Vector3} from 'three';
+import {Face3, Intersection, Object3D, Vector3} from 'three';
 import {select, Store} from '@ngrx/store';
 import {selectColors, selectMove, StartMoveAction, State} from '@cube-store';
 import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../three-components/guessMoves';
@@ -37,19 +37,6 @@ export class MoveService {
         const color = getColorFromNormal(face.normal);
         const faces = getFacesFromPiecePosition(piece.position);
         const touchedFacePosition = this.getTouchedFacePositionInState(color, faces);
-        // console.log(touchedFacePosition);
-
-        // console.log(event.movementX, event.movementY);
-        // console.log(controls.getPolarAngle());
-        // console.log(controls.getAzimuthalAngle());
-
-        // const x = event.movementX * Math.cos(controls.getAzimuthalAngle()) +
-        //     event.movementY * Math.cos(controls.getPolarAngle()) * Math.sin(controls.getAzimuthalAngle());
-        // const y = event.movementY * Math.sin(controls.getPolarAngle());
-        // const z = -event.movementX * Math.sin(controls.getAzimuthalAngle()) +
-        //     event.movementY * Math.cos(controls.getPolarAngle()) * Math.cos(controls.getAzimuthalAngle());
-
-        // console.log(x, y, z);
 
         let movement = this.getMovement3D(movementVector);
 
@@ -90,7 +77,7 @@ export class MoveService {
 
     getTouchedFacePositionInState = (color: number, positions: number[]) => positions.find(p => this.colors[p] === color);
 
-    getRandomMove = () => MOVES[Math.floor(Math.random() * 12)].value;
+    getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)].value;
 
 
 }

@@ -148,6 +148,10 @@ export const CUBE = {
     FACES,
 };
 
+export const initCubePhysically = () => {
+    return
+}
+
 
 // el cubo son 27 piezas
 // la cara UP siempre está en las posiciones 0, 1, 2, 9,10, 11, 18, 19, 20
