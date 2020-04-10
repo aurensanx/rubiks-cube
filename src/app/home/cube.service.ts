@@ -5,9 +5,9 @@ import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
 import {CUBE, scene} from '../three-components';
-import {cubeSettings} from '../three-components/controls';
 import {MoveDefinition, MOVES} from '../three-components/models/moves';
 import {PiecesState, selectPieces, State} from '@cube-store';
+import {CameraService} from '../commons/camera.service';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class CubeService {
     pieces: Mesh[];
     piecesState: PiecesState;
 
-    constructor(private store: Store<{ state: State }>) {
+    constructor(private cameraService: CameraService, private store: Store<{ state: State }>) {
 
         this.subscription = store.pipe(select(selectPieces)).subscribe((next: PiecesState) => {
             this.piecesState = next;
@@ -52,7 +52,7 @@ export class CubeService {
         cubeFace.forEach(i => {
             SceneUtils.attach(this.pieces[this.piecesState[i]], scene, this.centerPivot);
         });
-        this.centerPivot.rotation[axis] += Math.PI / 2 / cubeSettings.moveSpeed * direction;
+        this.centerPivot.rotation[axis] += Math.PI / 2 / this.cameraService.cubeSettings.moveSpeed * direction;
         this.centerPivot.updateMatrixWorld();
         cubeFace.forEach(i => {
             SceneUtils.detach(this.pieces[this.piecesState[i]], this.centerPivot, scene);

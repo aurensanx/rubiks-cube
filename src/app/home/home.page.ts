@@ -1,14 +1,15 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
 import {Vector3} from 'three';
-import {camera, raycaster, resizeRendererToDisplaySize, scene} from '../three-components';
+import {camera, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
-import {createControls, cubeSettings} from '../three-components/controls';
+import {createControls} from '../three-components/controls';
 import {MoveService} from './move.service';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
+import {CameraService} from '../commons/camera.service';
 
 @Component({
     selector: 'app-home',
@@ -38,7 +39,9 @@ export class HomePage implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: State }>) {
+    constructor(private cubeService: CubeService, private cameraService: CameraService,
+                private moveService: MoveService, private store: Store<{ state: State }>) {
+
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
             if (this.isScramble && this.move === undefined) {
@@ -81,7 +84,7 @@ export class HomePage implements OnInit, OnDestroy {
     animate = () => {
         requestAnimationFrame(this.animate);
 
-        if (resizeRendererToDisplaySize(this.renderer)) {
+        if (this.cameraService.resizeRendererToDisplaySize(this.renderer)) {
             const c = this.renderer.domElement;
             camera.aspect = c.clientWidth / c.clientHeight;
             camera.updateProjectionMatrix();
@@ -90,7 +93,7 @@ export class HomePage implements OnInit, OnDestroy {
         if (this.move !== undefined) {
             this.cubeService.moveLayer(this.move);
             this.moveCount++;
-            if (this.moveCount === cubeSettings.moveSpeed) {
+            if (this.moveCount === this.cameraService.cubeSettings.moveSpeed) {
                 this.store.dispatch(new StopMoveAction(this.move));
                 this.moveCount = 0;
             }
@@ -127,10 +130,10 @@ export class HomePage implements OnInit, OnDestroy {
         vector.unproject(camera);
 
         // Set the raycaster position
-        raycaster.set(camera.position, vector.sub(camera.position).normalize());
+        this.cameraService.raycaster.set(camera.position, vector.sub(camera.position).normalize());
 
         // Find all intersected objects
-        const intersects = raycaster.intersectObjects(this.intersection.objects);
+        const intersects = this.cameraService.raycaster.intersectObjects(this.intersection.objects);
 
         if (intersects.length > 0) {
             // Disable the controls
@@ -164,13 +167,13 @@ export class HomePage implements OnInit, OnDestroy {
         touch3D.unproject(camera);
 
         // Set the raycaster position
-        raycaster.set(camera.position, touch3D.sub(camera.position).normalize());
+        this.cameraService.raycaster.set(camera.position, touch3D.sub(camera.position).normalize());
 
         if (this.intersection.selection) {
 
             const movementVector = this.moveService.guessMouseChange(touch3D, this.touch3D ? this.touch3D : touch3D);
 
-            if (Math.max(Math.abs(movementVector.x), Math.abs(movementVector.y), Math.abs(movementVector.z)) > cubeSettings.sensitivity) {
+            if (Math.max(Math.abs(movementVector.x), Math.abs(movementVector.y), Math.abs(movementVector.z)) > this.cameraService.cubeSettings.sensitivity) {
                 this.moveService.moveLayerOnTouch(event, this.intersection.selection, movementVector);
             }
         }
@@ -199,15 +202,15 @@ export class HomePage implements OnInit, OnDestroy {
     // });
 
     scramble() {
-        const moveSpeed = cubeSettings.moveSpeed;
-        cubeSettings.moveSpeed = 1;
+        const moveSpeed = this.cameraService.cubeSettings.moveSpeed;
+        this.cameraService.cubeSettings.moveSpeed = 1;
         this.isScramble = true;
         this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
 
         setTimeout(() => {
             this.isScramble = false;
             setTimeout(() => {
-                cubeSettings.moveSpeed = moveSpeed;
+                this.cameraService.cubeSettings.moveSpeed = moveSpeed;
             }, 100);
         }, 3000);
     }
