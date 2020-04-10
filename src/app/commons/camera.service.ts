@@ -25,8 +25,8 @@ export class CameraService {
         this.scene.background = new THREE.Color(0x221D2E);
     }
 
-    createControls = domElement => {
-        const controls = new OrbitControls(this.camera, domElement);
+    createControls = (camera, domElement) => {
+        const controls = new OrbitControls(camera, domElement);
         controls.enableZoom = true;
         controls.enablePan = false;
         controls.enableDamping = true;

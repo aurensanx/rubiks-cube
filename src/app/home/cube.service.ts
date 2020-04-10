@@ -4,7 +4,7 @@ import {Mesh, Object3D} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {CUBE, scene} from '../three-components';
+import {CUBE} from '../three-components';
 import {MoveDefinition, MOVES} from '../three-components/models/moves';
 import {PiecesState, selectPieces, State} from '@cube-store';
 import {CameraService} from '../commons/camera.service';
@@ -32,21 +32,21 @@ export class CubeService {
         this.pieces = CUBE.PIECES.map(createPiece);
     }
 
-    createCube = () => {
+    createCube = scene => {
         scene.add(...this.pieces);
         return this.pieces;
     };
 
 
-    moveLayer(move: number) {
+    moveLayer(move: number, scene) {
         // TODO enviar objeto?
         // tslint:disable-next-line:no-bitwise
         // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
         const finalMove = MOVES.find(m => move === m.value);
-        this.movePhysically(finalMove);
+        this.movePhysically(finalMove, scene);
     }
 
-    private movePhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition) => {
+    private movePhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition, scene) => {
         this.centerPivot.rotation.set(x, y, z);
         this.centerPivot.updateMatrixWorld();
         cubeFace.forEach(i => {
