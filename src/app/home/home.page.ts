@@ -35,7 +35,7 @@ export class HomePage implements OnInit, OnDestroy {
 
     isScramble: boolean;
 
-    mouse3D: Vector3;
+    touch3D: Vector3;
 
     subscription: Subscription;
 
@@ -71,7 +71,7 @@ export class HomePage implements OnInit, OnDestroy {
 
         // TODO animación cámara al entrar
         setTimeout(() => {
-            // this.scramble();
+            this.scramble();
         }, 1000);
 
     }
@@ -104,21 +104,28 @@ export class HomePage implements OnInit, OnDestroy {
     };
 
     addTouchEvents() {
-        this.canvas.addEventListener('mousedown', ev => this.onDocumentMouseDown(ev), false);
-        // this.canvas.addEventListener('touchdown', ev => this.onDocumentMouseDown(ev), false);
-        this.canvas.addEventListener('mousemove', ev => this.onDocumentMouseMove(ev), false);
-        // this.canvas.addEventListener('touchmove', ev => this.onDocumentMouseMove(ev), false);
-        this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
-        // this.canvas.addEventListener('touchup', () => this.onDocumentMouseUp(), false);
+        // this.canvas.addEventListener('mousedown', ev => this.onDocumentMouseDown(ev), false);
+        this.canvas.addEventListener('touchstart', (ev: TouchEvent) => this.onDocumentMouseDown(ev), false);
+        // this.canvas.addEventListener('mousemove', ev => this.onDocumentMouseMove(ev), false);
+        this.canvas.addEventListener('touchmove', ev => this.onDocumentTouchMove(ev), false);
+        // this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
+        this.canvas.addEventListener('touchend', () => this.onDocumentMouseUp(), false);
     }
 
-    onDocumentMouseDown(event) {
-        // Get mouse position
-        const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
-        const mouseY = -(event.clientY / this.canvas.height) * 2 + 1;
+    onDocumentMouseDown(event: TouchEvent) {
+        // // Get mouse position
+        // const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
+        // const mouseY = -(event.clientY / this.canvas.height) * 2 + 1;
+        //
+        // // Get 3D vector from 3D mouse position using 'unproject' function
+        // const vector = new THREE.Vector3(mouseX, mouseY, 1);
 
-        // Get 3D vector from 3D mouse position using 'unproject' function
-        const vector = new THREE.Vector3(mouseX, mouseY, 1);
+        this.touch3D = undefined;
+
+        const vector = new THREE.Vector3((event.touches[0].clientX / window.innerWidth) * 2 - 1,   // x
+            -(event.touches[0].clientY / window.innerHeight) * 2 + 1,  // y
+            0.5);
+
         vector.unproject(camera);
 
         // Set the raycaster position
@@ -143,67 +150,39 @@ export class HomePage implements OnInit, OnDestroy {
 
     }
 
-    onDocumentMouseMove(event: MouseEvent) {
-
+    onDocumentTouchMove(event: TouchEvent) {
         event.preventDefault();
 
         // TODO 0.5, 1 ??
-        const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1,   // x
-            -(event.clientY / window.innerHeight) * 2 + 1,  // y
+        // const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1,   // x
+        //     -(event.clientY / window.innerHeight) * 2 + 1,  // y
+        //     0.5);
+
+        // TODO 0.5, 1 ??
+        const touch3D = new THREE.Vector3((event.touches[0].clientX / window.innerWidth) * 2 - 1,   // x
+            -(event.touches[0].clientY / window.innerHeight) * 2 + 1,  // y
             0.5);
 
-        mouse3D.unproject(camera);
+        touch3D.unproject(camera);
 
         // Set the raycaster position
-        raycaster.set(camera.position, mouse3D.sub(camera.position).normalize());
-
-        // console.log(mouse3D);
-
-        // projector.unprojectVector( mouse3D, camera );
-
+        raycaster.set(camera.position, touch3D.sub(camera.position).normalize());
 
         if (this.intersection.selection) {
 
-            const movementVector = this.moveService.guessMouseChange(mouse3D, this.mouse3D);
+            const movementVector = this.moveService.guessMouseChange(touch3D, this.touch3D ? this.touch3D : touch3D);
 
             if (Math.max(Math.abs(movementVector.x), Math.abs(movementVector.y), Math.abs(movementVector.z)) > cubeSettings.sensitivity) {
                 this.moveService.moveLayerOnTouch(event, this.intersection.selection, movementVector);
             }
-            // console.log(this.mouse3D);
-            // console.log(mouse3D);
-
-            // console.log(event);
         }
 
-        this.mouse3D = mouse3D;
-
-        // Get mouse position
-        // const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
-        // const mouseY = -(event.clientY / this.canvas.height) * 2 + 1;
-
-        // Get 3D vector from 3D mouse position using 'unproject' function
-        // const vector = new THREE.Vector3(mouseX, mouseY, 1);
-        // vector.unproject(camera);
-
-        // Set the raycaster position
-        // raycaster.set( camera.position, vector.sub( camera.position ).normalize() );
-        //
-        // if (this.intersection.selection) {
-        //     // Check the position where the plane is intersected
-        //     const intersects = raycaster.intersectObject(this.intersection.plane);
-        //     // Reposition the object based on the intersection point with the plane
-        //     this.intersection.selection.position.copy(intersects[0].point.sub(this.intersection.offset));
-        // } else {
-        //     // Update position of the plane if need
-        //     const intersects = raycaster.intersectObjects(this.intersection.objects);
-        //     if (intersects.length > 0) {
-        //         this.intersection.plane.position.copy(intersects[0].object.position);
-        //         this.intersection.plane.lookAt(camera.position);
-        //     }
-        // }
+        this.touch3D = touch3D;
     }
 
+
     onDocumentMouseUp() {
+        this.touch3D = undefined;
         this.intersection.selection = null;
         // Enable the controls
         this.controls.enabled = true;

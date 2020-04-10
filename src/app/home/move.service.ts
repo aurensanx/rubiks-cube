@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Face3, Mesh, Vector3} from 'three';
+import {Face3, Intersection, Mesh, Object3D, Vector3} from 'three';
 import {select, Store} from '@ngrx/store';
 import {selectColors, selectMove, StartMoveAction, State} from '@cube-store';
 import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../three-components/models/guessMoves';
@@ -22,7 +22,7 @@ export class MoveService {
         });
     }
 
-    moveLayerOnTouch(event: any, {object, face}, movementVector: any) {
+    moveLayerOnTouch(event: any, {object, face}: Intersection, movementVector: any) {
         if (this.move === undefined) {
             const move = this.guessMoveFromEvent(event, object, face, movementVector);
             if (move !== undefined) {
@@ -31,7 +31,7 @@ export class MoveService {
         }
     }
 
-    guessMoveFromEvent(event: any, piece: Mesh, face: Face3, movementVector) {
+    guessMoveFromEvent(event: any, piece: Object3D, face: Face3, movementVector) {
 
         const color = getColorFromNormal(face.normal);
         const faces = getFacesFromPiecePosition(piece.position);
