@@ -8,8 +8,8 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 })
 export class CameraService {
 
-    camera: PerspectiveCamera;
-    scene: Scene;
+    // camera: PerspectiveCamera;
+    // scene: Scene;
     raycaster: Raycaster;
 
     cubeSettings = {
@@ -19,10 +19,10 @@ export class CameraService {
     };
 
     constructor() {
-        this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.scene = new THREE.Scene();
+        // this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
+        // this.scene = new THREE.Scene();
         this.raycaster = new THREE.Raycaster();
-        this.scene.background = new THREE.Color(0x221D2E);
+        // this.scene.background = new THREE.Color(0x221D2E);
     }
 
     createControls = (camera, domElement) => {
@@ -50,17 +50,17 @@ export class CameraService {
         return needResize;
     };
 
-    updateProjectionMatrix = renderer => {
-        if (this.resizeRendererToDisplaySize(renderer)) {
-            const c = renderer.domElement;
-            this.camera.aspect = c.clientWidth / c.clientHeight;
-            this.camera.updateProjectionMatrix();
-        }
-    };
+    // updateProjectionMatrix = renderer => {
+    //     if (this.resizeRendererToDisplaySize(renderer)) {
+    //         const c = renderer.domElement;
+    //         this.camera.aspect = c.clientWidth / c.clientHeight;
+    //         this.camera.updateProjectionMatrix();
+    //     }
+    // };
 
-    updateRenderer = renderer => {
-        renderer.render(this.scene, this.camera);
-    };
+    // updateRenderer = renderer => {
+    //     renderer.render(this.scene, this.camera);
+    // };
 
     getTouchPosition = (event: TouchEvent) => new THREE.Vector3((event.touches[0].clientX / window.innerWidth) * 2 - 1,
         -(event.touches[0].clientY / window.innerHeight) * 2 + 1, 0.5);

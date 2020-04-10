@@ -1,5 +1,5 @@
 import {MoveAction, START_MOVE, STOP_MOVE} from './action';
-import {MOVES} from '../three-components/models/moves';
+import {MOVES} from '../three-components/moves';
 import * as _ from 'lodash';
 import {ColorsState, PiecesState, State} from './state';
 

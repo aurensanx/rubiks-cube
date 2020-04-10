@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {Face3, Intersection, Mesh, Object3D, Vector3} from 'three';
 import {select, Store} from '@ngrx/store';
 import {selectColors, selectMove, StartMoveAction, State} from '@cube-store';
-import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../three-components/models/guessMoves';
-import {MOVES} from '../three-components/models/moves';
+import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../three-components/guessMoves';
+import {MOVES} from '../three-components/moves';
 
 @Injectable({
     providedIn: 'root'
