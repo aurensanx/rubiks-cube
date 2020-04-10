@@ -5,16 +5,16 @@
   height: 100%;
   #c {
     width: 100%;
-    flex: 4 0 70%;
-    min-height: 50%;
+    //flex: 4 0 70%;
+    height: 100%;
     //background-color: #7e57ff;
   }
 
-  app-buttons {
-    width: 100%;
-    flex: 1 0 20%;
-    //height: 20%;
-  }
+  //app-buttons {
+  //  width: 100%;
+  //  flex: 1 0 20%;
+  //  //height: 20%;
+  //}
 
 }
 

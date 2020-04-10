@@ -3,6 +3,7 @@ import {Face3, Intersection, Mesh, Object3D, Vector3} from 'three';
 import {select, Store} from '@ngrx/store';
 import {selectColors, selectMove, StartMoveAction, State} from '@cube-store';
 import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../three-components/models/guessMoves';
+import {MOVES} from '../three-components/models/moves';
 
 @Injectable({
     providedIn: 'root'
@@ -88,6 +89,8 @@ export class MoveService {
     }
 
     getTouchedFacePositionInState = (color: number, positions: number[]) => positions.find(p => this.colors[p] === color);
+
+    getRandomMove = () => MOVES[Math.floor(Math.random() * 12)].value;
 
 
 }

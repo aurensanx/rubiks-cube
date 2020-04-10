@@ -9,7 +9,6 @@ import {createControls, cubeSettings} from '../three-components/controls';
 import {MoveService} from './move.service';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
-import {ButtonsService} from './buttons/buttons.service';
 
 @Component({
     selector: 'app-home',
@@ -39,12 +38,11 @@ export class HomePage implements OnInit, OnDestroy {
 
     subscription: Subscription;
 
-    constructor(private cubeService: CubeService, private buttonsService: ButtonsService,
-                private moveService: MoveService, private store: Store<{ state: State }>) {
+    constructor(private cubeService: CubeService, private moveService: MoveService, private store: Store<{ state: State }>) {
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
             if (this.isScramble && this.move === undefined) {
-                this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+                this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
             }
         });
 
@@ -204,7 +202,7 @@ export class HomePage implements OnInit, OnDestroy {
         const moveSpeed = cubeSettings.moveSpeed;
         cubeSettings.moveSpeed = 1;
         this.isScramble = true;
-        this.store.dispatch(new StartMoveAction(this.buttonsService.getRandomMove()));
+        this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
 
         setTimeout(() => {
             this.isScramble = false;

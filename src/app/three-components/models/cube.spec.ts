@@ -1,8 +1,8 @@
-import {getColorFromNormal} from './cube';
 import {Vector3} from 'three';
 import {COLOR_ID} from '@cube-store';
+import {getColorFromNormal} from './guessMoves';
 
-fdescribe('Cube Tests', () => {
+describe('Cube Tests', () => {
 
     it('normal x should be BLUE', () => {
         const normal = new Vector3(1, 0, 0);
