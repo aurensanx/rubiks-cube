@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as THREE from 'three';
-import {PerspectiveCamera, Raycaster, Scene} from 'three';
+import {Raycaster} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 
 @Injectable({
@@ -11,12 +11,6 @@ export class CameraService {
     // camera: PerspectiveCamera;
     // scene: Scene;
     raycaster: Raycaster;
-
-    cubeSettings = {
-        moveSpeed: 20,
-        initialScrambleMoves: 10000,
-        sensitivity: 0.005
-    };
 
     constructor() {
         // this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);

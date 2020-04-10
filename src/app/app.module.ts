@@ -12,6 +12,7 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {reducers} from '@cube-store';
+import {IonicStorageModule} from '@ionic/storage';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +24,7 @@ import {reducers} from '@cube-store';
             maxAge: 25, // Retains last 25 states
             logOnly: environment.production, // Restrict extension to log-only mode
         }),
+        IonicStorageModule.forRoot(),
     ],
     providers: [
         StatusBar,
