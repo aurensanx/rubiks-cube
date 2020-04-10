@@ -111,7 +111,7 @@ export class CubePage implements OnInit, OnDestroy {
         if (this.move !== undefined) {
             this.cubeService.moveLayer(this.move, this.intersection.objects, this.centerPivot, this.scene);
             this.moveCount++;
-            if (this.moveCount === this.settingsService.cubeSettings.moveSpeed) {
+            if (this.moveCount === this.settingsService.cubeSettings.moveSpeedCounts) {
                 this.store.dispatch(new StopMoveAction(this.move));
                 this.moveCount = 0;
             }
@@ -179,15 +179,15 @@ export class CubePage implements OnInit, OnDestroy {
     // });
 
     scramble() {
-        const moveSpeed = this.settingsService.cubeSettings.moveSpeed;
-        this.settingsService.cubeSettings.moveSpeed = 1;
+        const moveSpeedCounts = this.settingsService.cubeSettings.moveSpeedCounts;
+        this.settingsService.cubeSettings.moveSpeedCounts = 1;
         this.isScramble = true;
         this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
 
         setTimeout(() => {
             this.isScramble = false;
             setTimeout(() => {
-                this.settingsService.cubeSettings.moveSpeed = moveSpeed;
+                this.settingsService.cubeSettings.moveSpeedCounts = moveSpeedCounts;
                 this.addTouchEvents();
             }, 100);
         }, 3000);

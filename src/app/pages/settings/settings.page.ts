@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CubeSettings, SettingsService} from './settings.service';
 import {Router} from '@angular/router';
 
@@ -7,23 +7,27 @@ import {Router} from '@angular/router';
     templateUrl: './settings.page.html',
     styleUrls: ['./settings.page.scss'],
 })
-export class SettingsPage implements OnInit {
+export class SettingsPage implements OnInit, OnDestroy {
 
     cubeSettings: CubeSettings;
 
     constructor(private router: Router, private settingsService: SettingsService) {
-        this.cubeSettings = this.settingsService.cubeSettings;
     }
 
     ngOnInit() {
+        this.cubeSettings = this.settingsService.cubeSettings;
+    }
+
+    ngOnDestroy(): void {
+        this.settingsService.saveStorageSettings(this.cubeSettings);
     }
 
     onMoveSpeedChange(event) {
         this.cubeSettings.moveSpeed = event.detail.value;
+        this.settingsService.getMoveSpeedCounts(this.cubeSettings);
     }
 
     saveSettings() {
-        this.settingsService.saveStorageSettings(this.cubeSettings);
         this.router.navigate(['/']);
     }
 

@@ -41,7 +41,7 @@ export class CubeService {
         cubeFace.forEach(i => {
             SceneUtils.attach(pieces[this.piecesState[i]], scene, centerPivot);
         });
-        centerPivot.rotation[axis] += Math.PI / 2 / this.settingsService.cubeSettings.moveSpeed * direction;
+        centerPivot.rotation[axis] += Math.PI / 2 / this.settingsService.cubeSettings.moveSpeedCounts * direction;
         centerPivot.updateMatrixWorld();
         cubeFace.forEach(i => {
             SceneUtils.detach(pieces[this.piecesState[i]], centerPivot, scene);

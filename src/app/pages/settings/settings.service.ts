@@ -3,6 +3,7 @@ import {Storage} from '@ionic/storage';
 
 export interface CubeSettings {
     moveSpeed: number;
+    moveSpeedCounts: number;
     initialScrambleMoves: number;
     sensitivity: number;
 }
@@ -13,7 +14,8 @@ export interface CubeSettings {
 export class SettingsService {
 
     cubeSettings: CubeSettings = {
-        moveSpeed: 50,
+        moveSpeed: 6,
+        moveSpeedCounts: undefined,
         initialScrambleMoves: 10000,
         sensitivity: 0.005,
     };
@@ -23,15 +25,20 @@ export class SettingsService {
     }
 
     getStorageSettings() {
-        this.storage.get('maxNumber').then((val) => {
+        this.storage.get('moveSpeed').then((val) => {
             if (val) {
                 this.cubeSettings.moveSpeed = val;
             }
+            this.getMoveSpeedCounts(this.cubeSettings);
         });
 
     }
 
     saveStorageSettings(cubeSettings: CubeSettings) {
         this.storage.set('moveSpeed', cubeSettings.moveSpeed);
+    }
+
+    getMoveSpeedCounts = (cubeSettings: CubeSettings) => {
+        cubeSettings.moveSpeedCounts = (10 - cubeSettings.moveSpeed) * 4 + 8;
     }
 }
