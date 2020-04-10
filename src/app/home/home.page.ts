@@ -1,5 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import * as THREE from 'three';
+import {Vector3} from 'three';
 import {camera, raycaster, resizeRendererToDisplaySize, scene} from '../three-components';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
@@ -34,6 +35,8 @@ export class HomePage implements OnInit, OnDestroy {
 
     isScramble: boolean;
 
+    mouse3D: Vector3;
+
     subscription: Subscription;
 
     constructor(private cubeService: CubeService, private buttonsService: ButtonsService,
@@ -64,16 +67,11 @@ export class HomePage implements OnInit, OnDestroy {
 
         this.animate();
 
-        this.canvas.addEventListener('mousedown', ev => this.onDocumentMouseDown(ev), false);
-        // this.canvas.addEventListener('touchdown', ev => this.onDocumentMouseDown(ev), false);
-        this.canvas.addEventListener('mousemove', ev => this.onDocumentMouseMove(ev), false);
-        // this.canvas.addEventListener('touchmove', ev => this.onDocumentMouseMove(ev), false);
-        this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
-        // this.canvas.addEventListener('touchup', () => this.onDocumentMouseUp(), false);
+        this.addTouchEvents();
 
         // TODO animación cámara al entrar
         setTimeout(() => {
-            this.scramble();
+            // this.scramble();
         }, 1000);
 
     }
@@ -105,6 +103,15 @@ export class HomePage implements OnInit, OnDestroy {
 
     };
 
+    addTouchEvents() {
+        this.canvas.addEventListener('mousedown', ev => this.onDocumentMouseDown(ev), false);
+        // this.canvas.addEventListener('touchdown', ev => this.onDocumentMouseDown(ev), false);
+        this.canvas.addEventListener('mousemove', ev => this.onDocumentMouseMove(ev), false);
+        // this.canvas.addEventListener('touchmove', ev => this.onDocumentMouseMove(ev), false);
+        this.canvas.addEventListener('mouseup', () => this.onDocumentMouseUp(), false);
+        // this.canvas.addEventListener('touchup', () => this.onDocumentMouseUp(), false);
+    }
+
     onDocumentMouseDown(event) {
         // Get mouse position
         const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
@@ -132,15 +139,43 @@ export class HomePage implements OnInit, OnDestroy {
             // this.intersection.offset.copy(intersects[0].point).sub(this.intersection.plane.position);
         }
 
+        // console.log(vector);
+
     }
 
     onDocumentMouseMove(event: MouseEvent) {
 
         event.preventDefault();
 
-        if (this.intersection.selection && Math.abs(event.movementX || event.movementY) > cubeSettings.sensitivity) {
-            this.moveService.moveLayerOnTouch(event, this.intersection.selection, this.controls);
+        // TODO 0.5, 1 ??
+        const mouse3D = new THREE.Vector3((event.clientX / window.innerWidth) * 2 - 1,   // x
+            -(event.clientY / window.innerHeight) * 2 + 1,  // y
+            0.5);
+
+        mouse3D.unproject(camera);
+
+        // Set the raycaster position
+        raycaster.set(camera.position, mouse3D.sub(camera.position).normalize());
+
+        // console.log(mouse3D);
+
+        // projector.unprojectVector( mouse3D, camera );
+
+
+        if (this.intersection.selection) {
+
+            const movementVector = this.moveService.guessMouseChange(mouse3D, this.mouse3D);
+
+            if (Math.max(Math.abs(movementVector.x), Math.abs(movementVector.y), Math.abs(movementVector.z)) > cubeSettings.sensitivity) {
+                this.moveService.moveLayerOnTouch(event, this.intersection.selection, movementVector);
+            }
+            // console.log(this.mouse3D);
+            // console.log(mouse3D);
+
+            // console.log(event);
         }
+
+        this.mouse3D = mouse3D;
 
         // Get mouse position
         // const mouseX = (event.clientX / this.canvas.width) * 2 - 1;
