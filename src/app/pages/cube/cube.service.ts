@@ -1,13 +1,13 @@
 import {Injectable} from '@angular/core';
-import {createPiece} from '../three-components/pieces';
+import {createPiece} from '../../three-components/pieces';
 import {Mesh, Object3D} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {CUBE} from '../three-components';
-import {MoveDefinition, MOVES} from '../three-components/moves';
+import {CUBE} from '../../three-components';
+import {MoveDefinition, MOVES} from '../../three-components/moves';
 import {PiecesState, selectPieces, State} from '@cube-store';
-import {CameraService} from '../commons/camera.service';
+import {CameraService} from '../../commons/camera.service';
 
 @Injectable({
     providedIn: 'root'
