@@ -3,10 +3,9 @@ import {Mesh, Object3D, Scene} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {MoveDefinition, MOVES} from '../../cube/store/moves';
-import {PiecesState, selectPieces, State} from '../../cube/store';
+import {findMove, MoveDefinition, PiecesState, selectPieces, State} from '../../cube';
 import {CameraService} from '../../services/camera.service';
-import {SettingsService} from '../../../pages/settings/settings.service';
+import {SettingsService} from '../../services/settings.service';
 
 @Injectable({
     providedIn: 'root'
@@ -27,7 +26,7 @@ export class CubeService {
 
 
     moveLayer(move: number, pieces: Mesh[], centerPivot: Object3D, scene: Scene) {
-        const finalMove = MOVES.find(m => move === m.value);
+        const finalMove = findMove(move);
         this.movePhysically(finalMove, pieces, centerPivot, scene);
     }
 

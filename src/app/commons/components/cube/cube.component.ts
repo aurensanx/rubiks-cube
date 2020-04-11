@@ -4,11 +4,11 @@ import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {CameraService} from '../../services/camera.service';
 import {MoveService} from '../../services/move.service';
-import {SettingsService} from '../../../pages/settings/settings.service';
+import {SettingsService} from '../../services/settings.service';
 import {select, Store} from '@ngrx/store';
-import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube/store';
+import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube';
 import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
-import {createCube} from '../../cube/store/three-components/cube';
+import {createCube} from '../../cube/three-components/cube';
 
 @Component({
     selector: 'app-cube',

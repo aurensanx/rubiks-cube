@@ -1,4 +1,4 @@
-import {ColorsState, PiecesState} from './index';
+import {ColorsState, PiecesState} from './state';
 
 const turnFace = (array, positions) => {
     const aux = array[positions[positions.length - 1]];
@@ -513,3 +513,4 @@ export const MOVES: MoveDefinition[] = [
 ];
 
 
+export const findMove = move => MOVES.find(m => move === m.value);

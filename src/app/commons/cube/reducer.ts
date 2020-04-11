@@ -1,5 +1,5 @@
 import {INIT_CUBE, MoveAction, START_MOVE, STOP_MOVE} from './action';
-import {MOVES} from './moves';
+import {findMove} from './moves';
 import {ColorsState, PiecesState, State} from './state';
 
 
@@ -61,13 +61,13 @@ export const initCubePieces = () => [...Array(27).keys()];
 
 
 const updateColors = (colors: ColorsState, move: number) => {
-    const finalMove = MOVES.find(m => move === m.value);
+    const finalMove = findMove(move);
     finalMove.colorsMove(colors);
     return colors;
 };
 
 const updatePieces = (pieces: PiecesState, move: number) => {
-    const finalMove = MOVES.find(m => move === m.value);
+    const finalMove = findMove(move);
     finalMove.piecesMove(pieces);
     return pieces;
 };

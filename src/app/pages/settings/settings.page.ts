@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CubeSettings, SettingsService} from './settings.service';
+import {CubeSettings, SettingsService} from '../../commons/services/settings.service';
 import {Router} from '@angular/router';
 
 @Component({

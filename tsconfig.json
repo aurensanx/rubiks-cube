@@ -19,7 +19,9 @@
       "dom"
     ],
     "paths": {
-      "@cube-store": ["./src/app/store/index.ts"]
+      "@cube": [
+        "./src/commons/cube/index.ts"
+      ]
     }
   },
   "angularCompilerOptions": {
