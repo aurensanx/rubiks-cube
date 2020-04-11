@@ -60,20 +60,13 @@ export const initCubeColors = () => [
 export const initCubePieces = () => [...Array(27).keys()];
 
 
-
 const updateColors = (colors: ColorsState, move: number) => {
-    // TODO enviar objeto
-    // tslint:disable-next-line:no-bitwise
-    // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
     const finalMove = MOVES.find(m => move === m.value);
     finalMove.colorsMove(colors);
     return colors;
 };
 
 const updatePieces = (pieces: PiecesState, move: number) => {
-    // TODO enviar objeto
-    // tslint:disable-next-line:no-bitwise
-    // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
     const finalMove = MOVES.find(m => move === m.value);
     finalMove.piecesMove(pieces);
     return pieces;

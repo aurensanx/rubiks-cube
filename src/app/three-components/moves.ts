@@ -279,38 +279,10 @@ export interface MoveDefinition {
     z: number;
     axis: string;
     direction: number;
-    color: string;
-    class?: string;
 }
 
 
-// // 18 moves 3x3x2
-// export const MOVES_BIT_DEFINITION = {
-//     POSITIVE: Math.pow(2, 0),
-//     NEGATIVE: Math.pow(2, 1),
-//     HORIZONTAL: Math.pow(2, 2),
-//     VERTICAL: Math.pow(2, 3),
-//     X0: Math.pow(2, 4),
-//     X1: Math.pow(2, 5),
-//     X2: Math.pow(2, 6),
-//     Y0: Math.pow(2, 7),
-//     Y1: Math.pow(2, 8),
-//     Y2: Math.pow(2, 9),
-//     Z0: Math.pow(2, 10),
-//     Z1: Math.pow(2, 11),
-//     Z2: Math.pow(2, 12),
-//     NX: Math.pow(2, 13),
-//     NX0: Math.pow(2, 14),
-//     NY: Math.pow(2, 15),
-//     NY0: Math.pow(2, 16),
-//     NZ: Math.pow(2, 17),
-//     NZ0: Math.pow(2, 18),
-// };
-//
-// // op && MOVE === MOVE
-//
-// // xx10zz01
-// // 33
+
 
 export const MOVES: MoveDefinition[] = [
     {
@@ -324,7 +296,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: -1,
-        color: 'white',
     },
     {
         id: `U'`,
@@ -337,8 +308,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: 1,
-        color: 'white',
-        class: 'counter',
     },
     {
         id: `D`,
@@ -351,7 +320,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: 1,
-        color: 'yellow',
     },
     {
         id: `D´`,
@@ -364,8 +332,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: -1,
-        color: 'yellow',
-        class: 'counter',
     },
     {
         id: `R`,
@@ -378,7 +344,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: -1,
-        color: 'blue',
     },
     {
         id: `R´`,
@@ -391,8 +356,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: 1,
-        color: 'blue',
-        class: 'counter',
     },
     {
         id: `L`,
@@ -405,7 +368,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: 1,
-        color: 'green',
     },
     {
         id: `L´`,
@@ -418,8 +380,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: -1,
-        color: 'green',
-        class: 'counter',
     },
     {
         id: `F`,
@@ -432,7 +392,6 @@ export const MOVES: MoveDefinition[] = [
         z: 1,
         axis: 'z',
         direction: -1,
-        color: 'red',
     },
     {
         id: `F´`,
@@ -445,8 +404,6 @@ export const MOVES: MoveDefinition[] = [
         z: 1,
         axis: 'z',
         direction: 1,
-        color: 'red',
-        class: 'counter',
     },
     {
         id: `B`,
@@ -459,7 +416,6 @@ export const MOVES: MoveDefinition[] = [
         z: -1,
         axis: 'z',
         direction: 1,
-        color: 'orange',
     },
     {
         id: `B'`,
@@ -472,8 +428,6 @@ export const MOVES: MoveDefinition[] = [
         z: -1,
         axis: 'z',
         direction: -1,
-        color: 'orange',
-        class: 'counter',
     },
     {
         id: `E`,
@@ -486,7 +440,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: 1,
-        color: '',
     },
     {
         id: `E'`,
@@ -499,8 +452,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'y',
         direction: -1,
-        color: '',
-        class: 'counter',
     },
     {
         id: `M`,
@@ -513,7 +464,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: 1,
-        color: '',
     },
     {
         id: `M'`,
@@ -526,8 +476,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'x',
         direction: -1,
-        color: '',
-        class: 'counter',
     },
     {
         id: `V`,
@@ -540,7 +488,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'z',
         direction: -1,
-        color: '',
     },
     {
         id: `V'`,
@@ -553,8 +500,6 @@ export const MOVES: MoveDefinition[] = [
         z: 0,
         axis: 'z',
         direction: 1,
-        color: '',
-        class: 'counter',
     },
 ];
 

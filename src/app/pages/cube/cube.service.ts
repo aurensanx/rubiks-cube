@@ -23,19 +23,16 @@ export class CubeService {
         this.subscription = store.pipe(select(selectPieces)).subscribe((next: PiecesState) => {
             this.piecesState = next;
         });
-
     }
 
 
     moveLayer(move: number, pieces: Mesh[], centerPivot: Object3D, scene: Scene) {
-        // TODO enviar objeto?
-        // tslint:disable-next-line:no-bitwise
-        // const finalMove = MOVES.find(m => _.some(m.value, v => (move & v) === v));
         const finalMove = MOVES.find(m => move === m.value);
         this.movePhysically(finalMove, pieces, centerPivot, scene);
     }
 
-    private movePhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition, pieces: Mesh[], centerPivot: Object3D, scene: Scene) => {
+    private movePhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition,
+                              pieces: Mesh[], centerPivot: Object3D, scene: Scene) => {
         centerPivot.rotation.set(x, y, z);
         centerPivot.updateMatrixWorld();
         cubeFace.forEach(i => {
@@ -46,7 +43,6 @@ export class CubeService {
         cubeFace.forEach(i => {
             SceneUtils.detach(pieces[this.piecesState[i]], centerPivot, scene);
         });
-        // console.log(this.pieces[this.cube[cubeFace[0]]].rotation);
     };
 
 

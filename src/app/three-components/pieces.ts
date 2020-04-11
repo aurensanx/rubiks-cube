@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {Mesh, Vector3, Vector4} from 'three';
+import {Mesh} from 'three';
 
 const SIZE = {
     WIDTH: 1,

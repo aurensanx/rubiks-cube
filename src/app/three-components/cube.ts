@@ -148,18 +148,9 @@ export const CUBE = {
     FACES,
 };
 
-export const initCubePhysically = () => {
-    return
-}
 
 
-// el cubo son 27 piezas
-// la cara UP siempre está en las posiciones 0, 1, 2, 9,10, 11, 18, 19, 20
-// cuando se hace un movimiento cambia el orden de las piezas en el array del cubo,
-// entonces cuando se mueve la cara de arriba cada vez son unas piezas diferentes
 
-
-// problema, qué cara se ha seleccionado con el ratón?
 
 
 
