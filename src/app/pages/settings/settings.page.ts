@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {CubeSettings, SettingsService} from '../../commons/services/settings.service';
 import {Router} from '@angular/router';
+import {CubeSettings, SettingsService} from '../../commons/services';
 
 @Component({
     selector: 'app-settings',

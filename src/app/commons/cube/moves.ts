@@ -514,3 +514,6 @@ export const MOVES: MoveDefinition[] = [
 
 
 export const findMove = move => MOVES.find(m => move === m.value);
+
+
+export const getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)].value;

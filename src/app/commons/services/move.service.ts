@@ -1,9 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Face3, Intersection, Object3D, Vector3} from 'three';
 import {select, Store} from '@ngrx/store';
-import {selectColors, selectMove, StartMoveAction, State} from '../cube';
-import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement} from '../cube/guessMoves';
-import {MOVES} from '../cube/moves';
+import {getColorFromNormal, getFacesFromPiecePosition, getFinalMovement, selectColors, selectMove, StartMoveAction, State} from '../cube';
 
 @Injectable({
     providedIn: 'root'
@@ -76,8 +74,6 @@ export class MoveService {
     }
 
     getTouchedFacePositionInState = (color: number, positions: number[]) => positions.find(p => this.colors[p] === color);
-
-    getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)].value;
 
 
 }

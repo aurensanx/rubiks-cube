@@ -6,9 +6,8 @@ import {CameraService} from '../../services/camera.service';
 import {MoveService} from '../../services/move.service';
 import {SettingsService} from '../../services/settings.service';
 import {select, Store} from '@ngrx/store';
-import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube';
+import {createCube, getRandomMove, InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube';
 import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
-import {createCube} from '../../cube/three-components/cube';
 
 @Component({
     selector: 'app-cube',
@@ -48,7 +47,7 @@ export class CubeComponent implements OnInit, OnDestroy {
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
             this.move = next;
             if (this.isScramble && this.move === undefined) {
-                this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
+                this.store.dispatch(new StartMoveAction(getRandomMove()));
             }
         });
     }
@@ -180,7 +179,7 @@ export class CubeComponent implements OnInit, OnDestroy {
         const moveSpeedCounts = this.settingsService.cubeSettings.moveSpeedCounts;
         this.settingsService.cubeSettings.moveSpeedCounts = 1;
         this.isScramble = true;
-        this.store.dispatch(new StartMoveAction(this.moveService.getRandomMove()));
+        this.store.dispatch(new StartMoveAction(getRandomMove()));
 
         setTimeout(() => {
             this.isScramble = false;

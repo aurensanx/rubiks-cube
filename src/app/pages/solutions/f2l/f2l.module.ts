@@ -1,0 +1,20 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
+
+import { F2lPageRoutingModule } from './f2l-routing.module';
+
+import { F2lPage } from './f2l.page';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    F2lPageRoutingModule
+  ],
+  declarations: [F2lPage]
+})
+export class F2lPageModule {}
