@@ -11,8 +11,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
-import {reducers} from './commons/cube';
 import {IonicStorageModule} from '@ionic/storage';
+import {reducers} from './shared/cube';
 
 @NgModule({
     declarations: [AppComponent],

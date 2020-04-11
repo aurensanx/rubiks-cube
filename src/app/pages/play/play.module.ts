@@ -7,16 +7,17 @@ import {IonicModule} from '@ionic/angular';
 import {PlayPageRoutingModule} from './play-routing.module';
 
 import {PlayPage} from './play.page';
-import {CubeComponent} from '../../commons/components/cube/cube.component';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        PlayPageRoutingModule
+        PlayPageRoutingModule,
+        SharedModule
     ],
-    declarations: [PlayPage, CubeComponent]
+    declarations: [PlayPage]
 })
 export class PlayPageModule {
 }
