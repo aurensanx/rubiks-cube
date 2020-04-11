@@ -1,5 +1,5 @@
 import {INIT_CUBE, MoveAction, START_MOVE, STOP_MOVE} from './action';
-import {MOVES} from '../three-components/moves';
+import {MOVES} from './moves';
 import {ColorsState, PiecesState, State} from './state';
 
 

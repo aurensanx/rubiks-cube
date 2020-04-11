@@ -3,8 +3,8 @@ import {Mesh, Object3D, Scene} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
-import {MoveDefinition, MOVES} from '../../../three-components/moves';
-import {PiecesState, selectPieces, State} from '@cube-store';
+import {MoveDefinition, MOVES} from '../../cube/store/moves';
+import {PiecesState, selectPieces, State} from '../../cube/store';
 import {CameraService} from '../../services/camera.service';
 import {SettingsService} from '../../../pages/settings/settings.service';
 

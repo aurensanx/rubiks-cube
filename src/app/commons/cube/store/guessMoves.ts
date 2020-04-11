@@ -1,5 +1,5 @@
 import {Vector3} from 'three';
-import {COLOR_ID} from '@cube-store';
+import {COLOR_ID} from './reducer';
 
 const positionFacesMap: ({ value: number[], position: [number, number, number] }[]) = [
     {value: [27, 34, 48], position: [-1, -1, -1]},
@@ -33,7 +33,8 @@ const positionFacesMap: ({ value: number[], position: [number, number, number] }
 
 
 const positionFacesCondition: (normal: Vector3, position: [number, number, number]) => boolean =
-    (normal: Vector3, position: [number, number, number]) => normal.x === position[0] && normal.y === position[1] && normal.z === position[2];
+    (normal: Vector3, position: [number, number, number]) =>
+        normal.x === position[0] && normal.y === position[1] && normal.z === position[2];
 
 export const getFacesFromPiecePosition = (position: Vector3) => {
     const roundedPosition = roundVector3(position);

@@ -1,4 +1,4 @@
-import {PIECE} from './pieces';
+import {createPiece, PIECE} from './pieces';
 
 const DIMENSION = 3;
 
@@ -127,26 +127,15 @@ const PIECES: PIECE[] = [
 ];
 
 
-const FACES = {
-    UP: [0, 1, 2, 9, 10, 11, 18, 19, 20],
-    DOWN: [6, 7, 8, 15, 16, 17, 24, 25, 26],
-    RIGHT: [2, 5, 8, 11, 14, 17, 20, 23, 26],
-    LEFT: [0, 3, 6, 9, 12, 15, 18, 21, 24],
-    FRONT: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-    BACK: [18, 19, 20, 21, 22, 23, 24, 25, 26],
-    E: [3, 4, 5, 12, 13, 14, 21, 22, 23],
-    M: [1, 4, 7, 10, 13, 16, 19, 22, 25],
-    V: [9, 10, 11, 13, 14, 17, 16, 15, 12],
-};
-
-
-export const CUBE = {
+const CUBE = {
     DIMENSION,
     NUMBER_OF_PIECE_FACES,
     COLORS,
     PIECES,
-    FACES,
 };
+
+
+export const createCube = () => CUBE.PIECES.map(createPiece);
 
 
 

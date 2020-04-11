@@ -1,4 +1,4 @@
-import {COLOR_ID, initCubeColors, initCubePieces} from '@cube-store';
+import {COLOR_ID, initCubeColors, initCubePieces} from './index';
 import {
     B0_COLORS,
     B_COLORS,

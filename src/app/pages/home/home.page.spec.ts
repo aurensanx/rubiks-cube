@@ -3,7 +3,7 @@ import {IonicModule} from '@ionic/angular';
 
 import {HomePage} from './home.page';
 import {StoreModule} from '@ngrx/store';
-import {reducers} from '@cube-store';
+import {reducers} from '../../commons/cube/store';
 
 describe('HomePage', () => {
     let component: HomePage;

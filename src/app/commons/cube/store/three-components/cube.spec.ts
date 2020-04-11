@@ -1,6 +1,6 @@
 import {Vector3} from 'three';
-import {COLOR_ID} from '@cube-store';
-import {getColorFromNormal} from './guessMoves';
+import {COLOR_ID} from '../index';
+import {getColorFromNormal} from '../guessMoves';
 
 describe('Cube Tests', () => {
 

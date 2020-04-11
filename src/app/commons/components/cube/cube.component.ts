@@ -6,10 +6,9 @@ import {CameraService} from '../../services/camera.service';
 import {MoveService} from '../../services/move.service';
 import {SettingsService} from '../../../pages/settings/settings.service';
 import {select, Store} from '@ngrx/store';
-import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
-import {CUBE} from '../../../three-components';
-import {createPiece} from '../../../three-components/pieces';
+import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube/store';
 import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
+import {createCube} from '../../cube/store/three-components/cube';
 
 @Component({
     selector: 'app-cube',
@@ -70,7 +69,7 @@ export class CubeComponent implements OnInit, OnDestroy {
         this.canvas = document.querySelector('#c');
         this.renderer = new WebGLRenderer({canvas: this.canvas, antialias: true});
 
-        this.intersection.objects = CUBE.PIECES.map(createPiece);
+        this.intersection.objects = createCube();
 
         this.store.dispatch(new InitCubeAction());
         this.scene.add(...this.intersection.objects);

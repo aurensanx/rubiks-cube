@@ -1,5 +1,4 @@
-import {CUBE} from './cube';
-import {ColorsState, PiecesState} from '@cube-store';
+import {ColorsState, PiecesState} from './index';
 
 const turnFace = (array, positions) => {
     const aux = array[positions[positions.length - 1]];
@@ -7,6 +6,18 @@ const turnFace = (array, positions) => {
         array[positions[i]] = array[positions[i - 1]];
     }
     array[positions[0]] = aux;
+};
+
+const FACES = {
+    UP: [0, 1, 2, 9, 10, 11, 18, 19, 20],
+    DOWN: [6, 7, 8, 15, 16, 17, 24, 25, 26],
+    RIGHT: [2, 5, 8, 11, 14, 17, 20, 23, 26],
+    LEFT: [0, 3, 6, 9, 12, 15, 18, 21, 24],
+    FRONT: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    BACK: [18, 19, 20, 21, 22, 23, 24, 25, 26],
+    E: [3, 4, 5, 12, 13, 14, 21, 22, 23],
+    M: [1, 4, 7, 10, 13, 16, 19, 22, 25],
+    V: [9, 10, 11, 13, 14, 17, 16, 15, 12],
 };
 
 
@@ -282,15 +293,13 @@ export interface MoveDefinition {
 }
 
 
-
-
 export const MOVES: MoveDefinition[] = [
     {
         id: `U`,
         value: 0,
         piecesMove: U_PIECES,
         colorsMove: U_COLORS,
-        cubeFace: CUBE.FACES.UP,
+        cubeFace: FACES.UP,
         x: 0,
         y: 1,
         z: 0,
@@ -302,7 +311,7 @@ export const MOVES: MoveDefinition[] = [
         value: 1,
         piecesMove: U0_PIECES,
         colorsMove: U0_COLORS,
-        cubeFace: CUBE.FACES.UP,
+        cubeFace: FACES.UP,
         x: 0,
         y: 1,
         z: 0,
@@ -314,7 +323,7 @@ export const MOVES: MoveDefinition[] = [
         value: 2,
         piecesMove: D_PIECES,
         colorsMove: D_COLORS,
-        cubeFace: CUBE.FACES.DOWN,
+        cubeFace: FACES.DOWN,
         x: 0,
         y: -1,
         z: 0,
@@ -326,7 +335,7 @@ export const MOVES: MoveDefinition[] = [
         value: 3,
         piecesMove: D0_PIECES,
         colorsMove: D0_COLORS,
-        cubeFace: CUBE.FACES.DOWN,
+        cubeFace: FACES.DOWN,
         x: 0,
         y: -1,
         z: 0,
@@ -338,7 +347,7 @@ export const MOVES: MoveDefinition[] = [
         value: 4,
         piecesMove: R_PIECES,
         colorsMove: R_COLORS,
-        cubeFace: CUBE.FACES.RIGHT,
+        cubeFace: FACES.RIGHT,
         x: 1,
         y: 0,
         z: 0,
@@ -350,7 +359,7 @@ export const MOVES: MoveDefinition[] = [
         value: 5,
         piecesMove: R0_PIECES,
         colorsMove: R0_COLORS,
-        cubeFace: CUBE.FACES.RIGHT,
+        cubeFace: FACES.RIGHT,
         x: 1,
         y: 0,
         z: 0,
@@ -362,7 +371,7 @@ export const MOVES: MoveDefinition[] = [
         value: 6,
         piecesMove: L_PIECES,
         colorsMove: L_COLORS,
-        cubeFace: CUBE.FACES.LEFT,
+        cubeFace: FACES.LEFT,
         x: -1,
         y: 0,
         z: 0,
@@ -374,7 +383,7 @@ export const MOVES: MoveDefinition[] = [
         value: 7,
         piecesMove: L0_PIECES,
         colorsMove: L0_COLORS,
-        cubeFace: CUBE.FACES.LEFT,
+        cubeFace: FACES.LEFT,
         x: -1,
         y: 0,
         z: 0,
@@ -386,7 +395,7 @@ export const MOVES: MoveDefinition[] = [
         value: 8,
         piecesMove: F_PIECES,
         colorsMove: F_COLORS,
-        cubeFace: CUBE.FACES.FRONT,
+        cubeFace: FACES.FRONT,
         x: 0,
         y: 0,
         z: 1,
@@ -398,7 +407,7 @@ export const MOVES: MoveDefinition[] = [
         value: 9,
         piecesMove: F0_PIECES,
         colorsMove: F0_COLORS,
-        cubeFace: CUBE.FACES.FRONT,
+        cubeFace: FACES.FRONT,
         x: 0,
         y: 0,
         z: 1,
@@ -410,7 +419,7 @@ export const MOVES: MoveDefinition[] = [
         value: 10,
         piecesMove: B_PIECES,
         colorsMove: B_COLORS,
-        cubeFace: CUBE.FACES.BACK,
+        cubeFace: FACES.BACK,
         x: 0,
         y: 0,
         z: -1,
@@ -422,7 +431,7 @@ export const MOVES: MoveDefinition[] = [
         value: 11,
         piecesMove: B0_PIECES,
         colorsMove: B0_COLORS,
-        cubeFace: CUBE.FACES.BACK,
+        cubeFace: FACES.BACK,
         x: 0,
         y: 0,
         z: -1,
@@ -434,7 +443,7 @@ export const MOVES: MoveDefinition[] = [
         value: 12,
         piecesMove: E_PIECES,
         colorsMove: E_COLORS,
-        cubeFace: CUBE.FACES.E,
+        cubeFace: FACES.E,
         x: 0,
         y: 0,
         z: 0,
@@ -446,7 +455,7 @@ export const MOVES: MoveDefinition[] = [
         value: 13,
         piecesMove: E0_PIECES,
         colorsMove: E0_COLORS,
-        cubeFace: CUBE.FACES.E,
+        cubeFace: FACES.E,
         x: 0,
         y: 0,
         z: 0,
@@ -458,7 +467,7 @@ export const MOVES: MoveDefinition[] = [
         value: 14,
         piecesMove: M_PIECES,
         colorsMove: M_COLORS,
-        cubeFace: CUBE.FACES.M,
+        cubeFace: FACES.M,
         x: 0,
         y: 0,
         z: 0,
@@ -470,7 +479,7 @@ export const MOVES: MoveDefinition[] = [
         value: 15,
         piecesMove: M0_PIECES,
         colorsMove: M0_COLORS,
-        cubeFace: CUBE.FACES.M,
+        cubeFace: FACES.M,
         x: 0,
         y: 0,
         z: 0,
@@ -482,7 +491,7 @@ export const MOVES: MoveDefinition[] = [
         value: 16,
         piecesMove: V_PIECES,
         colorsMove: V_COLORS,
-        cubeFace: CUBE.FACES.V,
+        cubeFace: FACES.V,
         x: 0,
         y: 0,
         z: 0,
@@ -494,7 +503,7 @@ export const MOVES: MoveDefinition[] = [
         value: 17,
         piecesMove: V0_PIECES,
         colorsMove: V0_COLORS,
-        cubeFace: CUBE.FACES.V,
+        cubeFace: FACES.V,
         x: 0,
         y: 0,
         z: 0,
