@@ -1,23 +1,22 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import * as THREE from 'three';
-import {Object3D, PerspectiveCamera, Scene, Vector3} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
-import {CameraService} from '../../commons/camera.service';
-import {MoveService} from '../../commons/move.service';
+import {CameraService} from '../../services/camera.service';
+import {MoveService} from '../../services/move.service';
+import {SettingsService} from '../../../pages/settings/settings.service';
 import {select, Store} from '@ngrx/store';
 import {InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '@cube-store';
-import {SettingsService} from '../settings/settings.service';
-import {CUBE} from '../../three-components';
-import {createPiece} from '../../three-components/pieces';
+import {CUBE} from '../../../three-components';
+import {createPiece} from '../../../three-components/pieces';
+import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
 
 @Component({
     selector: 'app-cube',
-    templateUrl: './cube.page.html',
-    styleUrls: ['./cube.page.scss'],
+    templateUrl: './cube.component.html',
+    styleUrls: ['./cube.component.scss'],
 })
-export class CubePage implements OnInit, OnDestroy {
+export class CubeComponent implements OnInit, OnDestroy {
 
     scene: Scene;
     camera: PerspectiveCamera;
@@ -57,9 +56,9 @@ export class CubePage implements OnInit, OnDestroy {
 
     ngOnInit() {
 
-        this.scene = new THREE.Scene();
-        this.scene.background = new THREE.Color(0x383A3E);
-        this.camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.scene = new Scene();
+        this.scene.background = new Color(0x383A3E);
+        this.camera = new PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.z = 16;
         this.centerPivot = new Object3D();
         this.centerPivot.position.set(0, 0, 0);
@@ -69,7 +68,7 @@ export class CubePage implements OnInit, OnDestroy {
         this.isScramble = false;
 
         this.canvas = document.querySelector('#c');
-        this.renderer = new THREE.WebGLRenderer({canvas: this.canvas, antialias: true});
+        this.renderer = new WebGLRenderer({canvas: this.canvas, antialias: true});
 
         this.intersection.objects = CUBE.PIECES.map(createPiece);
 
@@ -77,8 +76,8 @@ export class CubePage implements OnInit, OnDestroy {
         this.scene.add(...this.intersection.objects);
 
         // Plane, that helps to determinate an intersection position
-        this.intersection.plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(500, 500, 8, 8),
-            new THREE.MeshBasicMaterial({color: 0xffffff}));
+        this.intersection.plane = new Mesh(new PlaneBufferGeometry(500, 500, 8, 8),
+            new MeshBasicMaterial({color: 0xffffff}));
         this.intersection.plane.visible = false;
         this.scene.add(this.intersection.plane);
 
@@ -192,4 +191,5 @@ export class CubePage implements OnInit, OnDestroy {
             }, 100);
         }, 3000);
     }
+
 }
