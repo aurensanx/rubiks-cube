@@ -2,12 +2,10 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
-import {CameraService} from '../../services/camera.service';
-import {MoveService} from '../../services/move.service';
-import {SettingsService} from '../../services/settings.service';
 import {select, Store} from '@ngrx/store';
 import {createCube, getRandomMove, InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube';
 import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
+import {CameraService, MoveService, SettingsService} from '../../services';
 
 @Component({
     selector: 'app-cube',
@@ -149,7 +147,7 @@ export class CubeComponent implements OnInit, OnDestroy {
             const movementVector = this.moveService.guessMouseChange(touch3D, this.touch3D ? this.touch3D : touch3D);
 
             if (Math.max(Math.abs(movementVector.x), Math.abs(movementVector.y), Math.abs(movementVector.z)) >
-                this.settingsService.cubeSettings.sensitivity) {
+                this.settingsService.cubeSettings.sensitivityNormalized) {
                 this.moveService.moveLayerOnTouch(event, this.intersection.selection, movementVector);
             }
         }

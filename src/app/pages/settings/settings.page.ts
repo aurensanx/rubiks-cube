@@ -27,6 +27,11 @@ export class SettingsPage implements OnInit, OnDestroy {
         this.settingsService.getMoveSpeedCounts(this.cubeSettings);
     }
 
+    onSensitivityChange(event) {
+        this.cubeSettings.sensitivity = event.detail.value;
+        this.settingsService.getSensitivityNormalized(this.cubeSettings);
+    }
+
     saveSettings() {
         this.router.navigate(['/']);
     }
