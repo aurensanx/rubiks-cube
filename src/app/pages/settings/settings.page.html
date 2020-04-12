@@ -1,19 +1,38 @@
 <div class="setting-item">
-  <h2><b>Move Speed: </b>{{cubeSettings.moveSpeed}}</h2>
-  <ion-range [value]="cubeSettings.moveSpeed" min="1" max="10" color="secondary"
-             (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
-    <ion-label slot="start">1</ion-label>
-    <ion-label slot="end">10</ion-label>
-  </ion-range>
+    <h2><b>Move Speed: </b>{{cubeSettings.moveSpeed}}</h2>
+    <ion-range [value]="cubeSettings.moveSpeed" min="1" max="10" color="secondary"
+               (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">10</ion-label>
+    </ion-range>
 </div>
 
 <div class="setting-item">
-  <h2><b>Sensitivity: </b>{{cubeSettings.sensitivity}}</h2>
-  <ion-range [value]="cubeSettings.sensitivity" min="1" max="10" color="secondary"
-             (ionChange)="onSensitivityChange($event)" snaps="true" ticks="false">
-    <ion-label slot="start">1</ion-label>
-    <ion-label slot="end">10</ion-label>
-  </ion-range>
+    <h2><b>Sensitivity: </b>{{cubeSettings.sensitivity}}</h2>
+    <ion-range [value]="cubeSettings.sensitivity" min="1" max="10" color="secondary"
+               (ionChange)="onSensitivityChange($event)" snaps="true" ticks="false">
+        <ion-label slot="start">1</ion-label>
+        <ion-label slot="end">10</ion-label>
+    </ion-range>
+</div>
+
+<div class="setting-item">
+    <ion-radio-group [value]="cubeSettings.controls" (ionChange)="onControlsChange($event)">
+        <!--        <ion-list-header color="secondary">-->
+        <!--            <ion-label>Camera</ion-label>-->
+        <!--        </ion-list-header>-->
+
+        <h2><b>Camera</b></h2>
+        <ion-item color="secondary">
+            <ion-label>OrbitControls: allow the camera to orbit around a target</ion-label>
+            <ion-radio slot="start" value="orbit"></ion-radio>
+        </ion-item>
+
+        <ion-item color="secondary">
+            <ion-label>TrackballControls: it does not maintain a constant camera up vector</ion-label>
+            <ion-radio slot="start" value="trackball"></ion-radio>
+        </ion-item>
+    </ion-radio-group>
 </div>
 
 <ion-button (click)="saveSettings()">Save</ion-button>

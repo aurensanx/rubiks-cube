@@ -32,6 +32,10 @@ export class SettingsPage implements OnInit, OnDestroy {
         this.settingsService.getSensitivityNormalized(this.cubeSettings);
     }
 
+    onControlsChange(event) {
+        this.cubeSettings.controls = event.detail.value;
+    }
+
     saveSettings() {
         this.router.navigate(['/']);
     }

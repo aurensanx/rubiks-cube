@@ -7,6 +7,7 @@ export interface CubeSettings {
     initialScrambleMoves: number;
     sensitivity: number;
     sensitivityNormalized: number;
+    controls: string;
 }
 
 @Injectable({
@@ -20,6 +21,7 @@ export class SettingsService {
         initialScrambleMoves: 10000,
         sensitivity: 5,
         sensitivityNormalized: undefined,
+        controls: 'orbit',
     };
 
     constructor(private storage: Storage) {
@@ -39,6 +41,12 @@ export class SettingsService {
             }
             this.getSensitivityNormalized(this.cubeSettings);
         });
+        this.storage.get('controls').then((val) => {
+            if (val) {
+                this.cubeSettings.controls = val;
+            }
+        });
+        this.storage.set('controls', this.cubeSettings.controls);
 
     }
 

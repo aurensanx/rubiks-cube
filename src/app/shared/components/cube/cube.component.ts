@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {select, Store} from '@ngrx/store';
@@ -20,7 +19,7 @@ export class CubeComponent implements OnInit, OnDestroy {
     centerPivot: Object3D;
 
     renderer = null;
-    controls: OrbitControls = null;
+    controls = null;
     intersection = {
         objects: [],
         selection: null,
