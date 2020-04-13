@@ -54,12 +54,10 @@
     
 - Ruido 
 
-- Ajustes controls y sensitivity
-
 - Refactorizar con idea de página de soluciones
 
 - Página de soluciones
-    
+   
     - movimientos abajo
     - botón de play, forward y backward
     

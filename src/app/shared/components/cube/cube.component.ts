@@ -78,6 +78,7 @@ export class CubeComponent implements OnInit, OnDestroy {
 
         this.controls = this.cameraService.createControls(this.camera, this.renderer.domElement);
         this.controls.update();
+        this.controls.enabled = false;
 
         this.animate();
 
@@ -183,6 +184,7 @@ export class CubeComponent implements OnInit, OnDestroy {
             setTimeout(() => {
                 this.settingsService.cubeSettings.moveSpeedCounts = moveSpeedCounts;
                 this.addTouchEvents();
+                this.controls.enabled = true;
             }, 100);
         }, 3000);
     }

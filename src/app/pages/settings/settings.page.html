@@ -18,21 +18,22 @@
 
 <div class="setting-item">
     <ion-radio-group [value]="cubeSettings.controls" (ionChange)="onControlsChange($event)">
-        <!--        <ion-list-header color="secondary">-->
-        <!--            <ion-label>Camera</ion-label>-->
-        <!--        </ion-list-header>-->
 
         <h2><b>Camera</b></h2>
         <ion-item color="secondary">
-            <ion-label>OrbitControls: allow the camera to orbit around a target</ion-label>
+            <ion-label><strong>OrbitControls</strong>: allows the camera to orbit around a target</ion-label>
             <ion-radio slot="start" value="orbit"></ion-radio>
         </ion-item>
 
         <ion-item color="secondary">
-            <ion-label>TrackballControls: it does not maintain a constant camera up vector</ion-label>
+            <ion-label><strong>TrackballControls</strong>: it does not maintain a constant camera up vector</ion-label>
             <ion-radio slot="start" value="trackball"></ion-radio>
         </ion-item>
     </ion-radio-group>
 </div>
 
-<ion-button (click)="saveSettings()">Save</ion-button>
+<div class="button-container">
+    <ion-button (click)="saveSettings()">Save</ion-button>
+</div>
+
+

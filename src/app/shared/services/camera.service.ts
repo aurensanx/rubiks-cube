@@ -26,7 +26,7 @@ export class CameraService {
             controls.rotateSpeed = 0.05;
         } else {
             controls = new TrackballControls(camera, domElement);
-            controls.noZoom = true;
+            controls.noZoom = false;
             controls.noPan = true;
             controls.rotateSpeed = 1;
         }
