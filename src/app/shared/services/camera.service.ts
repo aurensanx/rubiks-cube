@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Raycaster, Vector3} from 'three';
+import {Camera, Color, Object3D, PerspectiveCamera, Raycaster, Scene, Vector3} from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {SettingsService} from './settings.service';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
@@ -14,6 +14,22 @@ export class CameraService {
     constructor(private settingsService: SettingsService) {
         this.raycaster = new Raycaster();
     }
+
+    createScene: () => Scene = () => {
+        const scene = new Scene();
+        scene.background = new Color(0x383A3E);
+        return scene;
+    };
+
+    createCamera: () => PerspectiveCamera = () => {
+        const camera = new PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000000);
+        camera.position.z = 16;
+        camera.position.x = 8;
+        camera.position.y = 8;
+        return camera;
+    };
+
+
 
     createControls = (camera, domElement) => {
         let controls;

@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Mesh, Object3D, Scene} from 'three';
+import {Color, Mesh, Object3D, Scene} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
 import {findMove, MoveDefinition, PiecesState, selectPieces, State} from '../../cube';
-import {CameraService} from '../../services/camera.service';
-import {SettingsService} from '../../services/settings.service';
+import {CameraService, SettingsService} from '../../services';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +23,12 @@ export class CubeService {
         });
     }
 
+    createCenterPivot: () => Object3D = () => {
+        const centerPivot = new Object3D();
+        centerPivot.position.set(0, 0, 0);
+        centerPivot.updateMatrixWorld();
+        return centerPivot;
+    };
 
     moveLayer(move: number, pieces: Mesh[], centerPivot: Object3D, scene: Scene) {
         const finalMove = findMove(move);

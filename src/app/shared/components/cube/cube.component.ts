@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {select, Store} from '@ngrx/store';
 import {createCube, getRandomMove, InitCubeAction, selectMove, StartMoveAction, State, StopMoveAction} from '../../cube';
-import {Color, Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
+import {Mesh, MeshBasicMaterial, Object3D, PerspectiveCamera, PlaneBufferGeometry, Scene, Vector3, WebGLRenderer} from 'three';
 import {CameraService, MoveService, SettingsService} from '../../services';
 
 @Component({
@@ -11,12 +11,14 @@ import {CameraService, MoveService, SettingsService} from '../../services';
     templateUrl: './cube.component.html',
     styleUrls: ['./cube.component.scss'],
 })
-export class CubeComponent implements OnInit, OnDestroy {
+export class CubeComponent implements AfterViewInit, OnDestroy {
+
+    @Input() isPlay: boolean;
 
     scene: Scene;
     camera: PerspectiveCamera;
-
     centerPivot: Object3D;
+    canvas: HTMLCanvasElement;
 
     renderer = null;
     controls = null;
@@ -25,8 +27,6 @@ export class CubeComponent implements OnInit, OnDestroy {
         selection: null,
         plane: null,
     };
-
-    canvas: HTMLCanvasElement;
 
     move: number;
     moveCount: number;
@@ -49,20 +49,17 @@ export class CubeComponent implements OnInit, OnDestroy {
         });
     }
 
-    ngOnInit() {
+    ngAfterViewInit() {
 
-        this.scene = new Scene();
-        this.scene.background = new Color(0x383A3E);
-        this.camera = new PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000);
-        this.camera.position.z = 16;
-        this.centerPivot = new Object3D();
-        this.centerPivot.position.set(0, 0, 0);
-        this.centerPivot.updateMatrixWorld();
+        this.scene = this.cameraService.createScene();
+        this.camera = this.cameraService.createCamera();
+
+        this.centerPivot = this.cubeService.createCenterPivot();
 
         this.moveCount = 0;
         this.isScramble = false;
 
-        this.canvas = document.querySelector('#c');
+        this.canvas = document.querySelector(`#c`);
         this.renderer = new WebGLRenderer({canvas: this.canvas, antialias: true});
 
         this.intersection.objects = createCube();
@@ -82,10 +79,12 @@ export class CubeComponent implements OnInit, OnDestroy {
 
         this.animate();
 
-        // TODO animación cámara al entrar
-        setTimeout(() => {
-            this.scramble();
-        }, 1000);
+        if (this.isPlay) {
+            // TODO animación cámara al entrar
+            setTimeout(() => {
+                this.scramble();
+            }, 1000);
+        }
 
     }
 
@@ -160,18 +159,6 @@ export class CubeComponent implements OnInit, OnDestroy {
         // Enable the controls
         this.controls.enabled = true;
     }
-
-    // this.gesture = (await import('../../utils/gesture')).createGesture({
-    //     el: document,
-    //     gestureName: 'menu-swipe',
-    //     gesturePriority: 30,
-    //     threshold: 10,
-    //     canStart: ev => this.canStart(ev),
-    //     onWillStart: () => this.onWillStart(),
-    //     onStart: () => this.onStart(),
-    //     onMove: ev => this.onMove(ev),
-    //     onEnd: ev => this.onEnd(ev),
-    // });
 
     scramble() {
         const moveSpeedCounts = this.settingsService.cubeSettings.moveSpeedCounts;

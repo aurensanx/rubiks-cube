@@ -7,8 +7,8 @@ describe('new App', () => {
     page = new AppPage();
   });
 
-  it('should be blank', () => {
+  it('there should be a play button', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toContain('The world is your oyster.');
+    expect(page.getParagraphText()).toContain('PLAY');
   });
 });
