@@ -7,12 +7,14 @@ import {Component, OnInit} from '@angular/core';
 })
 export class F2lPage implements OnInit {
 
+    images: number[];
+
     constructor() {
     }
 
     ngOnInit() {
+        this.images = Array.from({length: 42}, (_, id) => id);
     }
-
 
 
 }
