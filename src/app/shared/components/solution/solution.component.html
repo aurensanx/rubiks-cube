@@ -1,8 +1,17 @@
 <div class="icon-container">
-    <ion-icon name="skip-backward"></ion-icon>
-    <ion-icon (click)="pauseSolution()" name="pause"></ion-icon>
-    <ion-icon (click)="playSolution()" name="play"></ion-icon>
-    <ion-icon (click)="playNextMove()" name="skip-forward"></ion-icon>
+    <ion-button color="white">
+        <ion-icon name="skip-backward"></ion-icon>
+    </ion-button>
+    <ion-button (click)="pauseSolution()" color="white">
+        <ion-icon name="pause"></ion-icon>
+    </ion-button>
+    <ion-button (click)="playSolution()" color="white">
+        <ion-icon name="play"></ion-icon>
+    </ion-button>
+    <ion-button (click)="playNextMove()" color="white">
+        <ion-icon name="skip-forward"></ion-icon>
+    </ion-button>
+
 </div>
 
 <div class="text-container">
