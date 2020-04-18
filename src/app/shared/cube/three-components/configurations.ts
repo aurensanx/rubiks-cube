@@ -10,174 +10,202 @@ const ORANGE = 0xFFA500;
 const BLACK = 0X00000;
 const GREY = 0XC0C0C0;
 
+const position0 = [-1, 1, 1];
+const position1 = [0, 1, 1];
+const position2 = [1, 1, 1];
+const position3 = [-1, 0, 1];
+const position4 = [0, 0, 1];
+const position5 = [1, 0, 1];
+const position6 = [-1, -1, 1];
+const position7 = [0, -1, 1];
+const position8 = [1, -1, 1];
+const position9 = [-1, 1, 0];
+const position10 = [0, 1, 0];
+const position11 = [1, 1, 0];
+const position12 = [-1, 0, 0];
+const position13 = [0, 0, 0];
+const position14 = [1, 0, 0];
+const position15 = [-1, -1, 0];
+const position16 = [0, -1, 0];
+const position17 = [1, -1, 0];
+const position18 = [-1, 1, -1];
+const position19 = [0, 1, -1];
+const position20 = [1, 1, -1];
+const position21 = [-1, 0, -1];
+const position22 = [0, 0, -1];
+const position23 = [1, 0, -1];
+const position24 = [-1, -1, -1];
+const position25 = [0, -1, -1];
+const position26 = [1, -1, -1];
+
 // R - L - U - D - F - B
 export const CUBE_CONFIGURATIONS: PIECE[][] = [
     // 0
     [{
         colors: [BLACK, BLACK, GREEN, GREEN, WHITE, WHITE, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [-1, 1, 1],
+        position: position0,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [0, 1, 1],
+        position: position1,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [1, 1, 1],
+        position: position2,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [-1, 0, 1],
+        position: position3,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [0, 0, 1],
+        position: position4,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [1, 0, 1],
+        position: position5,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [-1, -1, 1],
+        position: position6,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [0, -1, 1],
+        position: position7,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [1, -1, 1],
+        position: position8,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, 1, 0],
+        position: position9,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [0, 1, 0],
+        position: position10,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [1, 1, 0],
+        position: position11,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, 0, 0],
+        position: position12,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [0, 0, 0],
+        position: position13,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [1, 0, 0],
+        position: position14,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, -1, 0],
+        position: position15,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [0, -1, 0],
+        position: position16,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [1, -1, 0],
+        position: position17,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [-1, 1, -1],
+        position: position18,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [0, 1, -1],
+        position: position19,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, WHITE, WHITE, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [1, 1, -1],
+        position: position20,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [-1, 0, -1],
+        position: position21,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [0, 0, -1],
+        position: position22,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [1, 0, -1],
+        position: position23,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [-1, -1, -1],
+        position: position24,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [0, -1, -1],
+        position: position25,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [1, -1, -1],
+        position: position26,
     }],
 
     // 1
 
     [{
         colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
-        position: [-1, 1, 1],
+        position: position0,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
-        position: [0, 1, 1],
+        position: position1,
     }, {
         colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
-        position: [1, 1, 1],
+        position: position2,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [-1, 0, 1],
+        position: position3,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
-        position: [0, 0, 1],
+        position: position4,
     }, {
         colors: [RED, RED, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLUE, BLUE, BLACK, BLACK],
-        position: [1, 0, 1],
+        position: position5,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [-1, -1, 1],
+        position: position6,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [0, -1, 1],
+        position: position7,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
-        position: [1, -1, 1],
+        position: position8,
     }, {
         colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, 1, 0],
+        position: position9,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [0, 1, 0],
+        position: position10,
     }, {
         colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [1, 1, 0],
+        position: position11,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, 0, 0],
+        position: position12,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [0, 0, 0],
+        position: position13,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
-        position: [1, 0, 0],
+        position: position14,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [-1, -1, 0],
+        position: position15,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [0, -1, 0],
+        position: position16,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
-        position: [1, -1, 0],
+        position: position17,
     }, {
         colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
-        position: [-1, 1, -1],
+        position: position18,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
-        position: [0, 1, -1],
+        position: position19,
     }, {
         colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
-        position: [1, 1, -1],
+        position: position20,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [-1, 0, -1],
+        position: position21,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [0, 0, -1],
+        position: position22,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
-        position: [1, 0, -1],
+        position: position23,
     }, {
         colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [-1, -1, -1],
+        position: position24,
     }, {
         colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [0, -1, -1],
+        position: position25,
     }, {
         colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
-        position: [1, -1, -1],
+        position: position26,
     }]
 ];

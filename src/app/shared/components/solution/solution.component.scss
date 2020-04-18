@@ -1,17 +1,23 @@
 :host {
   color: white;
-  //margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .icon-container {
     display: flex;
+    width: 100%;
     justify-content: space-around;
     font-size: 2rem;
+    padding: 2rem 1rem 1rem 1rem;
   }
 
   .text-container {
     display: flex;
+    width: 100%;
     justify-content: center;
-    padding: 2rem 1rem 2rem 1rem;
+    padding: 1rem 1rem 2rem 1rem;
 
     p span {
       display: block;
@@ -19,5 +25,9 @@
       padding: 0.5rem;
     }
   }
+
+  //@media (orientation: landscape) {
+  //  flex-direction: row;
+  //}
 }
 

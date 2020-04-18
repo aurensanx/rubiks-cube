@@ -6,7 +6,9 @@
     flex-grow: 4;
   }
 
-
+  @media (orientation: landscape) {
+    flex-direction: row;
+  }
 
 }
 

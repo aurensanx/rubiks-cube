@@ -63,6 +63,10 @@
     
 - Listado de soluciones
 
+- Cambio de idioma
+
+- En página de soluciones también se puede mover
+
 
 
 

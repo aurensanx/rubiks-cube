@@ -1,6 +1,7 @@
 import {INIT_CUBE, MoveAction, START_MOVE, STOP_MOVE} from './action';
 import {findMove} from './moves';
 import {ColorsState, PiecesState, State} from './state';
+import {CUBE} from './three-components';
 
 
 const _moveReducer = (
@@ -58,7 +59,7 @@ export const initCubeColors = () => [
     COLOR_ID.YELLOW, COLOR_ID.YELLOW, COLOR_ID.YELLOW, COLOR_ID.YELLOW,
 ];
 
-export const initCubePieces = () => [...Array(27).keys()];
+export const initCubePieces = () => [...Array(CUBE.NUMBER_OF_PIECES).keys()];
 
 
 const updateColors = (colors: ColorsState, move: number) => {

@@ -14,7 +14,7 @@ type FACE_COLORS = [number, number, number, number, number, number, number, numb
 
 export interface PIECE {
     colors: FACE_COLORS;
-    position: [number, number, number];
+    position: number[];
 }
 
 
