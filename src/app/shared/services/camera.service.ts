@@ -26,6 +26,7 @@ export class CameraService {
         camera.position.z = 16;
         camera.position.x = 8;
         camera.position.y = 8;
+        camera.zoom = 1.5;
         return camera;
     };
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-pll',
+  selector: 'app-page-pll',
   templateUrl: './pll.page.html',
   styleUrls: ['./pll.page.scss'],
 })

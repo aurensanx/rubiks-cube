@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-    selector: 'app-play',
+    selector: 'app-page-play',
     templateUrl: './play.page.html',
     styleUrls: ['./play.page.scss'],
 })

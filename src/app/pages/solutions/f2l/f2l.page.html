@@ -1,5 +1,4 @@
 
-<div *ngFor="let item of images">
-    <img src="assets/test.svg#test-{{item}}" alt="item">
-
+<div *ngFor="let id of images">
+    <img [routerLink]="['/solution', id]" src="assets/test.svg#test-{{id}}" alt="item">
 </div>

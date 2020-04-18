@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 @Component({
-    selector: 'app-f2l',
+    selector: 'app-page-f2l',
     templateUrl: './f2l.page.html',
     styleUrls: ['./f2l.page.scss'],
 })
@@ -13,7 +13,7 @@ export class F2lPage implements OnInit {
     }
 
     ngOnInit() {
-        this.images = Array.from({length: 42}, (_, id) => id);
+        this.images = Array.from({length: 42}, (_, id) => ++id);
     }
 
 

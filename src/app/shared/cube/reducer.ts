@@ -38,6 +38,7 @@ export const COLOR_ID = {
     GREEN: 3,
     RED: 4,
     ORANGE: 5,
+    GREY: 6,
 };
 
 

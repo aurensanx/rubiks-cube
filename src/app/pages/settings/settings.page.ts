@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {CubeSettings, SettingsService} from '../../shared/services';
 
 @Component({
-    selector: 'app-settings',
+    selector: 'app-page-settings',
     templateUrl: './settings.page.html',
     styleUrls: ['./settings.page.scss'],
 })

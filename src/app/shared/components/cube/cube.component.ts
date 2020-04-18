@@ -14,6 +14,7 @@ import {CameraService, MoveService, SettingsService} from '../../services';
 export class CubeComponent implements AfterViewInit, OnDestroy {
 
     @Input() isPlay: boolean;
+    @Input() cubeConfiguration: number;
 
     scene: Scene;
     camera: PerspectiveCamera;
@@ -62,7 +63,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy {
         this.canvas = document.querySelector(`#c`);
         this.renderer = new WebGLRenderer({canvas: this.canvas, antialias: true});
 
-        this.intersection.objects = createCube();
+        this.intersection.objects = createCube(this.cubeConfiguration);
 
         this.store.dispatch(new InitCubeAction());
         this.scene.add(...this.intersection.objects);
@@ -84,6 +85,8 @@ export class CubeComponent implements AfterViewInit, OnDestroy {
             setTimeout(() => {
                 this.scramble();
             }, 1000);
+        } else {
+            this.controls.enabled = true;
         }
 
     }
