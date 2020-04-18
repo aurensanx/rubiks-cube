@@ -11,6 +11,7 @@ export class SolutionPage implements OnInit, OnDestroy {
 
     subscription: Subscription;
     cubeConfigurationId: number;
+    toggleResetCube = false;
 
     constructor(private route: ActivatedRoute) {
     }
@@ -23,6 +24,10 @@ export class SolutionPage implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
+    }
+
+    onResetClicked() {
+        this.toggleResetCube = !this.toggleResetCube;
     }
 
 }

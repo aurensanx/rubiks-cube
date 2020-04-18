@@ -1,16 +1,27 @@
 <div class="icon-container">
-    <ion-button color="white">
-        <ion-icon name="skip-backward"></ion-icon>
+    <ion-button [disabled]="currentMove !== undefined" color="white">
+        <!--        <ion-icon name="skip-backward"></ion-icon>-->
+        <ion-icon name="undo"></ion-icon>
     </ion-button>
-    <ion-button (click)="pauseSolution()" color="white">
-        <ion-icon name="pause"></ion-icon>
+    <ng-container *ngIf="!isFinished">
+        <ion-button *ngIf="isSolutionClicked" (click)="pauseSolution()"
+                    color="white">
+            <ion-icon name="pause"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!isSolutionClicked" (click)="playSolution()"
+                    color="white">
+            <ion-icon name="play"></ion-icon>
+        </ion-button>
+    </ng-container>
+
+    <ion-button *ngIf="isFinished" [disabled]="currentMove !== undefined" (click)="resetSolution()" color="white">
+        <ion-icon name="refresh"></ion-icon>
     </ion-button>
-    <ion-button (click)="playSolution()" color="white">
-        <ion-icon name="play"></ion-icon>
+    <ion-button [disabled]="currentMove !== undefined" (click)="playNextMove()" color="white">
+        <!--        <ion-icon name="skip-forward"></ion-icon>-->
+        <ion-icon name="redo"></ion-icon>
     </ion-button>
-    <ion-button (click)="playNextMove()" color="white">
-        <ion-icon name="skip-forward"></ion-icon>
-    </ion-button>
+
 
 </div>
 

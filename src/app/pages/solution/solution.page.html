@@ -1,2 +1,2 @@
-<app-cube [isPlay]="false" [cubeConfiguration]="cubeConfigurationId"></app-cube>
-<app-solution [cubeConfiguration]="cubeConfigurationId"></app-solution>
+<app-cube [isPlay]="false" [cubeConfiguration]="cubeConfigurationId" [resetCube]="toggleResetCube"></app-cube>
+<app-solution [cubeConfiguration]="cubeConfigurationId" (resetClicked)="onResetClicked()"></app-solution>

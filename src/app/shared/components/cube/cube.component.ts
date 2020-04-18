@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {CubeService} from './cube.service';
 import {select, Store} from '@ngrx/store';
@@ -11,10 +11,11 @@ import {CameraService, MoveService, SettingsService} from '../../services';
     templateUrl: './cube.component.html',
     styleUrls: ['./cube.component.scss'],
 })
-export class CubeComponent implements AfterViewInit, OnDestroy {
+export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
 
     @Input() isPlay: boolean;
     @Input() cubeConfiguration: number;
+    @Input() resetCube: boolean;
 
     scene: Scene;
     camera: PerspectiveCamera;
@@ -57,16 +58,8 @@ export class CubeComponent implements AfterViewInit, OnDestroy {
 
         this.centerPivot = this.cubeService.createCenterPivot();
 
-        this.moveCount = 0;
-        this.isScramble = false;
-
         this.canvas = document.querySelector(`#c`);
         this.renderer = new WebGLRenderer({canvas: this.canvas, antialias: true});
-
-        this.intersection.objects = createCube(this.cubeConfiguration);
-
-        this.store.dispatch(new InitCubeAction());
-        this.scene.add(...this.intersection.objects);
 
         // Plane, that helps to determinate an intersection position
         this.intersection.plane = new Mesh(new PlaneBufferGeometry(500, 500, 8, 8),
@@ -77,6 +70,8 @@ export class CubeComponent implements AfterViewInit, OnDestroy {
         this.controls = this.cameraService.createControls(this.camera, this.renderer.domElement);
         this.controls.update();
         this.controls.enabled = false;
+
+        this.initCube();
 
         this.animate();
 
@@ -94,6 +89,28 @@ export class CubeComponent implements AfterViewInit, OnDestroy {
     ngOnDestroy() {
         this.move = undefined;
         this.subscription.unsubscribe();
+    }
+
+    ngOnChanges({resetCube}: SimpleChanges) {
+        if (!resetCube.isFirstChange()) {
+            this.initCube();
+        }
+    }
+
+    initCube() {
+
+        this.scene.remove(...this.intersection.objects);
+
+        this.moveCount = 0;
+        this.isScramble = false;
+
+        this.intersection.objects = createCube(this.cubeConfiguration);
+
+        this.store.dispatch(new InitCubeAction());
+        this.scene.add(...this.intersection.objects);
+
+        // this.cameraService.fitCameraToSelection(this.camera, this.controls, this.intersection.objects);
+
     }
 
     animate = () => {
