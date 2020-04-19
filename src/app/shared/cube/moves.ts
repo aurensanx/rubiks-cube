@@ -8,6 +8,8 @@ const turnFace = (array, positions) => {
     array[positions[0]] = aux;
 };
 
+export const getComplementaryMove = move => move % 2 === 0 ? move + 1 : move - 1;
+
 const FACES = {
     UP: [0, 1, 2, 9, 10, 11, 18, 19, 20],
     DOWN: [6, 7, 8, 15, 16, 17, 24, 25, 26],

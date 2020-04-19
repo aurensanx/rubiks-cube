@@ -54,22 +54,11 @@
     
 - Ruido 
 
-- Refactorizar con idea de página de soluciones
-
-- Página de soluciones
-   
-    - movimientos abajo
-    - botón de play, forward y backward
-    
-- Listado de soluciones
-
 - Cambio de idioma
-
-- En página de soluciones también se puede mover
 
 - Movimiento de cambiar cara de frente
 
-
+- Movimiento doble 
 
 
 

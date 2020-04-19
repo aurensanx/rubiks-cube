@@ -1,11 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {selectMove, StartMoveAction, State} from '../../cube';
+import {getComplementaryMove, selectMove, StartMoveAction, State} from '../../cube';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 
 interface SolutionStep {
     text: string;
     value: number;
+    active?: boolean;
     class?: string;
 }
 
@@ -32,22 +33,23 @@ export class SolutionComponent implements OnInit {
         {text: `R' `, value: 5},
         {text: `U`, value: 0},
         {text: `) `, value: undefined},
-        {text: `y'
-        `, value: undefined},
+        {
+            text: `y'
+        `, value: undefined
+        },
         {text: ` (`, value: undefined},
         {text: `R' `, value: 9},
         // FIXME
         {text: `U2 `, value: 0},
-        {text: `U2 `, value: 0},
+        {text: undefined, value: 0},
         {text: `R `, value: 8},
         {text: `U' `, value: 1, class: 'right-thumb'},
         {text: `U'`, value: 1, class: 'left-index-finger'},
         {text: `) (`, value: undefined},
         {text: `R' `, value: 9},
         {text: `U `, value: 0},
-        // FIXME
-        {text: `R)`, value: 8},
-        // {text: `)`, value: undefined},
+        {text: `R`, value: 8},
+        {text: `)`, value: undefined},
     ];
 
     constructor(private store: Store<{ state: State }>) {
@@ -56,15 +58,12 @@ export class SolutionComponent implements OnInit {
             if (this.currentMove === undefined) {
                 if (this.isSolutionClicked) {
                     this.dispatchMove();
-                } else if (this.solution.length === this.moveIndex) {
+                } else if (this.areMovesLeft() === false) {
                     this.isFinished = true;
                 }
             }
         });
     }
-
-    // (RU'R'U)y'
-    // (R'U2RU'U')(R'UR)
 
     ngOnInit() {
     }
@@ -82,6 +81,22 @@ export class SolutionComponent implements OnInit {
         this.dispatchMove();
     }
 
+    playPreviousMove() {
+        this.isFinished = false;
+        this.moveIndex--;
+        if (this.moveIndex >= 0) {
+            const moveValue = this.solution[this.moveIndex + 1].value;
+            if (moveValue !== undefined) {
+                this.store.dispatch(new StartMoveAction(getComplementaryMove(moveValue)));
+                this.setActiveStep(this.solution[this.moveIndex + 1].text === undefined ? this.moveIndex : this.moveIndex + 1);
+            } else {
+                this.playPreviousMove();
+            }
+        } else {
+            this.moveIndex = 0;
+        }
+    }
+
     resetSolution() {
         this.isFinished = false;
         this.moveIndex = 0;
@@ -89,21 +104,35 @@ export class SolutionComponent implements OnInit {
     }
 
     dispatchMove() {
+        this.moveIndex++;
         if (this.solution.length > this.moveIndex) {
             if (this.solution[this.moveIndex].value !== undefined) {
                 this.store.dispatch(new StartMoveAction(this.solution[this.moveIndex].value));
-                this.moveIndex++;
+                this.setActiveStep(this.solution[this.moveIndex].text === undefined ? this.moveIndex - 1 : this.moveIndex);
             } else {
-                this.moveIndex++;
                 this.dispatchMove();
             }
-            // if (SOLUTIONS[this.cubeConfiguration].length === this.moveIndex && !this.isSolutionClicked) {
-            //     this.isFinished = true;
-            // }
         } else {
             this.isFinished = true;
             this.isSolutionClicked = false;
         }
+    }
+
+    areMovesLeft() {
+        let result = false;
+        for (let i = this.moveIndex; i < this.solution.length; i++) {
+            if (this.solution[i].value !== undefined) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
+    setActiveStep(i) {
+        this.solution.forEach((s, index) => {
+            s.active = i === index;
+        });
     }
 
 }
