@@ -80,8 +80,6 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
             setTimeout(() => {
                 this.scramble();
             }, 1000);
-        } else {
-            this.controls.enabled = true;
         }
 
     }
@@ -92,7 +90,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
     }
 
     ngOnChanges({resetCube}: SimpleChanges) {
-        if (!resetCube.isFirstChange()) {
+        if (resetCube && !resetCube.isFirstChange()) {
             this.initCube();
         }
     }

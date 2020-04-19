@@ -13,7 +13,7 @@ export class F2lPage implements OnInit {
     }
 
     ngOnInit() {
-        this.images = Array.from({length: 42}, (_, id) => ++id);
+        this.images = Array.from({length: 41}, (_, id) => ++id);
     }
 
 

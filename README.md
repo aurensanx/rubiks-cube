@@ -67,6 +67,8 @@
 
 - En página de soluciones también se puede mover
 
+- Movimiento de cambiar cara de frente
+
 
 
 

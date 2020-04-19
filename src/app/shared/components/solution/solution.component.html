@@ -25,11 +25,21 @@
 
 </div>
 
+<!--<div class="text-container">-->
+<!--    <div class="solution-container">-->
+<!--        <p>(R U' R' U) y'</p>-->
+<!--        <p>(R' U2 R <span class="right-thumb">U'</span><span class="left-index-finger"> U'</span>) (R' U R)</p>-->
+<!--    </div>-->
+<!--</div>-->
+
 <div class="text-container">
-    <p>
-        <span>(R U' R' U) y'</span>
-        <span>(R' U2 R U' U') (R' U R)</span>
-    </p>
+    <div class="solution-container">
+        <p>
+            <span *ngFor="let solutionStep of solution; let i = index"
+                  [class.active]="i === moveIndex - 1 && currentMove !== undefined"
+                  [ngClass]="solutionStep.class">{{solutionStep.text}}</span>
+        </p>
+    </div>
 </div>
 
 

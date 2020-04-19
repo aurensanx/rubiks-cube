@@ -1,9 +1,24 @@
 :host {
   color: white;
+  font-weight: bold;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  background-color: var(--ion-color-dark-tint);
+
+  .left-index-finger {
+    color: cornflowerblue;
+  }
+
+  .right-thumb {
+    color: red;
+  }
+
+  .right-ring-finger {
+    color: darkorange;
+  }
 
   .icon-container {
     display: flex;
@@ -19,10 +34,19 @@
     justify-content: space-evenly;
     padding: 0.5rem 1rem 1.5rem 1rem;
 
-    p span {
+    .solution-container {
       display: block;
-      font-size: 1.5rem;
-      padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+
+      p {
+        display: block;
+        white-space: pre-line;
+        font-size: 1.25rem;
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+
+        span.active {
+          color: greenyellow;
+        }
+      }
     }
   }
 
