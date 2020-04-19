@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {getComplementaryMove, selectMove, StartMoveAction, State} from '../../cube';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
@@ -10,7 +10,7 @@ import {SOLUTIONS, SolutionStep} from '../../cube/solutions';
     templateUrl: './solution.component.html',
     styleUrls: ['./solution.component.scss'],
 })
-export class SolutionComponent implements OnInit {
+export class SolutionComponent implements OnInit, OnDestroy {
 
     @Input() cubeConfiguration: number;
     @Output() resetClicked = new EventEmitter<any>();
@@ -38,6 +38,12 @@ export class SolutionComponent implements OnInit {
 
     ngOnInit() {
         this.solution = SOLUTIONS[this.cubeConfiguration];
+    }
+
+    ngOnDestroy() {
+        this.currentMove = undefined;
+        this.moveIndex = 0;
+        this.subscription.unsubscribe();
     }
 
     playSolution() {
