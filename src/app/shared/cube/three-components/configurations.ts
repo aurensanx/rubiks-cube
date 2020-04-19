@@ -209,87 +209,255 @@ export const CUBE_CONFIGURATIONS: PIECE[][] = [
         position: position26,
     }],
 
-
+    // 2
     [{
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
         position: position0,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLUE, BLUE, BLACK, BLACK, RED, RED, BLACK, BLACK],
         position: position1,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
         position: position2,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
         position: position3,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
         position: position4,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
         position: position5,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
         position: position6,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
         position: position7,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
         position: position8,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position9,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position10,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position11,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position12,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position13,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
         position: position14,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
         position: position15,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
         position: position16,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
         position: position17,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
         position: position18,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
         position: position19,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
         position: position20,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
         position: position21,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
         position: position22,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
         position: position23,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
         position: position24,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
         position: position25,
     }, {
-        colors: [WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE, WHITE],
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
         position: position26,
-    }]
+    }],
+
+    // 3
+    [{
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position0,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position1,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position2,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
+        position: position3,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
+        position: position4,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position5,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
+        position: position6,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
+        position: position7,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
+        position: position8,
+    }, {
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position9,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position10,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, RED, RED, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position11,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position12,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position13,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position14,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position15,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position16,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position17,
+    }, {
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position18,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position19,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position20,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position21,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position22,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position23,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position24,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position25,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position26,
+    }],
+
+    // 4
+    [{
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position0,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position1,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK],
+        position: position2,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
+        position: position3,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
+        position: position4,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, RED, RED, BLACK, BLACK],
+        position: position5,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
+        position: position6,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, RED, RED, BLACK, BLACK],
+        position: position7,
+    }, {
+        colors: [RED, RED, BLACK, BLACK, BLACK, BLACK, BLUE, BLUE, YELLOW, YELLOW, BLACK, BLACK],
+        position: position8,
+    }, {
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position9,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position10,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position11,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position12,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position13,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK],
+        position: position14,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position15,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position16,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, BLACK, BLACK],
+        position: position17,
+    }, {
+        colors: [BLACK, BLACK, GREY, GREY, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position18,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position19,
+    }, {
+        colors: [GREY, GREY, BLACK, BLACK, GREY, GREY, BLACK, BLACK, BLACK, BLACK, GREY, GREY],
+        position: position20,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position21,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position22,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, ORANGE, ORANGE],
+        position: position23,
+    }, {
+        colors: [BLACK, BLACK, GREEN, GREEN, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position24,
+    }, {
+        colors: [BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position25,
+    }, {
+        colors: [BLUE, BLUE, BLACK, BLACK, BLACK, BLACK, YELLOW, YELLOW, BLACK, BLACK, ORANGE, ORANGE],
+        position: position26,
+    }],
 ];

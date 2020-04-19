@@ -36,20 +36,20 @@ export class MoveService {
         const faces = getFacesFromPiecePosition(piece.position);
         const touchedFacePosition = this.getTouchedFacePositionInState(color, faces);
 
-        let movement = this.getMovement3D(movementVector);
+        const movement = this.getMovement3D(movementVector);
 
-        let result = getFinalMovement(movement, touchedFacePosition);
+        const result = getFinalMovement(movement, touchedFacePosition);
 
         // FIXME
-        if (result === undefined) {
-            movement = this.getMovement3D({
-                x: movement.indexOf('x') > -1 ? 0 : movementVector.x,
-                y: movement.indexOf('y') > -1 ? 0 : movementVector.y,
-                z: movement.indexOf('z') > -1 ? 0 : movementVector.z
-            });
-
-            result = getFinalMovement(movement, touchedFacePosition);
-        }
+        // if (result === undefined) {
+        //     movement = this.getMovement3D({
+        //         x: movement.indexOf('x') > -1 ? 0 : movementVector.x,
+        //         y: movement.indexOf('y') > -1 ? 0 : movementVector.y,
+        //         z: movement.indexOf('z') > -1 ? 0 : movementVector.z
+        //     });
+        //
+        //     result = getFinalMovement(movement, touchedFacePosition);
+        // }
 
         return result;
     }
