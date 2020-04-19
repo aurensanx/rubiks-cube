@@ -2,13 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {getComplementaryMove, selectMove, StartMoveAction, State} from '../../cube';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
+import {SOLUTIONS, SolutionStep} from '../../cube/solutions';
 
-interface SolutionStep {
-    text: string;
-    value: number;
-    active?: boolean;
-    class?: string;
-}
 
 @Component({
     selector: 'app-solution',
@@ -26,30 +21,7 @@ export class SolutionComponent implements OnInit {
     isSolutionClicked: boolean;
     isFinished: boolean;
 
-    solution: SolutionStep[] = [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) `, value: undefined},
-        {
-            text: `y'
-        `, value: 19
-        },
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U2 `, value: 0},
-        {text: undefined, value: 0},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ];
+    solution: SolutionStep[] = [];
 
     constructor(private store: Store<{ state: State }>) {
         this.subscription = store.pipe(select(selectMove)).subscribe((next: number) => {
@@ -57,7 +29,7 @@ export class SolutionComponent implements OnInit {
             if (this.currentMove === undefined) {
                 if (this.isSolutionClicked) {
                     this.dispatchMove();
-                } else if (this.areMovesLeft() === false) {
+                } else if (this.solution.length && this.areMovesLeft() === false) {
                     this.isFinished = true;
                 }
             }
@@ -65,6 +37,7 @@ export class SolutionComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.solution = SOLUTIONS[this.cubeConfiguration];
     }
 
     playSolution() {
@@ -103,12 +76,13 @@ export class SolutionComponent implements OnInit {
     }
 
     dispatchMove() {
-        this.moveIndex++;
         if (this.solution.length > this.moveIndex) {
             if (this.solution[this.moveIndex].value !== undefined) {
                 this.store.dispatch(new StartMoveAction(this.solution[this.moveIndex].value));
                 this.setActiveStep(this.solution[this.moveIndex].text === undefined ? this.moveIndex - 1 : this.moveIndex);
+                this.moveIndex++;
             } else {
+                this.moveIndex++;
                 this.dispatchMove();
             }
         } else {
