@@ -35,11 +35,10 @@ export class SolutionComponent implements OnInit {
         {text: `) `, value: undefined},
         {
             text: `y'
-        `, value: undefined
+        `, value: 19
         },
         {text: ` (`, value: undefined},
         {text: `R' `, value: 9},
-        // FIXME
         {text: `U2 `, value: 0},
         {text: undefined, value: 0},
         {text: `R `, value: 8},
@@ -85,10 +84,10 @@ export class SolutionComponent implements OnInit {
         this.isFinished = false;
         this.moveIndex--;
         if (this.moveIndex >= 0) {
-            const moveValue = this.solution[this.moveIndex + 1].value;
+            const moveValue = this.solution[this.moveIndex].value;
             if (moveValue !== undefined) {
                 this.store.dispatch(new StartMoveAction(getComplementaryMove(moveValue)));
-                this.setActiveStep(this.solution[this.moveIndex + 1].text === undefined ? this.moveIndex : this.moveIndex + 1);
+                this.setActiveStep(this.solution[this.moveIndex].text === undefined ? this.moveIndex - 1 : this.moveIndex);
             } else {
                 this.playPreviousMove();
             }

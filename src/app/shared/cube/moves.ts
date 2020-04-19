@@ -281,17 +281,34 @@ export const V0_COLORS = (state: PiecesState) => {
     return state;
 };
 
+export const Y_PIECES = (state: PiecesState) => {
+    return state;
+};
+
+export const Y_COLORS = (state: PiecesState) => {
+    return state;
+};
+
+export const Y0_PIECES = (state: PiecesState) => {
+    return state;
+};
+
+export const Y0_COLORS = (state: PiecesState) => {
+    return state;
+};
+
 export interface MoveDefinition {
     id: string;
     value: number;
     piecesMove: (state: number[]) => number[];
     colorsMove: (state: number[]) => number[];
-    cubeFace: any;
+    cubeFace?: any;
     x: number;
     y: number;
     z: number;
     axis: string;
     direction: number;
+    isCameraRotation?: boolean;
 }
 
 
@@ -512,10 +529,34 @@ export const MOVES: MoveDefinition[] = [
         axis: 'z',
         direction: 1,
     },
+    {
+        id: `y`,
+        value: 18,
+        piecesMove: Y_PIECES,
+        colorsMove: Y_COLORS,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'y',
+        direction: 1,
+        isCameraRotation: true,
+    },
+    {
+        id: `y'`,
+        value: 19,
+        piecesMove: Y0_PIECES,
+        colorsMove: Y0_COLORS,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'y',
+        direction: -1,
+        isCameraRotation: true,
+    },
 ];
 
 
 export const findMove = move => MOVES.find(m => move === m.value);
 
 
-export const getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)].value;
+export const getRandomMove = () => MOVES[Math.floor(Math.random() * 18)].value;

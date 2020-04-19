@@ -3,6 +3,7 @@ import {Box3, Camera, Color, Object3D, PerspectiveCamera, Raycaster, Scene, Vect
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
 import {SettingsService} from './settings.service';
 import {TrackballControls} from 'three/examples/jsm/controls/TrackballControls';
+import {MoveDefinition} from '../cube';
 
 @Injectable({
     providedIn: 'root'
@@ -21,15 +22,19 @@ export class CameraService {
         return scene;
     };
 
-    createCamera: () => PerspectiveCamera = () => {
+    createCamera: (isPlay: boolean) => PerspectiveCamera = isPlay => {
         const camera = new PerspectiveCamera(30, window.innerWidth / window.innerHeight, 0.1, 1000000);
-        camera.position.z = 16;
-        camera.position.x = 8;
-        camera.position.y = 8;
-        camera.zoom = 1.5;
+        this.setInitialPosition(camera, isPlay);
         return camera;
     };
 
+    setInitialPosition(camera: PerspectiveCamera, isPlay: boolean) {
+        camera.position.z = 16;
+        camera.position.x = 8;
+        camera.position.y = 8;
+        // FIXME
+        camera.zoom = isPlay ? 1.2 : 1.8;
+    }
 
     createControls = (camera, domElement) => {
         let controls;
@@ -59,6 +64,8 @@ export class CameraService {
         }
         return needResize;
     };
+
+
 
     // fitCameraToSelection(camera, controls, selection, fitOffset = 2.5) {
     //

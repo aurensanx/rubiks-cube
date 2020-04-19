@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Color, Mesh, Object3D, Scene} from 'three';
+import {Camera, Color, Mesh, Object3D, Scene} from 'three';
 import {select, Store} from '@ngrx/store';
 import {Subscription} from 'rxjs';
 import {SceneUtils} from 'three/examples/jsm/utils/SceneUtils';
@@ -30,13 +30,19 @@ export class CubeService {
         return centerPivot;
     };
 
-    moveLayer(move: number, pieces: Mesh[], centerPivot: Object3D, scene: Scene) {
+    moveLayer(move: number, pieces: Mesh[], centerPivot: Object3D, scene: Scene, camera: Camera) {
         const finalMove = findMove(move);
-        this.movePhysically(finalMove, pieces, centerPivot, scene);
+
+        if (finalMove.isCameraRotation) {
+            this.rotateCamera(finalMove, camera, centerPivot, scene);
+        } else {
+            this.moveLayerPhysically(finalMove, pieces, centerPivot, scene);
+        }
+
     }
 
-    private movePhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition,
-                              pieces: Mesh[], centerPivot: Object3D, scene: Scene) => {
+    private moveLayerPhysically = ({cubeFace, x, y, z, axis, direction}: MoveDefinition,
+                                   pieces: Mesh[], centerPivot: Object3D, scene: Scene) => {
         centerPivot.rotation.set(x, y, z);
         centerPivot.updateMatrixWorld();
         cubeFace.forEach(i => {
@@ -49,5 +55,15 @@ export class CubeService {
         });
     };
 
+
+    rotateCamera = ({cubeFace, x, y, z, axis, direction}: MoveDefinition,
+                    camera: Camera, centerPivot: Object3D, scene: Scene) => {
+        centerPivot.rotation.set(x, y, z);
+        centerPivot.updateMatrixWorld();
+        SceneUtils.attach(camera, scene, centerPivot);
+        centerPivot.rotation[axis] += Math.PI / 2 / this.settingsService.cubeSettings.moveSpeedCounts * direction;
+        centerPivot.updateMatrixWorld();
+        SceneUtils.detach(camera, centerPivot, scene);
+    };
 
 }

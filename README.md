@@ -58,7 +58,6 @@
 
 - Movimiento de cambiar cara de frente
 
-- Movimiento doble 
 
 
 

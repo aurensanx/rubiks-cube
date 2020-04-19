@@ -54,8 +54,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
     ngAfterViewInit() {
 
         this.scene = this.cameraService.createScene();
-        this.camera = this.cameraService.createCamera();
-
+        this.camera = this.cameraService.createCamera(this.isPlay);
         this.centerPivot = this.cubeService.createCenterPivot();
 
         this.canvas = document.querySelector(`#c`);
@@ -98,6 +97,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
     initCube() {
 
         this.scene.remove(...this.intersection.objects);
+        this.cameraService.setInitialPosition(this.camera, this.isPlay);
 
         this.moveCount = 0;
         this.isScramble = false;
@@ -121,7 +121,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
         }
 
         if (this.move !== undefined) {
-            this.cubeService.moveLayer(this.move, this.intersection.objects, this.centerPivot, this.scene);
+            this.cubeService.moveLayer(this.move, this.intersection.objects, this.centerPivot, this.scene, this.camera);
             this.moveCount++;
             if (this.moveCount === this.settingsService.cubeSettings.moveSpeedCounts) {
                 this.store.dispatch(new StopMoveAction(this.move));
