@@ -56,7 +56,6 @@
 
 - Cambio de idioma
 
-- Movimiento de cambiar cara de frente
 
 
 

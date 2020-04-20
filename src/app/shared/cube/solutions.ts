@@ -464,4 +464,216 @@ export const SOLUTIONS: SolutionStep[][] = [
         {text: `R'`, value: 9},
         {text: `)`, value: undefined},
     ],
+    // 28
+    [
+        {text: `(`, value: undefined},
+        {text: `l `, value: 20},
+        {text: `U`, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `r `, value: 22},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `r' `, value: 23},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {text: `) `, value: undefined},
+        {text: `l'`, value: 21},
+    ],
+    // 29
+    [
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R' `, value: 5},
+        {text: `U2`, value: 0},
+        {text: undefined, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
+    // 30
+    [
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 5},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
+    // 31
+    [
+        {text: `U `, value: 0},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R'`, value: 5},
+    ],
+    // 32
+    [
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U`, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `)`, value: undefined},
+    ],
+    // 33
+    [
+        {text: `y' `, value: 19},
+        {text: `U `, value: 0},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R`, value: 8},
+        {text: `) `, value: undefined},
+        {text: `d' `, value: 25, class: 'right-ring-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 8},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 9},
+        {text: `)`, value: undefined},
+    ],
+    // 34
+    [
+        {text: `y' `, value: 19},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R`, value: 8},
+        {text: `) `, value: undefined},
+    ],
+    // 35
+    [
+        {text: `y' `, value: 19},
+        {text: `U `, value: 0},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R `, value: 8},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R`, value: 8},
+        {text: `) `, value: undefined},
+    ],
+    // 36
+    [
+        {text: `y' `, value: 19},
+        {text: `U `, value: 0},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U2 `, value: 1},
+        {text: undefined, value: 1},
+        {text: `R `, value: 8},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R`, value: 8},
+        {text: `) `, value: undefined},
+    ],
+    // 37
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U2`, value: 1},
+        {text: undefined, value: 1},
+        {text: `) `, value: undefined},
+        {text: `y' `, value: 19},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R`, value: 8},
+        {text: `) `, value: undefined},
+    ],
+    // 38
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U`, value: 0},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U2`, value: 1},
+        {text: undefined, value: 1},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
+    // 39
+    [
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 5},
+        {text: `U`, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
+    // 40
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
+    // 41
+    [
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U`, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `) `, value: undefined},
+    ],
 ];

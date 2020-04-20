@@ -20,6 +20,9 @@ const FACES = {
     E: [3, 4, 5, 12, 13, 14, 21, 22, 23],
     M: [1, 4, 7, 10, 13, 16, 19, 22, 25],
     V: [9, 10, 11, 13, 14, 17, 16, 15, 12],
+    LEFT_MIDDLE: [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25],
+    RIGHT_MIDDLE: [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26],
+    DOWN_MIDDLE: [3, 4, 5, 6, 7, 8, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26],
 };
 
 
@@ -297,6 +300,83 @@ export const Y0_COLORS = (state: PiecesState) => {
     return state;
 };
 
+export const LM_PIECES = (state: PiecesState) => {
+    L_PIECES(state);
+    M_PIECES(state);
+    return state;
+};
+
+export const LM_COLORS = (state: PiecesState) => {
+    L_COLORS(state);
+    M_COLORS(state);
+    return state;
+};
+
+
+export const LM0_PIECES = (state: PiecesState) => {
+    L0_PIECES(state);
+    M0_PIECES(state);
+    return state;
+};
+
+export const LM0_COLORS = (state: PiecesState) => {
+    L0_COLORS(state);
+    M0_COLORS(state);
+    return state;
+};
+
+
+export const RM_PIECES = (state: PiecesState) => {
+    R_PIECES(state);
+    M0_PIECES(state);
+    return state;
+};
+
+export const RM_COLORS = (state: PiecesState) => {
+    R_COLORS(state);
+    M0_COLORS(state);
+    return state;
+};
+
+
+export const RM0_PIECES = (state: PiecesState) => {
+    R0_PIECES(state);
+    M_PIECES(state);
+    return state;
+};
+
+export const RM0_COLORS = (state: PiecesState) => {
+    R0_COLORS(state);
+    M_COLORS(state);
+    return state;
+};
+
+
+export const DE_PIECES = (state: PiecesState) => {
+    D_PIECES(state);
+    E_PIECES(state);
+    return state;
+};
+
+export const DE_COLORS = (state: PiecesState) => {
+    D_COLORS(state);
+    E_COLORS(state);
+    return state;
+};
+
+
+export const DE0_PIECES = (state: PiecesState) => {
+    D0_PIECES(state);
+    E0_PIECES(state);
+    return state;
+};
+
+export const DE0_COLORS = (state: PiecesState) => {
+    D0_COLORS(state);
+    E0_COLORS(state);
+    return state;
+};
+
 export interface MoveDefinition {
     id: string;
     value: number;
@@ -552,6 +632,78 @@ export const MOVES: MoveDefinition[] = [
         axis: 'y',
         direction: -1,
         isCameraRotation: true,
+    },
+    {
+        id: `l`,
+        value: 20,
+        piecesMove: LM_PIECES,
+        colorsMove: LM_COLORS,
+        cubeFace: FACES.LEFT_MIDDLE,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
+    },
+    {
+        id: `l'`,
+        value: 21,
+        piecesMove: LM0_PIECES,
+        colorsMove: LM0_COLORS,
+        cubeFace: FACES.LEFT_MIDDLE,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+    },
+    {
+        id: `r`,
+        value: 22,
+        piecesMove: RM_PIECES,
+        colorsMove: RM_COLORS,
+        cubeFace: FACES.RIGHT_MIDDLE,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+    },
+    {
+        id: `r'`,
+        value: 23,
+        piecesMove: RM0_PIECES,
+        colorsMove: RM0_COLORS,
+        cubeFace: FACES.RIGHT_MIDDLE,
+        x: -1,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
+    },
+    {
+        id: `d`,
+        value: 24,
+        piecesMove: DE_PIECES,
+        colorsMove: DE_COLORS,
+        cubeFace: FACES.DOWN_MIDDLE,
+        x: 0,
+        y: -1,
+        z: 0,
+        axis: 'y',
+        direction: 1,
+    },
+    {
+        id: `d'`,
+        value: 25,
+        piecesMove: DE0_PIECES,
+        colorsMove: DE0_COLORS,
+        cubeFace: FACES.DOWN_MIDDLE,
+        x: 0,
+        y: -1,
+        z: 0,
+        axis: 'y',
+        direction: -1,
     },
 ];
 
