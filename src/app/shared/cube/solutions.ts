@@ -186,4 +186,106 @@ export const SOLUTIONS: SolutionStep[][] = [
         {text: `R`, value: 8},
         {text: `)`, value: undefined},
     ],
+    // 11
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 5},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `)`, value: undefined},
+    ],
+    // 12
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 5},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 5},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U `, value: 0},
+        {text: `R'`, value: 5},
+        {text: `)`, value: undefined},
+    ],
+
+    // 13
+    [
+        {text: `(`, value: undefined},
+        {text: `R `, value: 4},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 5},
+        {text: `U`, value: 0},
+        {text: `) `, value: undefined},
+        {text: `y'`, value: 19},
+        {text: ` (`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R`, value: 8},
+        {text: `)`, value: undefined},
+    ],
+
+    // 14
+    [
+        {text: `y' `, value: 19},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U2`, value: 0},
+        {text: undefined, value: 0},
+        {text: `) (`, value: undefined},
+        {text: `R `, value: 8},
+        {text: `U `, value: 0},
+        {text: `R' `, value: 9},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R`, value: 8},
+        {text: `)`, value: undefined},
+    ],
+
+    // 15
+    [
+        {text: `y' `, value: 19},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U2`, value: 0},
+        {text: undefined, value: 0},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R `, value: 8},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R`, value: 8},
+        {text: `)`, value: undefined},
+    ],
+
+    // 16
+    [
+        {text: `y' `, value: 19},
+        {text: `(`, value: undefined},
+        {text: `R' `, value: 9},
+        {text: `U `, value: 0},
+        {text: `R `, value: 8},
+        {text: `U' `, value: 1, class: 'right-thumb'},
+        {text: `U'`, value: 1, class: 'left-index-finger'},
+        {
+            text: `)
+        (`, value: undefined
+        },
+        {text: `R' `, value: 9},
+        {text: `U' `, value: 1, class: 'left-index-finger'},
+        {text: `R`, value: 8},
+        {text: `)`, value: undefined},
+    ],
 ];
