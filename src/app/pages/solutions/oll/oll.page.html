@@ -1,9 +1,6 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>oll</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
+<div *ngFor="let id of images">
+  <!--    <img [routerLink]="['/solution', id]" src="assets/test.svg#test-{{id}}" alt="item">-->
+  <img [routerLink]="['/solution', id]" src="assets/solutions/oll-{{id}}.svg" alt="oll-{{id}}">
+</div>
 
-</ion-content>

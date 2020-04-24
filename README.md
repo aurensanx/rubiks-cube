@@ -56,6 +56,12 @@
 
 - Cambio de idioma
 
+### Bugs
+- pero la tuya se queda ahí en el menú de la aplicación, sería posible tener un comportamiento como el que te digo: cerrar la aplicación o mandarla a segundo plano yendo al menú del móvil?
+- la primera al entrar en la sección de soluciones ha habido un momento que se me ha colgado la aplicación
+- movimientos táctiles hacia atrás Android
+- guardar progreso cubo
+
 
 
 

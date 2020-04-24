@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  background-color: var(--ion-color-dark-tint);
+
+  div {
+    flex-basis: 50%;
+    padding: 0.5rem;
+  }
+
+  @media (min-width: 500px) and (max-width: 900px) {
+    div {
+      flex-basis: 33%;
+    }
+  }
+
+  @media (min-width: 900px) {
+    div {
+      flex-basis: 25%;
+    }
+  }
+}
+
+
