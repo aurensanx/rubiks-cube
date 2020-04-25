@@ -79,6 +79,8 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
             setTimeout(() => {
                 this.scramble();
             }, 1000);
+        } else {
+            this.controls.enabled = true;
         }
 
     }

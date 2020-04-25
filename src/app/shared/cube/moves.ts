@@ -23,6 +23,8 @@ const FACES = {
     LEFT_MIDDLE: [0, 1, 3, 4, 6, 7, 9, 10, 12, 13, 15, 16, 18, 19, 21, 22, 24, 25],
     RIGHT_MIDDLE: [1, 2, 4, 5, 7, 8, 10, 11, 13, 14, 16, 17, 19, 20, 22, 23, 25, 26],
     DOWN_MIDDLE: [3, 4, 5, 6, 7, 8, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26],
+    FRONT_MIDDLE: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 17, 16, 15, 12],
+    BACK_MIDDLE: [9, 10, 11, 13, 14, 17, 16, 15, 12, 18, 19, 20, 21, 22, 23, 24, 25, 26],
 };
 
 
@@ -377,6 +379,55 @@ export const DE0_COLORS = (state: PiecesState) => {
     return state;
 };
 
+export const FV_PIECES = (state: PiecesState) => {
+    F_PIECES(state);
+    V_PIECES(state);
+    return state;
+};
+
+export const FV_COLORS = (state: PiecesState) => {
+    F_COLORS(state);
+    V_COLORS(state);
+    return state;
+};
+
+export const FV0_PIECES = (state: PiecesState) => {
+    F0_PIECES(state);
+    V0_PIECES(state);
+    return state;
+};
+
+export const FV0_COLORS = (state: PiecesState) => {
+    F0_COLORS(state);
+    V0_COLORS(state);
+    return state;
+};
+
+export const BV_PIECES = (state: PiecesState) => {
+    B_PIECES(state);
+    V0_PIECES(state);
+    return state;
+};
+
+export const BV_COLORS = (state: ColorsState) => {
+    B_COLORS(state);
+    V0_COLORS(state);
+    return state;
+};
+
+export const BV0_PIECES = (state: PiecesState) => {
+    B0_PIECES(state);
+    V_PIECES(state);
+    return state;
+};
+
+export const BV0_COLORS = (state: ColorsState) => {
+    B0_COLORS(state);
+    V_COLORS(state);
+    return state;
+};
+
+
 export interface MoveDefinition {
     id: string;
     value: number;
@@ -703,6 +754,54 @@ export const MOVES: MoveDefinition[] = [
         y: -1,
         z: 0,
         axis: 'y',
+        direction: -1,
+    },
+    {
+        id: `f`,
+        value: 26,
+        piecesMove: FV_PIECES,
+        colorsMove: FV_COLORS,
+        cubeFace: FACES.FRONT_MIDDLE,
+        x: 0,
+        y: 0,
+        z: 1,
+        axis: 'z',
+        direction: -1,
+    },
+    {
+        id: `f'`,
+        value: 27,
+        piecesMove: FV0_PIECES,
+        colorsMove: FV0_COLORS,
+        cubeFace: FACES.FRONT_MIDDLE,
+        x: 0,
+        y: 0,
+        z: 1,
+        axis: 'z',
+        direction: 1,
+    },
+    {
+        id: `b`,
+        value: 28,
+        piecesMove: BV_PIECES,
+        colorsMove: BV_COLORS,
+        cubeFace: FACES.BACK_MIDDLE,
+        x: 0,
+        y: 0,
+        z: -1,
+        axis: 'z',
+        direction: 1,
+    },
+    {
+        id: `b'`,
+        value: 29,
+        piecesMove: BV0_PIECES,
+        colorsMove: BV0_COLORS,
+        cubeFace: FACES.BACK_MIDDLE,
+        x: 0,
+        y: 0,
+        z: -1,
+        axis: 'z',
         direction: -1,
     },
 ];
