@@ -5,675 +5,81 @@ export interface SolutionStep {
     class?: string;
 }
 
+const S_P: () => SolutionStep = () => ({text: `(`, value: undefined});
+const C_P: () => SolutionStep = () => ({text: `)`, value: undefined});
+const CS_P: () => SolutionStep = () => ({text: `) (`, value: undefined});
+const S: () => SolutionStep = () => ({text: ` `, value: undefined});
+const NL: () => SolutionStep = () => ({
+    text: `
+`, value: undefined
+});
+const R: () => SolutionStep = () => ({text: `R`, value: 4});
+const R0: () => SolutionStep = () => ({text: `R'`, value: 5});
+const R_Y: () => SolutionStep = () => ({text: `R`, value: 8});
+const R0_Y: () => SolutionStep = () => ({text: `R'`, value: 9});
+// const R2: () => SolutionStep[] = () => [{text: `R2`, value: 4}, {text: undefined, value: 4}];
+const R20: () => SolutionStep[] = () => [{text: `R2'`, value: 5}, {text: undefined, value: 5}];
+const R2_Y0: () => SolutionStep[] = () => [{text: `R2`, value: 8}, {text: undefined, value: 8}];
+const R20_Y0: () => SolutionStep[] = () => [{text: `R'2`, value: 9}, {text: undefined, value: 9}];
+const U: () => SolutionStep = () => ({text: `U`, value: 0});
+const U0_RT: () => SolutionStep = () => ({text: `U'`, value: 1, class: 'right-thumb'});
+const U0_LIF: () => SolutionStep = () => ({text: `U'`, value: 1, class: 'left-index-finger'});
+const U2: () => SolutionStep[] = () => [{text: `U2`, value: 0}, {text: undefined, value: 0}];
+const F: () => SolutionStep = () => ({text: `F`, value: 8});
+const F0_RT: () => SolutionStep = () => ({text: `F'`, value: 9, class: 'right-thumb'});
+const Y0: () => SolutionStep = () => ({text: `y'`, value: 19});
+const LM: () => SolutionStep = () => ({text: `l`, value: 20});
+const LM0: () => SolutionStep = () => ({text: `l'`, value: 21});
+const RM: () => SolutionStep = () => ({text: `r`, value: 22});
+const RM0: () => SolutionStep = () => ({text: `r'`, value: 23});
+const DE0_RF: () => SolutionStep = () => ({text: `d' `, value: 25, class: 'right-ring-finger'});
+
+
 export const SOLUTIONS: SolutionStep[][] = [
     [],
-    // 1
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) `, value: undefined},
-        {
-            text: `y'
-        `, value: 19
-        },
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U2 `, value: 0},
-        {text: undefined, value: 0},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 2
-    [
-        {text: `(`, value: undefined},
-        {text: `U `, value: 0},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `) `, value: undefined},
-        {text: `y'`, value: 19},
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 3
-    [
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 5},
-        {text: `F' `, value: 9, class: 'right-thumb'},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `F `, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 4
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-         (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U2 `, value: 0},
-        {text: undefined, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 5
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `F`, value: 8},
-        {text: `) `, value: undefined},
-        {text: `U`, value: 0},
-        {
-            text: `
-        (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `F'`, value: 9, class: 'right-thumb'},
-        {text: `) (`, value: undefined},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 6
-    [
-        {text: `y'`, value: 19},
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R `, value: 8},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 7
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 8
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 9
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U`, value: 0},
-        {text: `) `, value: undefined},
-        {text: `F `, value: 8},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        `, value: undefined
-        },
-        {text: `F' `, value: 9, class: 'right-thumb'},
-        {text: `R'`, value: 5},
-    ],
-    // 10
-    [
-        {text: `y'`, value: 19},
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R `, value: 8},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 11
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 12
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
+    // F2L
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), C_P(), S(), Y0(), NL(), S_P(), R0_Y(), S(), ...U2(), S(), R_Y(), S(), U0_RT(), S(), U0_LIF(), CS_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 1
+    [S_P(), U(), S(), R(), S(), U0_LIF(), S(), R0(), S(), U0_LIF(), C_P(), S(), Y0(), NL(), S_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 2
+    [S_P(), R0(), S(), F0_RT(), S(), R(), S(), U(), CS_P(), R(), S(), U0_LIF(), S(), R0(), S(), F(), C_P()], // 3
+    [S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), R(), S(), ...U2(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 4
+    [S_P(), R(), S(), F(), C_P(), S(), U(), NL(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), F0_RT(), CS_P(), U0_LIF(), S(), R0(), C_P()], // 5
+    [Y0(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), S(), U(), CS_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 6
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 7
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), C_P(), NL(), S_P(), R(), S(), U0_RT(), S(), U0_LIF(), S(), R0(), S(), U(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 8
+    [S_P(), R(), S(), U(), C_P(), S(), F(), S(), S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), NL(), F0_RT(), S(), R0()], // 9
+    [Y0(), S(), S_P(), R0_Y(), S(), U(), S(), R_Y(), S(), U0_LIF(), CS_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 10
+    [S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 11
+    [S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 12
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), C_P(), S(), Y0(), S(), S_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 13
+    [Y0(), S(), S_P(), R0_Y(), S(), ...U2(), CS_P(), R_Y(), S(), U(), S(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 14
+    [Y0(), S(), U0_LIF(), S(), S_P(), R0_Y(), S(), ...U2(), C_P(), NL(), S_P(), R_Y(), S(), U0_LIF(), S(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 15
+    [Y0(), S(), S_P(), R0_Y(), S(), U(), S(), R_Y(), S(), U0_RT(), S(), U0_LIF(), C_P(), NL(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 16
+    [F(), S(), U(), S(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), F0_RT(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 17
+    [U(), S(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), C_P(), NL(), S_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 18
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), ...U2(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 19
+    [U(), S(), S_P(), R(), S(), U0_RT(), S(), U0_LIF(), CS_P(), R0(), S(), U(), S(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 20
+    [S_P(), R(), S(), U0_RT(), S(), U0_LIF(), CS_P(), R0(), S(), U0_LIF(), S(), R(), S(), U(), S(), R0(), C_P()], // 21
+    [U0_LIF(), S(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), ...U2(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 22
+    [U0_LIF(), S(), S_P(), R(), S(), U(), S(), R0(), C_P(), S(), Y0(), S(), S_P(), U(), S(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 23
+    [Y0(), S(), U(), S(), S_P(), R0_Y(), S(), U(), S(), R_Y(), S(), U0_LIF(), CS_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 24
+    [Y0(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 25
+    [Y0(), S(), U(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), S(), U0_LIF(), C_P(), NL(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 26
+    [Y0(), S(), S_P(), R_Y(), S(), U0_RT(), S(), U0_LIF(), C_P(), NL(), S_P(), ...R20_Y0(), S(), U0_LIF(), CS_P(), ...R2_Y0(), S(), U0_LIF(), S(), R0_Y(), C_P()], // 27
+    [S_P(), LM(), S(), U(), CS_P(), RM(), S(), U0_LIF(), S(), RM0(), S(), U0_LIF(), C_P(), S(), LM0()], // 28
+    [U0_LIF(), S(), S_P(), R(), S(), U0_RT(), S(), U0_LIF(), C_P(), NL(), S_P(), R0(), S(), ...U2(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 29
+    [U0_LIF(), S(), S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), R(), S(), U0_RT(), S(), U0_LIF(), S(), R0(), C_P()], // 30
+    [U(), S(), R(), S(), U0_LIF(), S(), R0()], // 31
+    [U0_LIF(), S(), S_P(), R(), S(), U0_RT(), S(), U0_LIF(), S(), R0(), S(), U(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 32
+    [Y0(), S(), U(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P(), S(), DE0_RF(), S_P(), R_Y(), S(), U(), S(), R0_Y(), C_P()], // 33
+    [Y0(), S(), U0_LIF(), S(), S_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 34
+    [Y0(), S(), U(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), S(), U0_RT(), S(), U0_LIF(), C_P(), NL(), S_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 35
+    [Y0(), S(), U(), S(), S_P(), R0_Y(), S(), ...U2(), S(), R_Y(), S(), U0_RT(), S(), U0_LIF(), C_P(), NL(), S_P(), R0_Y(), S(), U(), S(), R_Y(), C_P()], // 36
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), ...U2(), C_P(), S(), Y0(), S(), S_P(), R0_Y(), S(), U0_LIF(), S(), R_Y(), C_P()], // 37
+    [S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), C_P(), NL(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), ...U2(), CS_P(), R(), S(), U0_LIF(), S(), R0(), C_P()], // 38
+    [U0_LIF(), S(), S_P(), R(), S(), U(), S(), R0(), S(), U(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 39
+    [S_P(), R(), S(), U(), S(), R0(), C_P()], // 40
+    [U0_LIF(), S(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), U(), CS_P(), R(), S(), U(), S(), R0(), C_P()], // 41
 
-    // 13
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) `, value: undefined},
-        {text: `y'`, value: 19},
-        {text: ` (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-
-    // 14
-    [
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U2`, value: 0},
-        {text: undefined, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 8},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-
-    // 15
-    [
-        {text: `y' `, value: 19},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U2`, value: 0},
-        {text: undefined, value: 0},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-
-    // 16
-    [
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-
-    // 17
-    [
-        {text: `F `, value: 8},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1},
-        {text: `R' `, value: 5},
-        {text: `F'`, value: 9, class: 'right-thumb'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-
-    // 18
-    [
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 19
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U2`, value: 0},
-        {text: undefined, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 20
-    [
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 5},
-        {text: `U `, value: 0},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 21
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 5},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 22
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U2`, value: 0},
-        {text: undefined, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 23
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 24
-    [
-        {text: `y' `, value: 19},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R `, value: 8},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 25
-    [
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 26
-    [
-        {text: `y' `, value: 19},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R `, value: 8},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `)`, value: undefined},
-    ],
-    // 27
-    [
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R'2 `, value: 9},
-        {text: undefined, value: 9},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) (`, value: undefined},
-        {text: `R2 `, value: 8},
-        {text: undefined, value: 8},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 9},
-        {text: `)`, value: undefined},
-    ],
-    // 28
-    [
-        {text: `(`, value: undefined},
-        {text: `l `, value: 20},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `r `, value: 22},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `r' `, value: 23},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {text: `) `, value: undefined},
-        {text: `l'`, value: 21},
-    ],
-    // 29
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R' `, value: 5},
-        {text: `U2`, value: 0},
-        {text: undefined, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 30
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 31
-    [
-        {text: `U `, value: 0},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-    ],
-    // 32
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `)`, value: undefined},
-    ],
-    // 33
-    [
-        {text: `y' `, value: 19},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `) `, value: undefined},
-        {text: `d' `, value: 25, class: 'right-ring-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 8},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 9},
-        {text: `)`, value: undefined},
-    ],
-    // 34
-    [
-        {text: `y' `, value: 19},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `) `, value: undefined},
-    ],
-    // 35
-    [
-        {text: `y' `, value: 19},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `) `, value: undefined},
-    ],
-    // 36
-    [
-        {text: `y' `, value: 19},
-        {text: `U `, value: 0},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U2 `, value: 1},
-        {text: undefined, value: 1},
-        {text: `R `, value: 8},
-        {text: `U' `, value: 1, class: 'right-thumb'},
-        {text: `U'`, value: 1, class: 'left-index-finger'},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R' `, value: 9},
-        {text: `U `, value: 0},
-        {text: `R`, value: 8},
-        {text: `) `, value: undefined},
-    ],
-    // 37
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U2`, value: 1},
-        {text: undefined, value: 1},
-        {text: `) `, value: undefined},
-        {text: `y' `, value: 19},
-        {text: `(`, value: undefined},
-        {text: `R' `, value: 9},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R`, value: 8},
-        {text: `) `, value: undefined},
-    ],
-    // 38
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {
-            text: `)
-        (`, value: undefined
-        },
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U2`, value: 1},
-        {text: undefined, value: 1},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 39
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 40
-    [
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
-    // 41
-    [
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `(`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U' `, value: 1, class: 'left-index-finger'},
-        {text: `R' `, value: 5},
-        {text: `U`, value: 0},
-        {text: `) (`, value: undefined},
-        {text: `R `, value: 4},
-        {text: `U `, value: 0},
-        {text: `R'`, value: 5},
-        {text: `) `, value: undefined},
-    ],
+    // OLL
+    [S_P(), R(), S(), U0_RT(), S(), U0_LIF(), CS_P(), ...R20(), S(), F(), S(), R(), S(), F0_RT(), C_P(), NL(), ...U2(), S(), S_P(), R0(), S(), F(), S(), R(), S(), F0_RT(), C_P()], // 1
 ];

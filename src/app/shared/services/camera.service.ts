@@ -56,11 +56,9 @@ export class CameraService {
 
     resizeRendererToDisplaySize = renderer => {
         const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
+        const needResize = canvas.width !== canvas.clientWidth || canvas.height !== canvas.clientHeight;
         if (needResize) {
-            renderer.setSize(width, height, false);
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
         }
         return needResize;
     };

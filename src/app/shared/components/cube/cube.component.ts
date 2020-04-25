@@ -107,6 +107,7 @@ export class CubeComponent implements AfterViewInit, OnDestroy, OnChanges {
         this.store.dispatch(new InitCubeAction());
         this.scene.add(...this.intersection.objects);
 
+
         // this.cameraService.fitCameraToSelection(this.camera, this.controls, this.intersection.objects);
 
     }
