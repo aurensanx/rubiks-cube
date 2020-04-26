@@ -1,9 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pll</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div *ngFor="let id of images">
+  <img [routerLink]="['/solution', id+98]" src="assets/solutions/pll.svg#pll-{{id}}" alt="pll-{{id}}">
+</div>
 
-<ion-content>
-
-</ion-content>
