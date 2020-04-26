@@ -32,6 +32,7 @@ const FV: () => SolutionStep = () => ({text: `f`, value: 26});
 const FV0_RT: () => SolutionStep = () => ({text: `f'`, value: 27, class: 'right-thumb'});
 const FV0_RRT: () => SolutionStep = () => ({text: `f'`, value: 27, class: 'right-ring-finger'});
 const Y0: () => SolutionStep = () => ({text: `y'`, value: 19});
+const X0: () => SolutionStep = () => ({text: `x'`, value: 31});
 const M: () => SolutionStep = () => ({text: `M`, value: 14});
 const M0_RRF: () => SolutionStep = () => ({text: `M'`, value: 15, class: 'right-ring-finger'});
 const M20_RRF: () => SolutionStep[] = () => [{text: `M'2`, value: 15, class: 'right-ring-finger'}, {
@@ -50,8 +51,11 @@ const B: () => SolutionStep = () => ({text: `B`, value: 10});
 const B0_RRF: () => SolutionStep = () => ({text: `B'`, value: 11, class: 'right-ring-finger'});
 const D_RRF: () => SolutionStep = () => ({text: `D`, value: 2, class: 'right-ring-finger'});
 const D0_RRF: () => SolutionStep = () => ({text: `D'`, value: 3, class: 'right-ring-finger'});
+const D2_RRF: () => SolutionStep[] = () => [{text: `D2`, value: 2, class: 'right-ring-finger'}, {text: undefined, value: 2}];
 const BM: () => SolutionStep = () => ({text: `b`, value: 28});
 const BMO_RT: () => SolutionStep = () => ({text: `b'`, value: 29, class: 'right-thumb'});
+const DM: () => SolutionStep = () => ({text: `d`, value: 24});
+const DM0: () => SolutionStep = () => ({text: `d'`, value: 25});
 
 
 export const SOLUTIONS: SolutionStep[][] = [
@@ -158,4 +162,27 @@ export const SOLUTIONS: SolutionStep[][] = [
     [S_P(), RM(), S(), U0_RT(), S(), U0_LIF(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), RM0(), S(), ...R2(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), RM(), S(), U0_LIF(), S(), RM0(), C_P()], // 55
     [S_P(), RM(), S(), U(), S(), RM0(), CS_P(), U(), S(), R(), S(), U0_LIF(), S(), R0(), CS_P(), U(), S(), R(), S(), U0_LIF(), S(), R0(), C_P(), NL(), S_P(), RM(), S(), U0_LIF(), S(), RM0(), C_P()], // 56
     [S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), S(), M0_RRF(), S(), S_P(), U(), S(), R(), S(), U0_LIF(), S(), RM0(), C_P()], // 57
+
+    // PLL
+    [S_P(), R(), S(), U0_LIF(), S(), R(), CS_P(), U(), S(), R(), CS_P(), U(), S(), R(), C_P(), NL(), S_P(), U0_LIF(), S(), R0(), S(), U0_LIF(), S(), ...R20(), C_P()], // 1
+    [S_P(), ...R2(), S(), U(), CS_P(), R(), S(), U(), CS_P(), R0(), S(), U0_LIF(), CS_P(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), R0(), S(), U(), S(), R0(), C_P()], // 2
+    [...M20_RRF(), S(), U(), S(), ...M20_RRF(), S(), ...U2(), S(), ...M20_RRF(), S(), U(), S(), ...M20_RRF()], // 3
+    [M0_RRF(), S(), U(), S(), S_P(), ...M20_RRF(), S(), U(), CS_P(), ...M20_RRF(), S(), U(), C_P(), NL(), M0_RRF(), S(), ...U2(), S(), ...M20_RRF(), S(), U0_LIF()], // 4
+    [X0(), S(), ...R2(), S(), ...D2_RRF(), S(), S_P(), R0(), S(), U0_LIF(), S(), R(), C_P(), S(), ...D2_RRF(), NL(), S_P(), R0(), S(), U(), S(), R0(), C_P()], // 5
+    [X0(), S(), S_P(), R(), S(), U0_LIF(), S(), R(), C_P(), S(), ...D2_RRF(), NL(), S_P(), R0(), S(), U(), S(), R(), C_P(), S(), ...D2_RRF(), S(), ...R20()], // 6
+    [X0(), S(), S_P(), R(), S(), U0_LIF(), S(), R0(), S(), D_RRF(), CS_P(), R(), S(), U(), S(), R0(), S(), D0_RRF(), C_P(), NL(), S_P(), R(), S(), U(), S(), R0(), S(), D_RRF(), CS_P(), R(), S(), U0_LIF(), R0(), S(), D0_RRF(), C_P()], // 7
+    [S_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), CS_P(), R0(), S(), F(), C_P(), NL(), S_P(), ...R2(), S(), U0_LIF(), S(), R0(), S(), U0_LIF(), CS_P(), R(), S(), U(), S(), R0(), S(), F0_RT(), C_P()], // 8
+    [S_P(), R0(), S(), U0_LIF(), S(), F0_RT(), CS_P(), R(), S(), U(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), R0(), S(), F(), CS_P(), ...R2(), S(), U0_LIF(), S(), R0(), S(), U0_LIF(), C_P(), NL(), S_P(), R(), S(), U(), S(), R0(), S(), U(), S(), R(), C_P() ], // 9
+    [S_P(), R0(), S(), U(), S(), R0(), S(), DM0(), CS_P(), R0(), S(), F0_RT(), S(), ...R2(), S(), U0_LIF(), C_P(), NL(), S_P(), R0(), S(), U(), S(), R0(), S(), F(), S(), R(), S(), F(), C_P()], // 10
+    [], // 11
+    [], // 12
+    [], // 13
+    [], // 14
+    [], // 15
+    [], // 16
+    [], // 17
+    [], // 18
+    [], // 19
+    [], // 20
+    [], // 21
 ];

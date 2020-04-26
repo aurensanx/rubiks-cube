@@ -25,6 +25,7 @@ const FACES = {
     DOWN_MIDDLE: [3, 4, 5, 6, 7, 8, 12, 13, 14, 15, 16, 17, 21, 22, 23, 24, 25, 26],
     FRONT_MIDDLE: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 17, 16, 15, 12],
     BACK_MIDDLE: [9, 10, 11, 13, 14, 17, 16, 15, 12, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+    ALL: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 17, 16, 15, 12, 18, 19, 20, 21, 22, 23, 24, 25, 26],
 };
 
 
@@ -283,6 +284,34 @@ export const V0_COLORS = (state: PiecesState) => {
     turnFace(state, [31, 50, 5, 43]);
     turnFace(state, [19, 53, 17, 44]);
     turnFace(state, [7, 52, 29, 41]);
+    return state;
+};
+
+export const X_PIECES = (state: PiecesState) => {
+    R_PIECES(state);
+    M0_PIECES(state);
+    L0_PIECES(state);
+    return state;
+};
+
+export const X_COLORS = (state: PiecesState) => {
+    R_COLORS(state);
+    M0_COLORS(state);
+    L0_COLORS(state);
+    return state;
+};
+
+export const X0_PIECES = (state: PiecesState) => {
+    R0_PIECES(state);
+    M_PIECES(state);
+    L_PIECES(state);
+    return state;
+};
+
+export const X0_COLORS = (state: PiecesState) => {
+    R0_COLORS(state);
+    M_COLORS(state);
+    L_COLORS(state);
     return state;
 };
 
@@ -803,6 +832,30 @@ export const MOVES: MoveDefinition[] = [
         z: -1,
         axis: 'z',
         direction: -1,
+    },
+    {
+        id: `x`,
+        value: 30,
+        piecesMove: X_PIECES,
+        colorsMove: X_COLORS,
+        cubeFace: FACES.ALL,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: -1,
+    },
+    {
+        id: `x'`,
+        value: 31,
+        piecesMove: X0_PIECES,
+        colorsMove: X0_COLORS,
+        cubeFace: FACES.ALL,
+        x: 0,
+        y: 0,
+        z: 0,
+        axis: 'x',
+        direction: 1,
     },
 ];
 
