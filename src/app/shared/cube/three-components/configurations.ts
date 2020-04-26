@@ -1252,7 +1252,7 @@ setFrontColorRightTopFrontCorner(configurationPLL12, ORANGE);
 setRightColorRightTopMiddleEdge(configurationPLL12, BLUE);
 
 const configurationPLL13 = createSolvedConfiguration();
-setFrontColorRightTopFrontCorner(configurationPLL13, RED);
+setFrontColorMiddleTopFrontEdge(configurationPLL13, RED);
 setRightColorRightTopFrontCorner(configurationPLL13, GREEN);
 setFrontColorRightTopFrontCorner(configurationPLL13, RED);
 setRightColorRightTopMiddleEdge(configurationPLL13, BLUE);
@@ -1265,7 +1265,7 @@ setRightColorRightTopMiddleEdge(configurationPLL14, BLUE);
 setLeftColorLeftTopBackCorner(configurationPLL14, GREEN);
 setBackColorLeftTopBackCorner(configurationPLL14, RED);
 setRightColorRightTopBackCorner(configurationPLL14, GREEN);
-setBackColorLeftTopBackCorner(configurationPLL14, ORANGE);
+setBackColorRightTopBackCorner(configurationPLL14, ORANGE);
 
 const configurationPLL15 = createSolvedConfiguration();
 setRightColorRightTopFrontCorner(configurationPLL15, GREEN);
@@ -1294,13 +1294,13 @@ setLeftColorLeftTopMiddleEdge(configurationPLL17, BLUE);
 setLeftColorLeftTopBackCorner(configurationPLL17, GREEN);
 setBackColorLeftTopBackCorner(configurationPLL17, RED);
 setBackColorMiddleTopBackEdge(configurationPLL17, ORANGE);
-setRightColorRightTopFrontCorner(configurationPLL17, ORANGE);
+setRightColorRightTopBackCorner(configurationPLL17, ORANGE);
 setBackColorRightTopBackCorner(configurationPLL17, BLUE);
 
 const configurationPLL18 = createSolvedConfiguration();
-setLeftColorLeftTopBackCorner(configurationPLL18, GREEN);
+setLeftColorLeftTopFrontCorner(configurationPLL18, GREEN);
 setFrontColorLeftTopFrontCorner(configurationPLL18, ORANGE);
-setLeftColorLeftTopMiddleEdge(configurationPLL18, ORANGE);
+setLeftColorLeftTopMiddleEdge(configurationPLL18, RED);
 setRightColorRightTopMiddleEdge(configurationPLL18, GREEN);
 setLeftColorLeftTopBackCorner(configurationPLL18, GREEN);
 setBackColorLeftTopBackCorner(configurationPLL18, RED);
@@ -1353,10 +1353,4 @@ export const CUBE_CONFIGURATIONS: PIECE[][] = [
     configurationPLL11, configurationPLL12, configurationPLL13, configurationPLL14, configurationPLL15, configurationPLL16, configurationPLL17, configurationPLL18, configurationPLL19, configurationPLL20,
     configurationPLL21,
 ];
-
-// Array.from({length: 57}, (_, id) => CUBE_CONFIGURATIONS.push(createOLLBaseConfiguration()));
-
-
-// R - L - U - D - F - B
-
 
