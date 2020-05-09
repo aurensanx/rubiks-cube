@@ -731,7 +731,7 @@ setUpColorLeftTopMiddleEdge(configurationOLL14, YELLOW);
 setUpColorRightTopMiddleEdge(configurationOLL14, YELLOW);
 setLeftColorLeftTopBackCorner(configurationOLL14, YELLOW);
 setBackColorMiddleTopBackEdge(configurationOLL14, YELLOW);
-setBackColorLeftTopBackCorner(configurationOLL14, YELLOW);
+setBackColorRightTopBackCorner(configurationOLL14, YELLOW);
 
 const configurationOLL15 = createOLLBaseConfiguration();
 setLeftColorLeftTopFrontCorner(configurationOLL15, YELLOW);
