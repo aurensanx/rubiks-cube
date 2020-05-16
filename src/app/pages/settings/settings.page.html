@@ -3,7 +3,7 @@
 
 <div class="settings">
     <div class="setting-item">
-        <h2><b>Velocidad de movimiento: </b>{{cubeSettings.moveSpeed}}</h2>
+        <h3>Velocidad de movimiento: {{cubeSettings.moveSpeed}}</h3>
         <ion-range [value]="cubeSettings.moveSpeed" min="1" max="10" color="medium"
                    (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
             <ion-label slot="start">1</ion-label>
@@ -12,7 +12,7 @@
     </div>
 
     <div class="setting-item">
-        <h2><b>Sensibilidad: </b>{{cubeSettings.sensitivity}}</h2>
+        <h3>Sensibilidad: {{cubeSettings.sensitivity}}</h3>
         <ion-range [value]="cubeSettings.sensitivity" min="1" max="10" color="medium"
                    (ionChange)="onSensitivityChange($event)" snaps="true" ticks="false">
             <ion-label slot="start">1</ion-label>
@@ -23,7 +23,7 @@
     <div class="setting-item">
         <ion-radio-group [value]="cubeSettings.controls" (ionChange)="onControlsChange($event)">
 
-            <h2><b>Cámara</b></h2>
+            <h3>Cámara:</h3>
             <ion-item color="medium">
                 <ion-label><strong>OrbitControls</strong>: allows the camera to orbit around a target</ion-label>
                 <ion-radio slot="start" value="orbit"></ion-radio>

@@ -3,15 +3,17 @@
   overflow: auto;
   height: 100%;
 
-  grid-template-rows: 1fr 1fr 1.5fr;
+  grid-template-rows: 1fr 1fr 2fr;
   grid-template-columns: 1fr;
 
   grid-template-areas: "move-speed" "sensitivity" "controls";
 
   .setting-item {
-    padding: 1rem 2rem 1rem 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
 
     &:nth-child(1) {
+      padding-top: 1rem;
       grid-area: move-speed;
     }
 
@@ -21,6 +23,7 @@
 
     &:nth-child(3) {
       grid-area: controls;
+      padding-bottom: 1rem;
     }
 
     ion-range {
