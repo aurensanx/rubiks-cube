@@ -1,9 +1,10 @@
-:host {
+.solutions {
   display: flex;
   height: 100%;
   width: 100%;
   justify-content: space-evenly;
   align-items: center;
+  flex-direction: column;
 
   ion-button {
     width: 40%;

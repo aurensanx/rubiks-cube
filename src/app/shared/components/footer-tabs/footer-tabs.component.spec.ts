@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SideMenuComponent } from './side-menu.component';
+import { FooterTabsComponent } from './footer-tabs.component';
 
-describe('SideMenuComponent', () => {
-  let component: SideMenuComponent;
-  let fixture: ComponentFixture<SideMenuComponent>;
+describe('FooterTabsComponent', () => {
+  let component: FooterTabsComponent;
+  let fixture: ComponentFixture<FooterTabsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SideMenuComponent ],
+      declarations: [ FooterTabsComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SideMenuComponent);
+    fixture = TestBed.createComponent(FooterTabsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

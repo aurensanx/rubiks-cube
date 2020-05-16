@@ -1,19 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CubeComponent} from './components';
-import {SolutionComponent} from './components/solution/solution.component';
+import {CubeComponent, FooterTabsComponent, HeaderComponent, SolutionComponent} from './components';
 import {IonicModule} from '@ionic/angular';
 
 
 @NgModule({
-    declarations: [CubeComponent, SolutionComponent],
+    declarations: [HeaderComponent, CubeComponent, SolutionComponent, FooterTabsComponent],
     imports: [
         CommonModule,
         IonicModule
     ],
     exports: [
+        HeaderComponent,
         CubeComponent,
         SolutionComponent,
+        FooterTabsComponent,
     ]
 })
 export class SharedModule {

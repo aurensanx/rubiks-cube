@@ -1,39 +1,40 @@
-<div class="setting-item">
-    <h2><b>Move Speed: </b>{{cubeSettings.moveSpeed}}</h2>
-    <ion-range [value]="cubeSettings.moveSpeed" min="1" max="10" color="secondary"
-               (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
-        <ion-label slot="start">1</ion-label>
-        <ion-label slot="end">10</ion-label>
-    </ion-range>
-</div>
+<app-header></app-header>
+<div class="settings">
+    <div class="setting-item">
+        <h2><b>Velocidad de movimiento: </b>{{cubeSettings.moveSpeed}}</h2>
+        <ion-range [value]="cubeSettings.moveSpeed" min="1" max="10" color="tertiary"
+                   (ionChange)="onMoveSpeedChange($event)" snaps="true" ticks="false">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">10</ion-label>
+        </ion-range>
+    </div>
 
-<div class="setting-item">
-    <h2><b>Sensitivity: </b>{{cubeSettings.sensitivity}}</h2>
-    <ion-range [value]="cubeSettings.sensitivity" min="1" max="10" color="secondary"
-               (ionChange)="onSensitivityChange($event)" snaps="true" ticks="false">
-        <ion-label slot="start">1</ion-label>
-        <ion-label slot="end">10</ion-label>
-    </ion-range>
-</div>
+    <div class="setting-item">
+        <h2><b>Sensibilidad: </b>{{cubeSettings.sensitivity}}</h2>
+        <ion-range [value]="cubeSettings.sensitivity" min="1" max="10" color="tertiary"
+                   (ionChange)="onSensitivityChange($event)" snaps="true" ticks="false">
+            <ion-label slot="start">1</ion-label>
+            <ion-label slot="end">10</ion-label>
+        </ion-range>
+    </div>
 
-<div class="setting-item">
-    <ion-radio-group [value]="cubeSettings.controls" (ionChange)="onControlsChange($event)">
+    <div class="setting-item">
+        <ion-radio-group [value]="cubeSettings.controls" (ionChange)="onControlsChange($event)">
 
-        <h2><b>Camera</b></h2>
-        <ion-item color="secondary">
-            <ion-label><strong>OrbitControls</strong>: allows the camera to orbit around a target</ion-label>
-            <ion-radio slot="start" value="orbit"></ion-radio>
-        </ion-item>
+            <h2><b>Cámara</b></h2>
+            <ion-item color="tertiary">
+                <ion-label><strong>OrbitControls</strong>: allows the camera to orbit around a target</ion-label>
+                <ion-radio slot="start" value="orbit"></ion-radio>
+            </ion-item>
 
-        <ion-item color="secondary">
-            <ion-label><strong>TrackballControls</strong>: it does not maintain a constant camera up vector</ion-label>
-            <ion-radio slot="start" value="trackball"></ion-radio>
-        </ion-item>
-    </ion-radio-group>
-</div>
+            <ion-item color="tertiary">
+                <ion-label><strong>TrackballControls</strong>: it does not maintain a constant camera up vector
+                </ion-label>
+                <ion-radio slot="start" value="trackball"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+    </div>
 
-<div class="button-container">
-    <ion-button (click)="saveSettings()">Save</ion-button>
 </div>
 
 

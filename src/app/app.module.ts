@@ -13,14 +13,16 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {IonicStorageModule} from '@ionic/storage';
 import {reducers} from './shared/cube';
-import {HeaderComponent} from './shared/components/header/header.component';
-import {SideMenuComponent} from './shared/components/side-menu/side-menu.component';
 import {HomePage} from './pages/home/home.page';
 import {SolutionsCardComponent} from './pages/home/solutions-card/solutions-card.component';
 import {IntroductionCardComponent} from './pages/home/introduction-card/introduction-card.component';
+import {SettingsPage} from './pages/settings/settings.page';
+import {PlayPage} from './pages/play/play.page';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, SideMenuComponent, HomePage, SolutionsCardComponent, IntroductionCardComponent],
+    declarations: [AppComponent, HomePage, PlayPage, SettingsPage,
+        SolutionsCardComponent, IntroductionCardComponent],
     entryComponents: [],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
         StoreModule.forRoot(reducers),
@@ -30,15 +32,12 @@ import {IntroductionCardComponent} from './pages/home/introduction-card/introduc
             logOnly: environment.production, // Restrict extension to log-only mode
         }),
         IonicStorageModule.forRoot(),
+        SharedModule,
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
-    ],
-    exports: [
-        HeaderComponent,
-        SideMenuComponent
     ],
     bootstrap: [AppComponent]
 })

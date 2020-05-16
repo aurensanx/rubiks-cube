@@ -1,20 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { IonicModule } from '@ionic/angular';
+import {IonicModule} from '@ionic/angular';
 
-import { SolutionsPageRoutingModule } from './solutions-routing.module';
+import {SolutionsPageRoutingModule} from './solutions-routing.module';
 
-import { SolutionsPage } from './solutions.page';
+import {SolutionsPage} from './solutions.page';
+import {SharedModule} from '../../shared/shared.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    SolutionsPageRoutingModule
-  ],
-  declarations: [SolutionsPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        SolutionsPageRoutingModule,
+        SharedModule,
+    ],
+    declarations: [SolutionsPage]
 })
-export class SolutionsPageModule {}
+export class SolutionsPageModule {
+}
