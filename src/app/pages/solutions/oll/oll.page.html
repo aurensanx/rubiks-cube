@@ -1,4 +1,9 @@
-<div *ngFor="let id of images">
-    <img [routerLink]="['/solution', id+41]" src="assets/solutions/oll.svg#oll-{{id}}" alt="oll-{{id}}">
+<app-header></app-header>
+
+<div class="solutions">
+    <div *ngFor="let id of images">
+        <img [routerLink]="['/solution', id+41]" src="assets/solutions/oll.svg#oll-{{id}}" alt="oll-{{id}}">
+    </div>
 </div>
+
 

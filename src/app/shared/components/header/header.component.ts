@@ -17,7 +17,10 @@ export class HeaderComponent implements OnInit {
         this.router.events
             .subscribe((event) => {
                 if (event instanceof NavigationEnd) {
-                    this.title = this.activatedRoute.root.firstChild.snapshot.data.title;
+
+                    this.title = this.activatedRoute.root.firstChild.firstChild ?
+                        this.activatedRoute.root.firstChild.firstChild.snapshot.data.title :
+                        this.activatedRoute.root.firstChild.snapshot.data.title;
                 }
             });
     }

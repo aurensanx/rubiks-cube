@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 import {HomePage} from './pages/home/home.page';
 import {SettingsPage} from './pages/settings/settings.page';
-import {SolutionsPage} from './pages/solutions/solutions.page';
 import {PlayPage} from './pages/play/play.page';
 
 const routes: Routes = [
