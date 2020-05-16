@@ -11,6 +11,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {OllPage} from './oll/oll.page';
 import {F2lPage} from './f2l/f2l.page';
 import {PllPage} from './pll/pll.page';
+import {SpeedcubingPage} from './speedcubing/speedcubing.page';
 
 @NgModule({
     imports: [
@@ -20,7 +21,7 @@ import {PllPage} from './pll/pll.page';
         SolutionsPageRoutingModule,
         SharedModule,
     ],
-    declarations: [SolutionsPage, F2lPage, OllPage, PllPage]
+    declarations: [SolutionsPage, SpeedcubingPage, F2lPage, OllPage, PllPage]
 })
 export class SolutionsPageModule {
 }

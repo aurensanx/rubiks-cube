@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {NavController} from '@ionic/angular';
 
 @Component({
     selector: 'app-header',
@@ -17,7 +18,6 @@ export class HeaderComponent implements OnInit {
         this.router.events
             .subscribe((event) => {
                 if (event instanceof NavigationEnd) {
-
                     this.title = this.activatedRoute.root.firstChild.firstChild ?
                         this.activatedRoute.root.firstChild.firstChild.snapshot.data.title :
                         this.activatedRoute.root.firstChild.snapshot.data.title;
