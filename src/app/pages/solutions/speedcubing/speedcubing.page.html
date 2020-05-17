@@ -1,8 +1,53 @@
 <app-header></app-header>
 
-<div class="solutions">
-  <ion-button routerLink="/solutions/f2l">F2L</ion-button>
-  <ion-button routerLink="/solutions/oll">OLL</ion-button>
-  <ion-button routerLink="/solutions/pll">PLL</ion-button>
-</div>
+<ion-content color="light">
 
+  <ion-list class="content">
+    <ion-card color="white">
+
+      <ion-card-header>
+        <!--        <ion-card-subtitle>Dos primeras capas</ion-card-subtitle>-->
+        <ion-card-title>1. Cruz</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Cruz inicial
+      </ion-card-content>
+    </ion-card>
+    <ion-card color="white">
+
+      <ion-card-header>
+<!--        <ion-card-subtitle>Dos primeras capas</ion-card-subtitle>-->
+        <ion-card-title>2. F2L</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Dos primeras capas
+      </ion-card-content>
+    </ion-card>
+    <ion-card color="white">
+      <ion-card-header>
+<!--        <ion-card-subtitle>Orientación de la última capa</ion-card-subtitle>-->
+        <ion-card-title>3. OLL</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Orientación de la última capa
+      </ion-card-content>
+    </ion-card>
+    <ion-card color="white" [routerLink]="'speedcubing'">
+      <ion-card-header>
+<!--        <ion-card-subtitle>Permutación de la última capa</ion-card-subtitle>-->
+        <ion-card-title>4. PLL</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        Permutación de la última capa
+        <!--            Se dividen en movimientos para las dos primeras capas (F2L),-->
+        <!--            orientación de la última capa (OLL) y permutación de la última capa (PLL).-->
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+
+</ion-content>

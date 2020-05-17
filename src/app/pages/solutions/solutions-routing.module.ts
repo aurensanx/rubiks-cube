@@ -12,7 +12,7 @@ const routes: Routes = [
     {path: 'f2l', component: F2lPage, data: {title: 'First 2 Layers'}},
     {path: 'oll', component: OllPage, data: {title: 'Orientation of Last Layer'}},
     {path: 'pll', component: PllPage, data: {title: 'Permutation of Last Layer'}},
-    {path: 'speedcubing', component: SpeedcubingPage, data: {title: 'Soluciones para Speedcubing'}},
+    {path: 'speedcubing', component: SpeedcubingPage, data: {title: 'Soluciones avanzadas'}},
 ];
 
 @NgModule({
